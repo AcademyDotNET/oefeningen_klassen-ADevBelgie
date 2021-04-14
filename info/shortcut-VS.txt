@@ -1,0 +1,3 @@
+set layout: ctrl + k +d
+start: F5
+stop: f9

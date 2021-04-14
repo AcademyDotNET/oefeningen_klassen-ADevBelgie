@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple math", "Simple math\Simple math.csproj", "{1B5CC892-9A16-4283-9C04-AEAAFD183D74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemiddelde", "Gemiddelde\Gemiddelde.csproj", "{5CEF245A-824B-431E-AA8A-67CCC4195490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Euro naar dollar", "Euro naar dollar\Euro naar dollar.csproj", "{F08217A1-386D-4A99-9FE9-FFA4C890D57E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tafel en Console.Clear()", "Tafel en Console.Clear()\Tafel en Console.Clear().csproj", "{50877394-ABF5-4444-8D03-345F70360396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD-ratio", "KD-ratio\KD-ratio.csproj", "{5BFD1888-B67D-4333-8745-177AF8419B32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gewicht in space", "Gewicht in space\Gewicht in space.csproj", "{3DC30495-A285-4360-A365-E61FC2D62523}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B5CC892-9A16-4283-9C04-AEAAFD183D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5CC892-9A16-4283-9C04-AEAAFD183D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5CC892-9A16-4283-9C04-AEAAFD183D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5CC892-9A16-4283-9C04-AEAAFD183D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CEF245A-824B-431E-AA8A-67CCC4195490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CEF245A-824B-431E-AA8A-67CCC4195490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CEF245A-824B-431E-AA8A-67CCC4195490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CEF245A-824B-431E-AA8A-67CCC4195490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F08217A1-386D-4A99-9FE9-FFA4C890D57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F08217A1-386D-4A99-9FE9-FFA4C890D57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F08217A1-386D-4A99-9FE9-FFA4C890D57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F08217A1-386D-4A99-9FE9-FFA4C890D57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50877394-ABF5-4444-8D03-345F70360396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50877394-ABF5-4444-8D03-345F70360396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50877394-ABF5-4444-8D03-345F70360396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50877394-ABF5-4444-8D03-345F70360396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFD1888-B67D-4333-8745-177AF8419B32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFD1888-B67D-4333-8745-177AF8419B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFD1888-B67D-4333-8745-177AF8419B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFD1888-B67D-4333-8745-177AF8419B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC30495-A285-4360-A365-E61FC2D62523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC30495-A285-4360-A365-E61FC2D62523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC30495-A285-4360-A365-E61FC2D62523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC30495-A285-4360-A365-E61FC2D62523}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61BF9E7E-3D04-4660-9BF3-4B1F6246D8A9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASCII Art", "ASCII Art\ASCII Art.csproj", "{783B3817-2553-4933-B64C-8D5B60B6E0DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "String interpolation", "String interpolation\String interpolation.csproj", "{DFCD3AEE-5353-483F-81A7-83559F13D026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCII Art And Colors", "ASCII Art And Colors\ASCII Art And Colors.csproj", "{E0718B53-92B9-4F1C-B1F2-48B56936ADBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Systeem informatie Deel 1", "Systeem informatie Deel 1\Systeem informatie Deel 1.csproj", "{588BA2FB-BB72-45D5-9319-69D333E0DE47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Systeem informatie Deel 2", "Systeem informatie Deel 2\Systeem informatie Deel 2.csproj", "{83AC570E-1DA4-4462-92B1-1D14684E419E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weerstandberekenaar Deel 1", "Weerstandberekenaar Deel 1\Weerstandberekenaar Deel 1.csproj", "{F7D6CBBC-FA0C-4414-9FB7-50A564BD4031}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weerstandberekenaar Deel 1 (poging 2)", "Weerstandberekenaar Deel 1 (poging 2)\Weerstandberekenaar Deel 1 (poging 2).csproj", "{7FC0129F-61C7-43AF-8986-10CB12D8CD9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weerstandberekenaar Deel 2", "Weerstandberekenaar Deel 2\Weerstandberekenaar Deel 2.csproj", "{96580586-CE09-418E-8D87-229B58F103A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "[PRO] Shell-starter", "[PRO] Shell-starter\[PRO] Shell-starter.csproj", "{4122B7E8-EE44-4B03-A6A5-81983BF13CFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{783B3817-2553-4933-B64C-8D5B60B6E0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783B3817-2553-4933-B64C-8D5B60B6E0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783B3817-2553-4933-B64C-8D5B60B6E0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783B3817-2553-4933-B64C-8D5B60B6E0DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFCD3AEE-5353-483F-81A7-83559F13D026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFCD3AEE-5353-483F-81A7-83559F13D026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFCD3AEE-5353-483F-81A7-83559F13D026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFCD3AEE-5353-483F-81A7-83559F13D026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0718B53-92B9-4F1C-B1F2-48B56936ADBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0718B53-92B9-4F1C-B1F2-48B56936ADBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0718B53-92B9-4F1C-B1F2-48B56936ADBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0718B53-92B9-4F1C-B1F2-48B56936ADBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{588BA2FB-BB72-45D5-9319-69D333E0DE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{588BA2FB-BB72-45D5-9319-69D333E0DE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{588BA2FB-BB72-45D5-9319-69D333E0DE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{588BA2FB-BB72-45D5-9319-69D333E0DE47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AC570E-1DA4-4462-92B1-1D14684E419E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AC570E-1DA4-4462-92B1-1D14684E419E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AC570E-1DA4-4462-92B1-1D14684E419E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AC570E-1DA4-4462-92B1-1D14684E419E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D6CBBC-FA0C-4414-9FB7-50A564BD4031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D6CBBC-FA0C-4414-9FB7-50A564BD4031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D6CBBC-FA0C-4414-9FB7-50A564BD4031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D6CBBC-FA0C-4414-9FB7-50A564BD4031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC0129F-61C7-43AF-8986-10CB12D8CD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC0129F-61C7-43AF-8986-10CB12D8CD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC0129F-61C7-43AF-8986-10CB12D8CD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC0129F-61C7-43AF-8986-10CB12D8CD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96580586-CE09-418E-8D87-229B58F103A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96580586-CE09-418E-8D87-229B58F103A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96580586-CE09-418E-8D87-229B58F103A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96580586-CE09-418E-8D87-229B58F103A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4122B7E8-EE44-4B03-A6A5-81983BF13CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4122B7E8-EE44-4B03-A6A5-81983BF13CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4122B7E8-EE44-4B03-A6A5-81983BF13CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4122B7E8-EE44-4B03-A6A5-81983BF13CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BED79637-8A7A-4EA3-9212-93829CC949A5}
+	EndGlobalSection
+EndGlobal
