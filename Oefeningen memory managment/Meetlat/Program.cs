@@ -7,6 +7,7 @@ namespace Meetlat
         static void Main(string[] args)
         {
             Console.WriteLine("Meetlat\n");
+            //Test github
 
             Meetlat mijnLat = new Meetlat();
             mijnLat.BeginLengte = 2;
