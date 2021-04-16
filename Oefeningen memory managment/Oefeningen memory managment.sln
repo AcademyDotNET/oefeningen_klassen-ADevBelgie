@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetlat", "Meetlat\Meetlat.csproj", "{0CE142CA-C2BD-4694-BC73-82CA84ABD4C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meetlat", "Meetlat\Meetlat.csproj", "{0CE142CA-C2BD-4694-BC73-82CA84ABD4C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokémon", "Pokémon\Pokémon.csproj", "{A6777349-CD47-4E43-883A-F119E151C5F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokémon", "Pokémon\Pokémon.csproj", "{A6777349-CD47-4E43-883A-F119E151C5F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "De Pokémontester", "De Pokémontester\De Pokémontester.csproj", "{62256140-E03C-463A-8244-B75E72A87F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "De Pokémontester", "De Pokémontester\De Pokémontester.csproj", "{62256140-E03C-463A-8244-B75E72A87F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokémon-battler", "Pokémon-battler\Pokémon-battler.csproj", "{FFEB4C63-F985-4D06-A895-B97282B77F9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{62256140-E03C-463A-8244-B75E72A87F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62256140-E03C-463A-8244-B75E72A87F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62256140-E03C-463A-8244-B75E72A87F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFEB4C63-F985-4D06-A895-B97282B77F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFEB4C63-F985-4D06-A895-B97282B77F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFEB4C63-F985-4D06-A895-B97282B77F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFEB4C63-F985-4D06-A895-B97282B77F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
