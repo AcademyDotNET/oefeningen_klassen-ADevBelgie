@@ -19,6 +19,11 @@ namespace Sport_simulator
             sterke.StelIn();
             sterke.RunMarathon();
             sterke.ShowOffStrength();
+
+            Console.WriteLine();
+            SpelerBox.SimuleerSpeler(zwakke);
+            Console.WriteLine();
+            SpelerBox.SimuleerSpeler(sterke);
         }
     }
 }

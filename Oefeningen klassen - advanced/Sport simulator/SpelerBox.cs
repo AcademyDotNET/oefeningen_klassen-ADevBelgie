@@ -6,10 +6,10 @@ namespace Sport_simulator
 {
     class SpelerBox
     {
-        int _stamina = 0;
-        int _strength = 0;
-        int _reactionSpeed = 0;
-        int _dexterity = 0;
+        int _stamina = 1;
+        int _strength = 1;
+        int _reactionSpeed = 1;
+        int _dexterity = 1;
         public string Naam { get; set; }
 
         public void StelIn()
@@ -33,13 +33,21 @@ namespace Sport_simulator
         public void RunMarathon()
         {
             Console.Write($"{Naam} probeert een marathon te lopen");
-            if (_stamina>40)
+            if (_stamina > 40)
             {
                 Console.WriteLine($" en is succesvol!");
             }
             else
             {
                 Console.WriteLine($" en is niet succesvol...");
+            }
+        }
+        public static void SimuleerSpeler(SpelerBox testspeler) 
+        {
+            for (int i = 0; i<3; i++)
+            {
+                testspeler.ShowOffStrength();
+                testspeler.RunMarathon();
             }
         }
     }
