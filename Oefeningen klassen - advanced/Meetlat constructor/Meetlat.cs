@@ -6,45 +6,48 @@ namespace Meetlat_constructor
 {
     class Meetlat
     {
+        private double _lengteInMeter;
         public Meetlat()
         {
 
         }
-
-        double Lengte;
+        public Meetlat(double lengteInMeter)
+        {
+            _lengteInMeter = lengteInMeter;
+        }
         public double BeginLengte 
         {
             set
             {
-                Lengte = value;
+                _lengteInMeter = value;
             }
         }
         public double LengteInM
         {
             get
             {
-                return Lengte;
+                return _lengteInMeter;
             }
         }
         public double LengteInCm
         {
             get
             {
-                return Lengte * 10;
+                return _lengteInMeter * 10;
             }
         }
         public double LengteInKm
         {
             get
             {
-                return Lengte / 1000;
+                return _lengteInMeter / 1000;
             }
         }
         public double LengteInVoet
         {
             get
             {
-                return Lengte * 3.2808;
+                return _lengteInMeter * 3.2808;
             }
         }
     }
