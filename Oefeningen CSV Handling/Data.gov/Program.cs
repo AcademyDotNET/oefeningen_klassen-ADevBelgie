@@ -9,7 +9,7 @@ namespace Data.gov
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Data.gov\n");
 
@@ -21,6 +21,7 @@ namespace Data.gov
             //init vars
             char delimiter = ',';
             int countRecords = 0;
+            //DateTime currentTime = new DateTime();
 
             //manipulate file data and input into 2D Array "CSVInArray"
             string trimmedCSVFile = CSVFile.Replace("\"", "").Replace("\r", "");
@@ -45,12 +46,16 @@ namespace Data.gov
             }
             Console.WriteLine("\nGeef welke eigenschap je wilt:");
             int inputEigenschap = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"Geef van welke record je hem wilt({1}-{countRecords}):");
+            Console.WriteLine($"Geef van welke record je hem wilt({1}-{countRecords-2}):");
             int inputRecord = Convert.ToInt32(Console.ReadLine());
 
-            //output 
+            //output console
             Console.WriteLine($"Het opgevgraagt gegeven is {CSVInArray[inputRecord, inputEigenschap]}");
+            Console.WriteLine(DateTime.Now);
 
+            //output text file
+            Console.WriteLine($"writing to text file... ");
+            await WriteAllLines.WriteLines(CSVInArray, inputRecord, inputEigenschap);
             Console.ReadLine();
         }
     }
