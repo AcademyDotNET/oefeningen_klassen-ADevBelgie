@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meetlat constructor", "Meet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sport simulator", "Sport simulator\Sport simulator.csproj", "{FC58D7BA-C8A6-4828-8CA4-4FC0715834B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokémons deel 2", "Pokémons deel 2\Pokémons deel 2.csproj", "{09212EBB-1BC4-4C31-9E9E-B6CB4A6BDCC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digitale kluis", "Digitale kluis\Digitale kluis.csproj", "{BCB9A36B-C0A5-4C13-A3F3-9439BC756108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FC58D7BA-C8A6-4828-8CA4-4FC0715834B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC58D7BA-C8A6-4828-8CA4-4FC0715834B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC58D7BA-C8A6-4828-8CA4-4FC0715834B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09212EBB-1BC4-4C31-9E9E-B6CB4A6BDCC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09212EBB-1BC4-4C31-9E9E-B6CB4A6BDCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09212EBB-1BC4-4C31-9E9E-B6CB4A6BDCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09212EBB-1BC4-4C31-9E9E-B6CB4A6BDCC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB9A36B-C0A5-4C13-A3F3-9439BC756108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB9A36B-C0A5-4C13-A3F3-9439BC756108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB9A36B-C0A5-4C13-A3F3-9439BC756108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB9A36B-C0A5-4C13-A3F3-9439BC756108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
