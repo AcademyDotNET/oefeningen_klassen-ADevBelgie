@@ -26,7 +26,7 @@ namespace Data.gov
 
             foreach (string record in splitCSVFile)
             {
-                string[] currentRecord = splitCSVFile[countRecords].Split(delimiter);
+                string[] currentRecord = record.Split(delimiter);
                 for (int i = 0; i < headerCSVFile.Length && i < currentRecord.Length; i++) //last line of csv file has record lenght of 1
                 {
                     CSVInArray[countRecords, i] = currentRecord[i];

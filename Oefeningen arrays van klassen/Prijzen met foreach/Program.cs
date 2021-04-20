@@ -9,6 +9,7 @@ namespace Prijzen_met_foreach
             Console.WriteLine("Prijzen met foreach\n");
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            int sizeArray = 20;
             double[] prijzen = FillArray(20);
 
             foreach (var prijs in prijzen)
