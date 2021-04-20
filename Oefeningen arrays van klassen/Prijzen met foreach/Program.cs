@@ -10,15 +10,21 @@ namespace Prijzen_met_foreach
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int sizeArray = 20;
-            double[] prijzen = FillArray(20);
+            double[] prijzen = FillArray(sizeArray);
+            double average = 0;
 
+            //print prijzen hoger dan 5 Euro
             foreach (var prijs in prijzen)
             {
+                average += prijs;
                 if (prijs>=5)
                 {
                     Console.WriteLine($"{prijs:C}");
                 }
             }
+
+            //Toon op het einde van het programma het gemiddelde van alle prijzen (dus inclusief de lagere prijzen).
+            Console.WriteLine($"Het gemiddelde van alle prijzen is: {average/sizeArray}");
         }
 
         private static double[] FillArray(int size)
