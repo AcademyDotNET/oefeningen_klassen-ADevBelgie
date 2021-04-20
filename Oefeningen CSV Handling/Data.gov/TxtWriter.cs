@@ -13,7 +13,8 @@ namespace Data.gov
 
             using (StreamWriter sw = new StreamWriter(filePath))
             {
-                for (int i = 0; i < CSVInArray.GetLength(0) - 2; i++)
+                sw.WriteLine($"Record\tEigenschap");
+                for (int i = 0; i < CSVInArray.GetLength(0) - 1; i++)
                 {
                     sw.WriteLine($"{i}\t{CSVInArray[i, column]}");
                 }
