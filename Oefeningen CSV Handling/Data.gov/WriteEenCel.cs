@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.gov
 {
-    class WriteAllLines
+    class WriteEenCel
     {
         public static async Task WriteLines(string[,] CSVInArray, int inputRecord, int inputEigenschap)
         {
