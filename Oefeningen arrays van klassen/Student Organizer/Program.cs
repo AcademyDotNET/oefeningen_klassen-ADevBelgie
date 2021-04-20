@@ -42,59 +42,55 @@ namespace Student_Organizer
             }
 
             //get user to change said user data
-            //naam
             Console.WriteLine($"Geef naam student {editStudent}");
             lijst[editStudent].Naam = Console.ReadLine();
 
-            //leeftijd
             Console.WriteLine($"Leeftijd {lijst[editStudent].Naam}: ");
+            lijst[editStudent].Leeftijd = GetLeeftijd();
+
+            Console.WriteLine($"Klas {lijst[editStudent].Naam}: ");
+            lijst[editStudent].Klas = Getklas();
+
+            Console.WriteLine($"Geef punten Communicatie");
+            lijst[editStudent].PuntenCommunicatie = GetPunten();
+
+            Console.WriteLine($"Geef punten Programming Principles");
+            lijst[editStudent].PuntenProgrammingPrinciples = GetPunten();
+
+            Console.WriteLine($"Geef punten Web Tech ");
+            lijst[editStudent].PuntenWebTech = GetPunten();
+
+            Console.WriteLine($"Press enter to continue..");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        private static int GetLeeftijd()
+        {
             int InputLeeftijd;
-            while (!Int32.TryParse(Console.ReadLine(), out InputLeeftijd) || InputLeeftijd<1) 
+            while (!Int32.TryParse(Console.ReadLine(), out InputLeeftijd) || InputLeeftijd < 1)
             {
                 Console.WriteLine($"Geef een valide leeftijd");
             }
-            lijst[editStudent].Leeftijd = InputLeeftijd;
-
-            //klas
-            Console.WriteLine($"Klas {lijst[editStudent].Naam}: ");
+            return InputLeeftijd;
+        }
+        private static Klassen Getklas()
+        {
             Klassen InputKlas;
             while (!Klassen.TryParse(Console.ReadLine().ToUpper(), out InputKlas))
             {
                 Console.WriteLine($"Geef een valide klas");
             }
-            lijst[editStudent].Klas = InputKlas;
+            return InputKlas;
+        }
 
-
-            //PuntenCommunicatie
-            Console.WriteLine($"Geef punten Communicatie");
-            int InputPuntenCommunicatie;
-            while (!Int32.TryParse(Console.ReadLine(), out InputPuntenCommunicatie) || !(InputPuntenCommunicatie >= 0 && InputPuntenCommunicatie <= 100))
+        private static int GetPunten()
+        {
+            int InputPunten;
+            while (!Int32.TryParse(Console.ReadLine(), out InputPunten) || !(InputPunten >= 0 && InputPunten <= 100))
             {
                 Console.WriteLine($"Geef valide punten");
             }
-            lijst[editStudent].PuntenCommunicatie = InputPuntenCommunicatie;
-
-            //PuntenProgrammingPrinciples
-            Console.WriteLine($"Geef punten Programming Principles");
-            int InputPuntenProgrammingPrinciples;
-            while (!Int32.TryParse(Console.ReadLine(), out InputPuntenProgrammingPrinciples) || !(InputPuntenProgrammingPrinciples >= 0 && InputPuntenProgrammingPrinciples <= 100))
-            {
-                Console.WriteLine($"Geef valide punten");
-            }
-            lijst[editStudent].PuntenProgrammingPrinciples = InputPuntenProgrammingPrinciples;
-
-            //PuntenWebTech 
-            Console.WriteLine($"Geef punten Web Tech ");
-            int InputPuntenWebTech;
-            while (!Int32.TryParse(Console.ReadLine(), out InputPuntenWebTech) || !(InputPuntenWebTech >= 0 && InputPuntenWebTech <= 100))
-            {
-                Console.WriteLine($"Geef valide punten");
-            }
-            lijst[editStudent].PuntenWebTech = InputPuntenWebTech;
-
-            Console.WriteLine($"Press enter to continue..");
-            Console.ReadLine();
-            Console.Clear();
+            return InputPunten; 
         }
 
         private static int AmountOfStudents()
