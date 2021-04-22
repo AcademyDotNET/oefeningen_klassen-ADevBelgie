@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
 
 namespace Speelkaarten
 {
@@ -28,7 +31,12 @@ namespace Speelkaarten
             {
                 currentRandom = rand.Next(0,i);
                 Console.WriteLine("\nWillekeurige kaart is: ");
-                Console.WriteLine($"{deck[currentRandom].Getal} van {deck[currentRandom].Suite}");
+                Console.WriteLine($"{Enum.GetName(typeof(Getal), deck[currentRandom].Getal)} van {deck[currentRandom].Suite}");
+                //{deck[currentRandom].Getal}  
+                //{Enum.GetName(Getal, deck[currentRandom].Getal)}
+                //{Enum.GetName(nameof(Getal), deck[currentRandom].Getal)}
+                //{nameof(deck[currentRandom].Getal)}
+                //{Enum.GetName(typeof(Getal), deck[currentRandom].Getal)}
                 deck.RemoveAt(currentRandom);
                 Console.ReadLine();
             }
