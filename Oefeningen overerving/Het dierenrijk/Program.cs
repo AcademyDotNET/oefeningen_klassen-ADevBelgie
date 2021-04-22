@@ -6,7 +6,17 @@ namespace Het_dierenrijk
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Het dierenrijk\n");
+
+            Mammal koe = new Mammal();
+            Animal amoebe = new Animal();
+            Reptile krokodil = new Reptile();
+
+            koe.ToonInfo();
+            amoebe.ToonInfo();
+            krokodil.ToonInfo();
+
+            Console.ReadLine();
         }
     }
 }
