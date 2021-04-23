@@ -22,7 +22,7 @@ namespace Book
             Book omnibus = new Book();
             //title "Omnibus van [X]" where x is the authors
             omnibus.Title = $"Omnibus van {book1.Author}, {book2.Author}";
-            omnibus.Author = book1.Author + book2.Author;
+            omnibus.Author = $"{book1.Author}, {book2.Author}";
 
             return omnibus;
         }
