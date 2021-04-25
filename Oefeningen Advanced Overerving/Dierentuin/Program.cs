@@ -19,22 +19,7 @@ namespace Dierentuin
             alleDieren.Add(new DierSoort() { dierSoort = "Hond", dierSoortZegt = "Blaf", Gewicht = 35 });
             alleDieren.Add(new DierSoort() { dierSoort = "Koe", dierSoortZegt = "Moe", Gewicht = 400 });
 
-            ToonAlleDieren(alleDieren);
-
-            //dieren toevoegen
-            string keuzeDier = KeuzeDier();
-
-            while (keuzeDier != "q")
-            {
-                AddDierSoort(alleDieren, keuzeDier);
-                ToonAlleDieren(alleDieren);
-                keuzeDier = KeuzeDier();
-            }
-
-            Console.Clear();
-
             //Keuze menu
-
             while (true)
             {
                 char keuzeMenu = KeuzeMenu();
@@ -51,12 +36,31 @@ namespace Dierentuin
                         DierPraten(alleDieren);
                         break;
                     case 'd':
+                        ToonAlleDieren(alleDieren);
+                        break;
+                    case 'e':
+                        DierenToevoegen(alleDieren);
+                        break;
+                    case 'f':
                         ProgramDierentuin();
                         break;
                     default:
                         Console.WriteLine("That option is unavailable...\n");
                         break;
                 }
+            }
+        }
+
+        private static void DierenToevoegen(List<DierSoort> alleDieren)
+        {
+            //dieren toevoegen
+            string keuzeDier = KeuzeDier();
+
+            while (keuzeDier != "q")
+            {
+                AddDierSoort(alleDieren, keuzeDier);
+                ToonAlleDieren(alleDieren);
+                keuzeDier = KeuzeDier();
             }
         }
 
@@ -86,20 +90,30 @@ namespace Dierentuin
 
         private static void DierPraten(List<DierSoort> alleDieren)
         {
-            foreach (var dier in alleDieren)
+            if (alleDieren.Count == 0)
             {
-                Console.WriteLine($"{dier.dierSoortZegt}");
+                Console.WriteLine("Het is heel erg stil...");
             }
+            else
+            {
+                foreach (var dier in alleDieren)
+                {
+                    Console.WriteLine($"{dier.dierSoortZegt}");
+                }
+            }
+            
             Console.WriteLine();
         }
 
         private static char KeuzeMenu()
         {
             Console.WriteLine("Menu: ");
-            Console.WriteLine("a. Dier verwijderen");
-            Console.WriteLine("b. Diergewicht gemiddelde");
-            Console.WriteLine("c. Dier praten");
-            Console.WriteLine("d. Opnieuw beginnen");
+            Console.WriteLine("\ta. Dier verwijderen");
+            Console.WriteLine("\tb. Diergewicht gemiddelde");
+            Console.WriteLine("\tc. Dier praten");
+            Console.WriteLine("\td. Toon alle dieren");
+            Console.WriteLine("\te. Dieren Toevoegen");
+            Console.WriteLine("\tf. Opnieuw beginnen");
             char userChar;
             while (!char.TryParse(Console.ReadLine(), out userChar)) 
             {
@@ -121,17 +135,24 @@ namespace Dierentuin
         private static void ToonAlleDieren(List<DierSoort> alleDieren)
         {
             Console.WriteLine("Dierentuin\n");
-
-            foreach (var dierSoort in alleDieren)
+            if (alleDieren.Count == 0)
             {
-                Console.WriteLine(dierSoort);
+                Console.WriteLine("Er zijn geen Dieren meer...");
             }
+            else
+            {
+                foreach (var dierSoort in alleDieren)
+                {
+                    Console.WriteLine(dierSoort);
+                }
+            }
+            
             Console.WriteLine();
         }
 
         private static string KeuzeDier()
         {
-            Console.WriteLine("Wat voor dier moet er toegevoegd worden?");
+            Console.WriteLine("Wat voor dier moet er toegevoegd worden?(q to quit)");
             string userKeuze = Console.ReadLine();
             return userKeuze;
         }
