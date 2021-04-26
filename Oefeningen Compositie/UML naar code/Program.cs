@@ -8,6 +8,7 @@ namespace UML_naar_code
         {
             Console.WriteLine("UML naar code!\n");
 
+            Person Arthur = new Person();
 
         }
     }
