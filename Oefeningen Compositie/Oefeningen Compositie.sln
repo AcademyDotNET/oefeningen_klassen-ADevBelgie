@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UML naar code", "UML naar c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Politiek", "Politiek\Politiek.csproj", "{30C7B280-D184-4281-8830-08C332F840DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moederbord", "Moederbord\Moederbord.csproj", "{52B27EE8-21AD-45C4-974D-94C813B5192C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{30C7B280-D184-4281-8830-08C332F840DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C7B280-D184-4281-8830-08C332F840DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C7B280-D184-4281-8830-08C332F840DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B27EE8-21AD-45C4-974D-94C813B5192C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B27EE8-21AD-45C4-974D-94C813B5192C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B27EE8-21AD-45C4-974D-94C813B5192C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B27EE8-21AD-45C4-974D-94C813B5192C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
