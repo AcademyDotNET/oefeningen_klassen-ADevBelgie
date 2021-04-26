@@ -4,7 +4,23 @@ using System.Text;
 
 namespace Politiek
 {
-    class President
+    class President: Minister
     {
+        public President()
+        {
+            teller = 4;
+        }
+        private int teller;
+
+        public int Teller
+        {
+            get { return teller; }
+            private set { teller = value; }
+        }
+
+        public void JaarVerder()
+        {
+            teller--;
+        }
     }
 }

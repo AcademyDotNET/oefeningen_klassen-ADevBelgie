@@ -6,5 +6,6 @@ namespace Politiek
 {
     class Minister
     {
+        public string Naam { get; set; }
     }
 }
