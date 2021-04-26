@@ -8,8 +8,13 @@ namespace UML_naar_code
         {
             Console.WriteLine("UML naar code!\n");
 
-            Person Arthur = new Person();
+            Person arthur = new Person();
 
+            Console.WriteLine("Init Car");
+            Car arthursAuto = new Car();
+
+            Console.WriteLine("Init Boat");
+            Boat arthursBoot = new Boat();
         }
     }
 }
