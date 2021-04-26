@@ -9,7 +9,7 @@ namespace Ziekenhuis
         double _korting = 0.9;
         override public double BerekenKost()
         {
-            int totaal = 50 + (20 * UurInZiekehuis);
+            double totaal = base.BerekenKost();
             return totaal*_korting;
         }
     }

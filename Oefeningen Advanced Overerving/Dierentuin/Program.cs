@@ -30,7 +30,7 @@ namespace Dierentuin
                         RemoveDierVanList(alleDieren);
                         break;
                     case 'b':
-                        DiergewichtGemiddelde(alleDieren);
+                        DierGewichtGemiddelde(alleDieren);
                         break;
                     case 'c':
                         DierPraten(alleDieren);
@@ -76,7 +76,7 @@ namespace Dierentuin
             Console.WriteLine();
         }
 
-        private static void DiergewichtGemiddelde(List<DierSoort> alleDieren)
+        private static void DierGewichtGemiddelde(List<DierSoort> alleDieren)
         {
             double totaalGewicht = 0;
             foreach (var dier in alleDieren)
@@ -115,7 +115,7 @@ namespace Dierentuin
             Console.WriteLine("\te. Dieren Toevoegen");
             Console.WriteLine("\tf. Opnieuw beginnen");
             char userChar;
-            while (!char.TryParse(Console.ReadLine(), out userChar)) 
+            while (!char.TryParse(Console.ReadLine().ToLower(), out userChar)) 
             {
                 Console.WriteLine("Geef een valide char");
             }
