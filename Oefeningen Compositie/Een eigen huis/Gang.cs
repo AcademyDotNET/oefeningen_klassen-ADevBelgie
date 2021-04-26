@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Een_eigen_huis
 {
-    class Badkamer : Kamer
+    class Gang:Kamer
     {
-        public Badkamer()
+        public Gang()
         {
-            StandaardPrijs = 500;
+            StandaardPrijs = 10*Oppervlakte;
         }
     }
 }
