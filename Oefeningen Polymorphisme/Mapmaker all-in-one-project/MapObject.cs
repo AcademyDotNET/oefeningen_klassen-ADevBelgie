@@ -8,9 +8,9 @@ namespace Mapmaker_all_in_one_project
 {
     abstract class MapObject
     {
-        private Point location;
-        private double price;
-        private char drawChar;
+        protected Point location;
+        protected double price;
+        protected char drawChar;
 
         //Teken object in de console
         public abstract void Paint();
