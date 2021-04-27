@@ -192,5 +192,16 @@ namespace Pokemons_vergelijken
 
             return allInfo;
         }
+
+        public override bool Equals(object obj)
+        {
+            Pokémon tempPoke = (Pokémon)obj;
+            if (this.Naam == tempPoke.Naam && this.Level == tempPoke.Level)
+            {
+                return true;
+            }
+            
+            return false;
+        }
     }
 }

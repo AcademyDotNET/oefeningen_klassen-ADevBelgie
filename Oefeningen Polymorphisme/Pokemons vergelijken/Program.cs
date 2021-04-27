@@ -28,6 +28,8 @@ namespace Pokemons_vergelijken
 
             //output result
             Console.WriteLine(UserPokemon);
+
+            Console.WriteLine(UserPokemon.Equals(Bulbasaur));
         }
 
         private static void MakeYourPokemon(Pokémon UserPokemon)
