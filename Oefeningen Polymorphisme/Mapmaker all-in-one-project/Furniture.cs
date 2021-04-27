@@ -16,11 +16,7 @@ namespace Mapmaker_all_in_one_project
         }
         public int Lengte { get; set; }
         public int Breedte { get; set; }
-        public Point Location
-        {
-            get { return location; }
-            set { location = value; }
-        }
+        
         public override void Paint()
         {
             for (int i = 0; i < Lengte; i++)

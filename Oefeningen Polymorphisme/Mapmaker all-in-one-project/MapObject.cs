@@ -12,6 +12,11 @@ namespace Mapmaker_all_in_one_project
         protected double price;
         protected char drawChar;
 
+        public Point Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
         //Teken object in de console
         public abstract void Paint();
     }

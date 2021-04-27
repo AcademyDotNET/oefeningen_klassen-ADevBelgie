@@ -11,21 +11,25 @@ namespace Mapmaker_all_in_one_project
         public Wall(bool horizontal, int startx, int starty, int size)
         {
             price *= size;
+            Location = new Point( startx, starty );
+            WallPosition(horizontal, size);
+        }
+
+        List<WallElement> wall = new List<WallElement>();
+        public void WallPosition(bool horizontal, int size)
+        {
             for (int i = 0; i < size; i++)
             {
                 if (horizontal)
                 {
-                    wall.Add(new WallElement() { Location = new Point(startx + i, starty) });
+                    wall.Add(new WallElement() { Location = new Point(Location.X + i, Location.Y) });
                 }
                 else
                 {
-                    wall.Add(new WallElement() { Location = new Point(startx, starty + i) });
+                    wall.Add(new WallElement() { Location = new Point(Location.X, Location.Y + i) });
                 }
             }
         }
-
-        List<WallElement> wall = new List<WallElement>();
-
         public override void Paint()
         {
             foreach (var wallPart in wall)

@@ -19,11 +19,6 @@ namespace Mapmaker_all_in_one_project
             get { return drawChar; }
             set { drawChar = value; }
         }
-        public Point Location
-        {
-            get { return location; }
-            set { location = value; }
-        }
         public double Price
         {
             get { return price; }
