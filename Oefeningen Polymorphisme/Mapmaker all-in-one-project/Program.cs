@@ -6,7 +6,7 @@ namespace Mapmaker_all_in_one_project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Map maker\n");
         }
     }
 }
