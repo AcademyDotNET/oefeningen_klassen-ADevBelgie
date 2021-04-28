@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Figures_with_interfaces
 {
@@ -8,26 +10,25 @@ namespace Figures_with_interfaces
         {
             Console.WriteLine("Geometric figures");
 
-            Vierkant vierkantje = new Vierkant(3);
-            Rechthoek rechthoekje = new Rechthoek();
-            Driehoek driehoekje = new Driehoek();
+            int standaardHoogte = 15;
+            int standaardBreedte = 10;
+                
+            //init rechthoek
+            List<Rechthoek> rechthoekObjecten = new List<Rechthoek>();
+            for (int i = 0; i < 10; i++)
+            {
+                rechthoekObjecten.Add(new Rechthoek() { Hoogte = standaardHoogte-i, Breedte = standaardBreedte });
+            }
 
-            //empty except for vierkantje
-            Console.WriteLine(vierkantje.BerekenOppervlakte());
-            Console.WriteLine(rechthoekje.BerekenOppervlakte());
-            Console.WriteLine(driehoekje.BerekenOppervlakte());
-
-            vierkantje.Hoogte = 3;
-            vierkantje.Breedte = 100;
-            rechthoekje.Hoogte = 3;
-            rechthoekje.Breedte = 100;
-            driehoekje.Hoogte = 3;
-            driehoekje.Breedte = 3;
-
-            //all assigned new values
-            Console.WriteLine(vierkantje.BerekenOppervlakte());
-            Console.WriteLine(rechthoekje.BerekenOppervlakte());
-            Console.WriteLine(driehoekje.BerekenOppervlakte());
+            //sorting 
+            rechthoekObjecten = rechthoekObjecten.OrderBy(r => r.BerekenOppervlakte()).ToList();
+                
+            //output
+            Console.WriteLine("sorted list: ");
+            foreach (var item in rechthoekObjecten)
+            {
+                Console.WriteLine(item.BerekenOppervlakte());
+            }
         }
     }
 }
