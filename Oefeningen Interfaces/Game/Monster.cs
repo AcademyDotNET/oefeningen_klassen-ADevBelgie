@@ -8,7 +8,7 @@ namespace Game
 {
     class Monster : MapElement
     {
-        public Monster()
+        public Monster(int x, int y) : base(x,y)
         {
             DitElement = SoortElement.Monster;
             DitElementChar = SoortElementChar.M;

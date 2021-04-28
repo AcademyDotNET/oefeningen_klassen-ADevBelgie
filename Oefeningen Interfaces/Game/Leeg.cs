@@ -8,7 +8,7 @@ namespace Game
 {
     class Leeg : MapElement
     {
-        public Leeg()
+        public Leeg(int x, int y) : base(x, y)
         {
             DitElement = SoortElement.Leeg;
             DitElementChar = SoortElementChar.L;

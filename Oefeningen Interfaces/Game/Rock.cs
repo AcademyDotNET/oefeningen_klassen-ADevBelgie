@@ -8,7 +8,7 @@ namespace Game
 {
     class Rock : MapElement
     {
-        public Rock()
+        public Rock(int x, int y) : base(x, y)
         {
             DitElement = SoortElement.Rock;
             DitElementChar = SoortElementChar.R;

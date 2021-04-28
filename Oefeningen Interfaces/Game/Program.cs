@@ -9,19 +9,16 @@ namespace Game
         {
             Console.WriteLine("Game\n");
 
-            SpeelVeld speelVeld = new SpeelVeld();
+            SpeelVeld speelVeld = new SpeelVeld(5); // chance of monsters, 0 being the most amount of monsters
             while (true)
             {
-                
-                Console.SetCursorPosition(0,2);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(speelVeld);
+                WriteSpeelveld(speelVeld);
                 var input = Console.ReadKey();
                 switch (input.Key)
                 {
-                    case ConsoleKey.Z://vooruit
+                    case ConsoleKey.Z://Boven
                         break;
-                    case ConsoleKey.S://achteruit
+                    case ConsoleKey.S://Onder
                         break;
                     case ConsoleKey.Q://links
                         break;
@@ -32,10 +29,22 @@ namespace Game
                     default:
                         break;
                 }
-                Console.SetCursorPosition(2, 0);
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine(speelVeld);
+                ClearSpeelveld(speelVeld);            
             }
+        }
+
+        private static void WriteSpeelveld(SpeelVeld speelVeld)
+        {
+            Console.SetCursorPosition(0, 2);
+            Console.WriteLine(speelVeld);
+        }
+
+        private static void ClearSpeelveld(SpeelVeld speelVeld)
+        {
+            Console.SetCursorPosition(0, 2);
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine(speelVeld);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

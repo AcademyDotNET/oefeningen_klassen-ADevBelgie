@@ -11,7 +11,12 @@ namespace Game
 
     abstract class MapElement
     {
+        public MapElement(int x,int y)
+        {
+            Location = new Point() { X = x, Y = y };
+        }
         public SoortElement DitElement { get; set; } // Player, Monster, leeg, Rots
         public SoortElementChar DitElementChar { get; set; } // Player, Monster, leeg, Rots
+        public Point Location { get; set; } //location in 2D speelveld
     }
 }
