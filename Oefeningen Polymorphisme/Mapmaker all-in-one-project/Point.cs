@@ -26,5 +26,15 @@ namespace Mapmaker_all_in_one_project
             get { return y; }
             set { y = value; }
         }
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            Point tempObj = (Point)obj;
+            if (tempObj.X == this.X && tempObj.Y == this.Y)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -12,15 +12,20 @@ namespace Mapmaker_all_in_one_project
         {
             price *= size;
             Location = new Point( startx, starty );
-            WallPosition(horizontal, size);
+            _horizontal = horizontal;
+            _size = size;
+            WallPosition();
         }
+        private bool _horizontal;
+        private int _size;
 
         List<WallElement> wall = new List<WallElement>();
-        public void WallPosition(bool horizontal, int size)
+        public void WallPosition()
         {
-            for (int i = 0; i < size; i++)
+            wall.Clear();
+            for (int i = 0; i < _size; i++)
             {
-                if (horizontal)
+                if (_horizontal)
                 {
                     wall.Add(new WallElement() { Location = new Point(Location.X + i, Location.Y) });
                 }
@@ -32,6 +37,12 @@ namespace Mapmaker_all_in_one_project
         }
         public override void Paint()
         {
+            //update wall elements if location changed wall changed
+            if (!wall[0].Location.Equals(Location))
+            {
+                WallPosition();
+            }
+            //print elements
             foreach (var wallPart in wall)
             {
                 wallPart.Paint();
