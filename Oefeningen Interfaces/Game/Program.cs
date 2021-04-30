@@ -9,7 +9,7 @@ namespace Game
         {
             Console.WriteLine("Game\n");
 
-            SpeelVeld speelVeld = new SpeelVeld(0); // chance of monsters, 0 being the most amount of monsters
+            SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
             while (true)
@@ -39,6 +39,7 @@ namespace Game
                     default:
                         break;
                 }
+                speelVeld.MoveMonsters();
                 ClearSpeelveld(speelVeld);            
             }
         }

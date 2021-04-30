@@ -73,9 +73,27 @@ namespace Game
 
         public void MoveMonsters()
         {
+            Random rand = new Random();
             foreach (var monster in AllMonsters)
             {
-
+                int roll = rand.Next(0,4); //4 directions
+                switch (roll)
+                {
+                    case 0://Boven
+                        monster.MoveUp(this);
+                        break;
+                    case 1://Onder
+                        monster.MoveDown(this);
+                        break;
+                    case 2://links
+                        monster.MoveLeft(this);
+                        break;
+                    case 3://rechts
+                        monster.MoveRight(this);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
