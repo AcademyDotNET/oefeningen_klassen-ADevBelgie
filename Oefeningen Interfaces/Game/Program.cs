@@ -8,7 +8,7 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            string keuze;
+            int keuze;
             Settings gameSettings = new Settings();
 
             do
@@ -16,84 +16,54 @@ namespace Game
                 keuze = Menu();
                 switch (keuze)
                 {
-                    case "1":
+                    case 1:
                         PlayGame(gameSettings);
                         break;
-                    case "2":
-                        ChangeSettingsGame(gameSettings);
+                    case 2:
+                        gameSettings.ChangeSettingsGame();
                         break;
                     default:
                         break;
                 }
 
-            } while (keuze != "3");
+            } while (keuze != 3);
         }
 
-        private static void ChangeSettingsGame(Settings gameSettings)
+        
+
+        private static int Menu()
         {
-            int userKeuze;
-            do
+            MenuOutput();
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Current game settings:\n");
-                Console.WriteLine(gameSettings);
-                Console.WriteLine("7. quit");
-                
-                int[] keuzes = { 1, 2, 3, 4, 5, 6, 7 };
-                while (!int.TryParse(Console.ReadLine(), out userKeuze) || !keuzes.Contains(userKeuze))
+                var input = Console.ReadKey();
+                if (input.Key == ConsoleKey.NumPad1 || input.Key == ConsoleKey.D1)
                 {
-                    Console.WriteLine("Geef een valide Keuze");
+                    return 1;
                 }
-                if (userKeuze != 7)
+                else if (input.Key == ConsoleKey.NumPad2 || input.Key == ConsoleKey.D2)
                 {
-                    Console.Write("Met welke key wilt u de");
-                    switch (userKeuze)
-                    {
-                        case 1:
-                            Console.Write(" \"move up key\" vervagen: ");
-                            gameSettings.MoveUpKey = Console.ReadKey().Key;
-                            break;
-                        case 2:
-                            Console.Write(" \"move down key\" vervagen: ");
-                            gameSettings.MoveDownKey = Console.ReadKey().Key;
-                            break;
-                        case 3:
-                            Console.Write(" \"move left key\" vervagen: ");
-                            gameSettings.MoveLeftKey = Console.ReadKey().Key;
-                            break;
-                        case 4:
-                            Console.Write(" \"move right key\" vervagen: ");
-                            gameSettings.MoveRightKey = Console.ReadKey().Key;
-                            break;
-                        case 5:
-                            Console.Write(" \"shoot left key\" vervagen: ");
-                            gameSettings.ShootLeftKey = Console.ReadKey().Key;
-                            break;
-                        case 6:
-                            Console.Write(" \"shoot right key\" vervagen: ");
-                            gameSettings.ShootRightKey = Console.ReadKey().Key;
-                            break;
-                        default:
-                            break;
-                    }
+                    return 2;
                 }
-            } while (userKeuze != 7);
-            Console.Clear();
+                else if (input.Key == ConsoleKey.NumPad3 || input.Key == ConsoleKey.D3)
+                {
+                    return 3;
+                }
+                else
+                {
+                    Console.Clear();
+                    MenuOutput();
+                }
+            }
         }
 
-        private static string Menu()
+        private static void MenuOutput()
         {
             Console.WriteLine("Menu\n");
             Console.WriteLine("1. Play Game");
-            Console.WriteLine("2. Change settings Game");
-            Console.WriteLine("3. Quit Game");
-            int userKeuze;
-            int[] keuzes = { 1, 2, 3 };
-            while ( !int.TryParse(Console.ReadLine(), out userKeuze) || !keuzes.Contains(userKeuze) )
-            {
-                Console.WriteLine("Geef een valide Keuze");
-            }
-            return Convert.ToString(userKeuze);
+            Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
+            Console.WriteLine("3. Quit Game\n");
+            Console.Write("Press 1, 2 or 3 to continue ");
         }
 
         private static void PlayGame(Settings gameSettings)
