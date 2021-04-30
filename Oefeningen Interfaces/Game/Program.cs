@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game
 {
@@ -7,8 +8,51 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Game z=up, s=down, q=left, d=right, a=shootleft, e=shootright, Any other key=skip turn\n");
+            string keuze;
+            Settings gameSettings = new Settings();
 
+            do
+            {
+                keuze = Menu();
+                switch (keuze)
+                {
+                    case "1":
+                        PlayGame(gameSettings);
+                        break;
+                    case "2":
+                        ChangeSettingsGame(gameSettings);
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (keuze != "3");
+        }
+
+        private static void ChangeSettingsGame(Settings gameSettings)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static string Menu()
+        {
+            Console.WriteLine("Menu\n");
+            Console.WriteLine("1. Play Game");
+            Console.WriteLine("2. Change settings Game");
+            Console.WriteLine("3. Quit Game");
+            int userKeuze;
+            int[] keuzes = { 1, 2, 3 };
+            while ( !int.TryParse(Console.ReadLine(), out userKeuze) && !keuzes.Contains(userKeuze) )
+            {
+                Console.WriteLine("Geef een valide Keuze");
+            }
+            return Convert.ToString(userKeuze);
+        }
+
+        private static void PlayGame(Settings gameSettings)
+        {
+            Console.Clear();
+            Console.WriteLine("Game z=up, s=down, q=left, d=right, a=shootleft, e=shootright, Any other key=skip turn\n");
             SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
@@ -19,39 +63,41 @@ namespace Game
 
                 //players turn
                 var input = Console.ReadKey();
-                switch (input.Key)
+                if (input.Key == gameSettings.MoveUpKey)
                 {
-                    case ConsoleKey.Z://Boven
-                        player1.MoveUp(speelVeld);
-                        break;
-                    case ConsoleKey.S://Onder
-                        player1.MoveDown(speelVeld);
-                        break;
-                    case ConsoleKey.Q://links
-                        player1.MoveLeft(speelVeld);
-                        break;
-                    case ConsoleKey.D://rechts
-                        player1.MoveRight(speelVeld);
-                        break;
-                    case ConsoleKey.A: //schieten
-                        speelVeld.GameScore.ShotsFired++;
-                        player1.ShootLeft(speelVeld);
-                        break;
-                    case ConsoleKey.E: //schieten
-                        speelVeld.GameScore.ShotsFired++;
-                        player1.ShootRight(speelVeld);
-                        break;
-                    default:
-                        break;
+                    player1.MoveUp(speelVeld);
                 }
+                else if (input.Key == gameSettings.MoveDownKey)
+                {
+                    player1.MoveDown(speelVeld);
+                }
+                else if (input.Key == gameSettings.MoveRightKey)
+                {
+                    player1.MoveRight(speelVeld);
+                }
+                else if (input.Key == gameSettings.MoveLeftKey)
+                {
+                    player1.MoveLeft(speelVeld);
+                }
+                else if (input.Key == gameSettings.ShootRightKey)
+                {
+                    speelVeld.GameScore.ShotsFired++;
+                    player1.ShootRight(speelVeld);
+                }
+                else if (input.Key == gameSettings.ShootLeftKey)
+                {
+                    speelVeld.GameScore.ShotsFired++;
+                    player1.ShootLeft(speelVeld);
+                }
+
                 //monsters turn
                 speelVeld.MoveMonsters();
                 speelVeld.ShootMonsters();
 
                 speelVeld.GameScore.GameTurns++;
-                ClearSpeelveld(speelVeld);            
+                ClearSpeelveld(speelVeld);
             }
-            
+
             Console.Clear();
             // game over
             if (speelVeld.GameScore.GameTurns >= 500)
@@ -72,7 +118,6 @@ namespace Game
                     Console.WriteLine("You went over this games limits...");
                     break;
             }
-            
         }
 
         private static void WriteSpeelveld(SpeelVeld speelVeld)
