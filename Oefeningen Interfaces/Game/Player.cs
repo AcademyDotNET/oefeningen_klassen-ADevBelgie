@@ -54,7 +54,7 @@ namespace Game
                     Location.X++;
                 }
             }
-            else if (Location.X == 19 && Location.Y < 12 && Location.Y > 8)
+            else if (Location.X == 19 && Location.Y < 12 && Location.Y > 7)
             {
                 speelveld.CurrentGameState = GameState.Won;
             }

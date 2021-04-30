@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster}
+    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster, LostByTurnLimit}
     class SpeelVeld
     {
         public SpeelVeld()
@@ -31,9 +31,14 @@ namespace Game
 
         //CurrentGameState on game start = GameState.GameInProgress
         public GameState CurrentGameState { get; set; }
+
+        //game score
+        public Score GameScore { get; set; }
+
         private void InitGame()
         {
             CurrentGameState = GameState.GameInProgress;
+            GameScore = new Score();
             arrayRows = 20;
             arrayColumns = 20;
             Array = new MapElement[arrayRows, arrayColumns];
@@ -80,6 +85,8 @@ namespace Game
             PlayerLocation = new Point() { X = 0, Y = 10 };
             Destroy(0, 10); //remove potential monster from the list
             speelVeld[0, 10] = new Player() { Location = PlayerLocation};
+            GameScore.RockDestroyed = 0;
+            GameScore.MonstersKilled = 0;
         }
 
         public void Destroy(int row, int col)
@@ -90,8 +97,17 @@ namespace Game
                 {
                     CurrentGameState = GameState.LostByDestroyer;
                 }
-                Array[row, col] = new Leeg(row, col);
-                AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col);
+                else if (Array[row, col].DitElement == SoortElement.Monster) //het is niet mogelijk een rockdestroyer te doden
+                {
+                    GameScore.MonstersKilled++;
+                    Array[row, col] = new Leeg(row, col); //remove monster in SpeeldVeld.Array 
+                    AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
+                }
+                else if (Array[row, col].DitElement == SoortElement.Rock)
+                {
+                    GameScore.RockDestroyed++;
+                    Array[row, col] = new Leeg(row, col); //remove Rock in SpeeldVeld.Array 
+                }
             }
         }
 
@@ -127,8 +143,12 @@ namespace Game
                 if (AllMonsters[i].DitElement == SoortElement.RockDestroyer)
                 {
                     RockDestroyer RD = (RockDestroyer)AllMonsters[i];
+                    int rockDestroyed = GameScore.RockDestroyed;
+                    int monstersKilled = GameScore.MonstersKilled;
                     RD.ShootLeft(this);
                     RD.ShootRight(this);
+                    GameScore.RockDestroyed = rockDestroyed;
+                    GameScore.MonstersKilled = monstersKilled;
                 }
             }
         }
@@ -143,16 +163,26 @@ namespace Game
                 case GameState.LostByWalkingIntoMonster:
                     Console.WriteLine("You lost the game by walking into a monster");
                     break;
+                case GameState.LostByTurnLimit:
+                    Console.WriteLine("You lost the game by turn limit");
+                    break;
                 default:
                     Console.WriteLine("You lost the game by unknown");
                     break;
             }
+            Console.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
             Console.ReadLine();
         }
 
         public void WinScreen()
         {
             Console.WriteLine("You won the game");
+            Console.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
+            Console.WriteLine($"Shots fired: {GameScore.ShotsFired}");
+            Console.WriteLine($"Monsters killed: {GameScore.MonstersKilled}");
+            Console.WriteLine($"Rocks destroyed: {GameScore.RockDestroyed}");
+            Console.WriteLine($"Accuracy: {((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired )*100}%");
+            Console.WriteLine($"\nScore: {GameScore}");
             Console.ReadLine();
         }
 
