@@ -11,8 +11,13 @@ namespace Game
 
     abstract class MapElement
     {
+        public MapElement()
+        {
+            //for the player
+        }
         public MapElement(int x,int y)
         {
+            //for the Leeg, Monster, Rock
             Location = new Point() { X = x, Y = y };
         }
         public SoortElement DitElement { get; set; } // Player, Monster, leeg, Rots

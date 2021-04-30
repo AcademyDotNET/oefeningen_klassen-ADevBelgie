@@ -10,32 +10,37 @@ namespace Game
     {
         public SpeelVeld()
         {
-            arrayRows = 20;
-            arrayColumns = 20;
-            Array = new MapElement[arrayRows, arrayColumns];
+            FillArray();
             InitSpeelVeld(Array);
         }
         public SpeelVeld(int chanceOfMonsters)
         {
-            arrayRows = 20;
-            arrayColumns = 20;
-            Array = new MapElement[arrayRows, arrayColumns];
+            FillArray();
             InitSpeelVeld(Array, chanceOfMonsters);
         }
         private int arrayRows;
         private int arrayColumns;
         public MapElement[,] Array { get; set; }
-        public void Destroy(int x, int y)
+        public Point PlayerLocation { get; set; }
+        public List<Monster> AllMonsters { get; set; }
+        public void Destroy(int row, int Col)
         {
-            Array[x, y] = new Leeg(x, y);
+            Array[row, Col] = new Leeg(row, Col);
+        }
+        private void FillArray()
+        {
+            arrayRows = 20;
+            arrayColumns = 20;
+            Array = new MapElement[arrayRows, arrayColumns];
+            AllMonsters = new List<Monster>();
         }
         private void InitSpeelVeld(MapElement[,] speelVeld, int chanceOfMonsters = 5)
         {
             //generate monsters, rocks & empty spaces
             Random rand = new Random();
-            for (int x = 0; x < speelVeld.GetLength(0); x++)
+            for (int row = 0; row < speelVeld.GetLength(0); row++)
             {
-                for (int y = 0; y < speelVeld.GetLength(1); y++)
+                for (int col = 0; col < speelVeld.GetLength(1); col++)
                 {
                     int genElement = rand.Next(1,4);
                     switch (genElement)
@@ -43,15 +48,18 @@ namespace Game
                         case 1:
                             genElement = rand.Next(0, chanceOfMonsters);
                             if (genElement == 0)
-                                { speelVeld[x, y] = new Monster(x, y);  }
+                                { 
+                                    speelVeld[row, col] = new Monster(row, col);
+                                    AllMonsters.Add((Monster)speelVeld[row, col]);
+                                }
                             else
-                                { speelVeld[x, y] = new Leeg(x, y); }
+                                { speelVeld[row, col] = new Leeg(row, col); }
                             break;
                         case 2:
-                            speelVeld[x, y] = new Leeg(x, y);
+                            speelVeld[row, col] = new Leeg(row, col);
                             break;
                         case 3:
-                            speelVeld[x, y] = new Rock(x, y);
+                            speelVeld[row, col] = new Rock(row, col);
                             break;
                         default:
                             break;
@@ -59,7 +67,16 @@ namespace Game
                 }
             }
             //generate player
-            speelVeld[0, 10] = new Player(0, 10);
+            PlayerLocation = new Point() { X = 0, Y = 10 };
+            speelVeld[0, 10] = new Player() { Location = PlayerLocation};
+        }
+
+        public void MoveMonsters()
+        {
+            foreach (var monster in AllMonsters)
+            {
+
+            }
         }
 
         public override string ToString()
@@ -80,6 +97,7 @@ namespace Game
                 }
                 playFieldString += "\n";
             }
+            playFieldString += "+ + + + + + + +         + + + + + + + +\n";
             return playFieldString;
         }
     }

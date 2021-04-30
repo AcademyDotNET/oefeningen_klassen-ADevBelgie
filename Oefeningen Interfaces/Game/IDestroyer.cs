@@ -8,9 +8,6 @@ namespace Game
 {
     interface IDestroyer
     {
-        public void Shoot()
-        {
-
-        }
+        public void ShootRight(SpeelVeld speelveld);
     }
 }

@@ -8,21 +8,9 @@ namespace Game
 {
     interface IMovable
     {
-        public void MoveUp()
-        {
-
-        }
-        public void MoveDown()
-        {
-
-        }
-        public void MoveLeft()
-        {
-
-        }
-        public void MoveRight()
-        {
-
-        }
+        public void MoveUp(SpeelVeld speelveld);
+        public void MoveDown(SpeelVeld speelveld);
+        public void MoveLeft(SpeelVeld speelveld);
+        public void MoveRight(SpeelVeld speelveld);
     }
 }
