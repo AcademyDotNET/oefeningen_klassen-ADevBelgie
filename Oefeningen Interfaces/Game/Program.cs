@@ -25,6 +25,7 @@ namespace Game
                     case ConsoleKey.D://rechts
                         break;
                     case ConsoleKey.A: //schieten
+                        
                         break;
                     default:
                         break;

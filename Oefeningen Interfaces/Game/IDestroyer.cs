@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class IDestroyer
+    interface IDestroyer
     {
+        public void Shoot()
+        {
+
+        }
     }
 }

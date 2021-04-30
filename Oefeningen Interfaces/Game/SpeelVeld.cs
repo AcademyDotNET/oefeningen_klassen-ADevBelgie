@@ -25,7 +25,10 @@ namespace Game
         private int arrayRows;
         private int arrayColumns;
         public MapElement[,] Array { get; set; }
-
+        public void Destroy(int x, int y)
+        {
+            Array[x, y] = new Leeg(x, y);
+        }
         private void InitSpeelVeld(MapElement[,] speelVeld, int chanceOfMonsters = 5)
         {
             //generate monsters, rocks & empty spaces
