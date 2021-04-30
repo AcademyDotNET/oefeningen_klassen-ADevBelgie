@@ -17,13 +17,29 @@ namespace Game
         public void ShootLeft(SpeelVeld speelveld)
         {
             //naar links schieten 
-            speelveld.Destroy(Location.X, Location.Y - 1); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y - 1, speelveld); //X is rows, Y is Cols
         }
 
         public void ShootRight(SpeelVeld speelveld)
         {
             //naar rechts schieten 
-            speelveld.Destroy(Location.X, Location.Y + 1);
+            Destroy(Location.X, Location.Y + 1, speelveld);
+        }
+
+        public void Destroy(int row, int col, SpeelVeld speelveld)
+        {
+            if (row < speelveld.Array.GetLength(0) && col < speelveld.Array.GetLength(1))
+            {
+                if (speelveld.Array[row, col].DitElement == SoortElement.Player)
+                {
+                    speelveld.CurrentGameState = GameState.LostByDestroyer;
+                }
+                else if (speelveld.Array[row, col].DitElement == SoortElement.Rock)
+                {
+                    speelveld.GameScore.RockDestroyed++;
+                    speelveld.Array[row, col] = new Leeg(row, col); //remove Rock in SpeeldVeld.Array 
+                }
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster, LostByTurnLimit}
+    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster, LostByTurnLimit, LostByError}
     class SpeelVeld
     {
         public SpeelVeld()
@@ -77,37 +77,29 @@ namespace Game
                 }
             }
             //generate Rockdestroyer
-            Destroy(10, 10); //remove potential monster from the list
+            Remove(10, 10); //remove potential monster from the list
             speelVeld[10, 10] = new RockDestroyer(10, 10);
             AllMonsters.Add((Monster)speelVeld[10, 10]);
 
             //generate player
             PlayerLocation = new Point() { X = 0, Y = 10 };
-            Destroy(0, 10); //remove potential monster from the list
+            Remove(0, 10); //remove potential monster from the list
             speelVeld[0, 10] = new Player() { Location = PlayerLocation};
-            GameScore.RockDestroyed = 0;
-            GameScore.MonstersKilled = 0;
         }
 
-        public void Destroy(int row, int col)
+        private void Remove(int row, int col)
         {
             if (row < Array.GetLength(0) && col < Array.GetLength(1))
             {
                 if (Array[row, col].DitElement == SoortElement.Player)
                 {
-                    CurrentGameState = GameState.LostByDestroyer;
+                    CurrentGameState = GameState.LostByError; 
                 }
                 else if (Array[row, col].DitElement == SoortElement.Monster) //het is niet mogelijk een rockdestroyer te doden
                 {
-                    GameScore.MonstersKilled++;
-                    Array[row, col] = new Leeg(row, col); //remove monster in SpeeldVeld.Array 
                     AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
                 }
-                else if (Array[row, col].DitElement == SoortElement.Rock)
-                {
-                    GameScore.RockDestroyed++;
-                    Array[row, col] = new Leeg(row, col); //remove Rock in SpeeldVeld.Array 
-                }
+                Array[row, col] = new Leeg(row, col);
             }
         }
 
