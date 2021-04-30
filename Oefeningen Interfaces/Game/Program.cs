@@ -49,6 +49,7 @@ namespace Game
                 case GameState.Won:
                     speelVeld.WinScreen();
                     break;
+                case GameState.LostByWalkingIntoMonster:
                 case GameState.LostByDestroyer:
                     speelVeld.LoseScreen();
                     break;

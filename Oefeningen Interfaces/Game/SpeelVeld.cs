@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public enum GameState { GameInProgress, Won, LostByDestroyer}
+    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster}
     class SpeelVeld
     {
         public SpeelVeld()
@@ -140,23 +140,20 @@ namespace Game
                 case GameState.LostByDestroyer:
                     Console.WriteLine("You lost the game by destroyer");
                     break;
+                case GameState.LostByWalkingIntoMonster:
+                    Console.WriteLine("You lost the game by walking into a monster");
+                    break;
                 default:
                     Console.WriteLine("You lost the game by unknown");
                     break;
             }
-            while (true)
-            {
-
-            }
+            Console.ReadLine();
         }
 
         public void WinScreen()
         {
             Console.WriteLine("You won the game");
-            while (true)
-            {
-
-            }
+            Console.ReadLine();
         }
 
         public override string ToString()
