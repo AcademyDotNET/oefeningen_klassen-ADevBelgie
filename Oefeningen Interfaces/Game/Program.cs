@@ -31,7 +31,54 @@ namespace Game
 
         private static void ChangeSettingsGame(Settings gameSettings)
         {
-            throw new NotImplementedException();
+            int userKeuze;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Current game settings:\n");
+                Console.WriteLine(gameSettings);
+                Console.WriteLine("7. quit");
+                
+                int[] keuzes = { 1, 2, 3, 4, 5, 6, 7 };
+                while (!int.TryParse(Console.ReadLine(), out userKeuze) || !keuzes.Contains(userKeuze))
+                {
+                    Console.WriteLine("Geef een valide Keuze");
+                }
+                if (userKeuze != 7)
+                {
+                    Console.Write("Met welke key wilt u de");
+                    switch (userKeuze)
+                    {
+                        case 1:
+                            Console.Write(" \"move up key\" vervagen: ");
+                            gameSettings.MoveUpKey = Console.ReadKey().Key;
+                            break;
+                        case 2:
+                            Console.Write(" \"move down key\" vervagen: ");
+                            gameSettings.MoveDownKey = Console.ReadKey().Key;
+                            break;
+                        case 3:
+                            Console.Write(" \"move left key\" vervagen: ");
+                            gameSettings.MoveLeftKey = Console.ReadKey().Key;
+                            break;
+                        case 4:
+                            Console.Write(" \"move right key\" vervagen: ");
+                            gameSettings.MoveRightKey = Console.ReadKey().Key;
+                            break;
+                        case 5:
+                            Console.Write(" \"shoot left key\" vervagen: ");
+                            gameSettings.ShootLeftKey = Console.ReadKey().Key;
+                            break;
+                        case 6:
+                            Console.Write(" \"shoot right key\" vervagen: ");
+                            gameSettings.ShootRightKey = Console.ReadKey().Key;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } while (userKeuze != 7);
+            Console.Clear();
         }
 
         private static string Menu()
@@ -42,7 +89,7 @@ namespace Game
             Console.WriteLine("3. Quit Game");
             int userKeuze;
             int[] keuzes = { 1, 2, 3 };
-            while ( !int.TryParse(Console.ReadLine(), out userKeuze) && !keuzes.Contains(userKeuze) )
+            while ( !int.TryParse(Console.ReadLine(), out userKeuze) || !keuzes.Contains(userKeuze) )
             {
                 Console.WriteLine("Geef een valide Keuze");
             }
@@ -52,7 +99,7 @@ namespace Game
         private static void PlayGame(Settings gameSettings)
         {
             Console.Clear();
-            Console.WriteLine("Game z=up, s=down, q=left, d=right, a=shootleft, e=shootright, Any other key=skip turn\n");
+            Console.WriteLine($"Game {gameSettings.MoveUpKey}=up, {gameSettings.MoveDownKey}=down, {gameSettings.MoveLeftKey}=left, {gameSettings.MoveRightKey}=right, {gameSettings.ShootLeftKey}=shootleft, {gameSettings.ShootRightKey}=shootright, Any other key=skip turn\n");
             SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
