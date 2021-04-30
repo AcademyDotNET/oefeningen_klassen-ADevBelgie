@@ -7,12 +7,12 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Game\n");
+            Console.WriteLine("Game z=up, s=down, q=left, d=right, a=shootleft, e=shootright, Any other key=skip turn\n");
 
             SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
-            while (true)
+            while (speelVeld.CurrentGameState == GameState.GameInProgress)
             {
                 WriteSpeelveld(speelVeld);
                 var input = Console.ReadKey();
@@ -40,8 +40,23 @@ namespace Game
                         break;
                 }
                 speelVeld.MoveMonsters();
+                speelVeld.ShootMonsters();
                 ClearSpeelveld(speelVeld);            
             }
+            Console.Clear();
+            switch (speelVeld.CurrentGameState)
+            {
+                case GameState.Won:
+                    speelVeld.WinScreen();
+                    break;
+                case GameState.LostByDestroyer:
+                    speelVeld.LoseScreen();
+                    break;
+                default:
+                    Console.WriteLine("There was an error...");
+                    break;
+            }
+            
         }
 
         private static void WriteSpeelveld(SpeelVeld speelVeld)

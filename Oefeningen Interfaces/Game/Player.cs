@@ -20,7 +20,7 @@ namespace Game
         }
         public void ShootLeft(SpeelVeld speelveld)
         {
-            //naar rechts schieten 
+            //naar links schieten 
             speelveld.Destroy(Location.X, Location.Y - 1); //X is rows, Y is Cols
         }
         public void MoveUp(SpeelVeld speelveld)

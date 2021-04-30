@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    enum SoortElement { Player, Monster, Leeg, Rock}
-    enum SoortElementChar { P, M, L, R }
+    enum SoortElement { Player, Monster, Leeg, Rock, RockDestroyer}
+    enum SoortElementChar { P, M, L, R, X }
 
     abstract class MapElement
     {

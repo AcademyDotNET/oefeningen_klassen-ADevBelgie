@@ -9,5 +9,6 @@ namespace Game
     interface IDestroyer
     {
         public void ShootRight(SpeelVeld speelveld);
+        public void ShootLeft(SpeelVeld speelveld);
     }
 }

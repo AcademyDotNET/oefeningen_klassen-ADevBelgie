@@ -6,29 +6,34 @@ using System.Threading.Tasks;
 
 namespace Game
 {
+    public enum GameState { GameInProgress, Won, LostByDestroyer}
     class SpeelVeld
     {
         public SpeelVeld()
         {
-            FillArray();
+            InitGame();
             InitSpeelVeld(Array);
         }
         public SpeelVeld(int chanceOfMonsters)
         {
-            FillArray();
+            InitGame();
             InitSpeelVeld(Array, chanceOfMonsters);
         }
+
+        //speelveld array van [20, 20]
         private int arrayRows;
         private int arrayColumns;
         public MapElement[,] Array { get; set; }
+
+        //Player location, start location is [0, 10]
         public Point PlayerLocation { get; set; }
         public List<Monster> AllMonsters { get; set; }
-        public void Destroy(int row, int Col)
+
+        //CurrentGameState on game start = GameState.GameInProgress
+        public GameState CurrentGameState { get; set; }
+        private void InitGame()
         {
-            Array[row, Col] = new Leeg(row, Col);
-        }
-        private void FillArray()
-        {
+            CurrentGameState = GameState.GameInProgress;
             arrayRows = 20;
             arrayColumns = 20;
             Array = new MapElement[arrayRows, arrayColumns];
@@ -66,9 +71,28 @@ namespace Game
                     }
                 }
             }
+            //generate Rockdestroyer
+            Destroy(10, 10); //remove potential monster from the list
+            speelVeld[10, 10] = new RockDestroyer(10, 10);
+            AllMonsters.Add((Monster)speelVeld[10, 10]);
+
             //generate player
             PlayerLocation = new Point() { X = 0, Y = 10 };
+            Destroy(0, 10); //remove potential monster from the list
             speelVeld[0, 10] = new Player() { Location = PlayerLocation};
+        }
+
+        public void Destroy(int row, int col)
+        {
+            if (row < Array.GetLength(0) && col < Array.GetLength(1))
+            {
+                if (Array[row, col].DitElement == SoortElement.Player)
+                {
+                    CurrentGameState = GameState.LostByDestroyer;
+                }
+                Array[row, col] = new Leeg(row, col);
+                AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col);
+            }
         }
 
         public void MoveMonsters()
@@ -94,6 +118,44 @@ namespace Game
                     default:
                         break;
                 }
+            }
+        }
+        public void ShootMonsters()
+        {
+            for (int i = 0; i < AllMonsters.Count; i++)
+            {
+                if (AllMonsters[i].DitElement == SoortElement.RockDestroyer)
+                {
+                    RockDestroyer RD = (RockDestroyer)AllMonsters[i];
+                    RD.ShootLeft(this);
+                    RD.ShootRight(this);
+                }
+            }
+        }
+
+        public void LoseScreen()
+        {
+            switch (CurrentGameState)
+            {
+                case GameState.LostByDestroyer:
+                    Console.WriteLine("You lost the game by destroyer");
+                    break;
+                default:
+                    Console.WriteLine("You lost the game by unknown");
+                    break;
+            }
+            while (true)
+            {
+
+            }
+        }
+
+        public void WinScreen()
+        {
+            Console.WriteLine("You won the game");
+            while (true)
+            {
+
             }
         }
 
