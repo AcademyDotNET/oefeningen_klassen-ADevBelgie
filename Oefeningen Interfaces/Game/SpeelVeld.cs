@@ -150,13 +150,14 @@ namespace Game
             switch (CurrentGameState)
             {
                 case GameState.LostByDestroyer:
-                    Console.WriteLine("You lost the game by destroyer");
+                    Console.WriteLine("You lost the game by the destroyer.");
                     break;
                 case GameState.LostByWalkingIntoMonster:
-                    Console.WriteLine("You lost the game by walking into a monster");
+                    Console.WriteLine("You lost the game by walking into a monster.");
                     break;
                 case GameState.LostByTurnLimit:
-                    Console.WriteLine("You lost the game by turn limit");
+                    Console.WriteLine("Congratulations! You lost the game by turn limit.");
+                    Console.WriteLine("This is an achievement on it's own.");
                     break;
                 default:
                     Console.WriteLine("You lost the game by unknown");
