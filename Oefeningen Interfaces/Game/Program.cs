@@ -99,7 +99,7 @@ namespace Game
         private static void PlayGame(Settings gameSettings)
         {
             Console.Clear();
-            Console.WriteLine($"Game {gameSettings.MoveUpKey}=up, {gameSettings.MoveDownKey}=down, {gameSettings.MoveLeftKey}=left, {gameSettings.MoveRightKey}=right, {gameSettings.ShootLeftKey}=shootleft, {gameSettings.ShootRightKey}=shootright, Any other key=skip turn\n");
+            Console.WriteLine($"Game {gameSettings.MoveUpKey}=up, {gameSettings.MoveDownKey}=down, {gameSettings.MoveLeftKey}=left, {gameSettings.MoveRightKey}=right, {gameSettings.ShootLeftKey}=shootleft, {gameSettings.ShootRightKey}=shootright, Other=skip turn\n");
             SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
