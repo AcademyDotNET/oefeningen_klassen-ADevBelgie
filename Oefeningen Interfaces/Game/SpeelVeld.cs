@@ -160,7 +160,7 @@ namespace Game
                 case GameState.LostByWalkingIntoMonster:
                     Console.WriteLine("You lost the game by walking into a monster.");
                     Console.WriteLine("\nHint:\nMonsters don't attack on their own,");
-                    Console.WriteLine("as long as you don't walk into them they are harmless.");
+                    Console.WriteLine("as long as you don't walk into them, they are harmless.");
                     break;
                 case GameState.LostByTurnLimit:
                     Console.WriteLine("Congratulations! You lost the game by turn limit.");

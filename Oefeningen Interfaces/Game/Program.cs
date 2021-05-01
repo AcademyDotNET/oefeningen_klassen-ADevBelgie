@@ -22,15 +22,11 @@ namespace Game
                     case 2:
                         gameSettings.ChangeSettingsGame();
                         break;
-                    case 3:
-                        //Hiscores placeholder
-                        Console.Clear();
-                        break;
                     default:
                         break;
                 }
 
-            } while (keuze != 4);
+            } while (keuze != 3);
         }
 
         private static int Menu()
@@ -57,10 +53,6 @@ namespace Game
                 {
                     return 3;
                 }
-                else if (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4)
-                {
-                    return 4;
-                }
             }
         }
         private static void MenuOutput()
@@ -69,8 +61,7 @@ namespace Game
             Console.WriteLine("Menu\n");
             Console.WriteLine("1. Play Game");
             Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
-            Console.WriteLine("3. Hiscores (coming soon)");
-            Console.WriteLine("4. Quit Game\n");
+            Console.WriteLine("3. Quit Game\n");
             Console.WriteLine("Press 1, 2, 3 or 4 to continue ");
         }
 
