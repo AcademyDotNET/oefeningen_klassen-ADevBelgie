@@ -125,22 +125,44 @@ namespace Game
         {
             Console.Clear();
             Console.WriteLine(this);
+            ConsoleKey tempMoveUpKey = MoveUpKey;
+            MoveUpKey = ConsoleKey.Escape;
+            ConsoleKey tempMoveDownKey = MoveDownKey;
+            MoveDownKey = ConsoleKey.Escape;
+            ConsoleKey tempMoveLeftKey = MoveLeftKey;
+            MoveLeftKey = ConsoleKey.Escape;
+            ConsoleKey tempMoveRightKey = MoveRightKey;
+            MoveRightKey = ConsoleKey.Escape;
+            ConsoleKey tempShootLeftKey = ShootLeftKey;
+            ShootLeftKey = ConsoleKey.Escape;
+            ConsoleKey tempShootRightKey = ShootRightKey;
+            ShootRightKey = ConsoleKey.Escape;
+
             Console.WriteLine("\n\nPress enter for default key shown above");  
-            MoveUpKey = Change1Key("move up key", MoveUpKey);
-            MoveDownKey = Change1Key("move down key", MoveDownKey);
-            MoveLeftKey = Change1Key("move left key", MoveLeftKey);
-            MoveRightKey = Change1Key("move right key", MoveRightKey);
-            ShootLeftKey = Change1Key("shoot left key",  ShootLeftKey);
-            ShootRightKey = Change1Key("shoot right key", ShootRightKey);
+            MoveUpKey = Change1Key("move up key", tempMoveUpKey);
+            MoveDownKey = Change1Key("move down key", tempMoveDownKey);
+            MoveLeftKey = Change1Key("move left key", tempMoveLeftKey);
+            MoveRightKey = Change1Key("move right key", tempMoveRightKey);
+            ShootLeftKey = Change1Key("shoot left key",  tempShootLeftKey);
+            ShootRightKey = Change1Key("shoot right key", tempShootRightKey);
         }
         private ConsoleKey Change1Key(string keyInfo, ConsoleKey defaultKey)
         {
-            Console.Write($"\nChoose which key to bind for the \"{keyInfo}\": ");
+            Console.WriteLine($"\nChoose which key to bind for the \"{keyInfo}\": ");
+
             ConsoleKey returnKey = Console.ReadKey().Key;
+            
+            while (returnKey != defaultKey && (returnKey == MoveUpKey || returnKey == MoveDownKey || returnKey == MoveLeftKey || returnKey == MoveRightKey || returnKey == ShootLeftKey || returnKey == ShootRightKey))
+            {
+                Program.ClearCurrentConsoleLine();
+                Console.WriteLine($"{(returnKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
+                returnKey = Console.ReadKey().Key;
+            }
             if (returnKey == ConsoleKey.Enter)
             {
                 returnKey = defaultKey;
             }
+
             return returnKey;
         }
 

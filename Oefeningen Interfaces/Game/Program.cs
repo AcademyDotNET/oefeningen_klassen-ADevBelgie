@@ -160,14 +160,15 @@ namespace Game
             while (true)
             {
                 ClearKeyBuffer();
-                ConsoleKey returnKey = Console.ReadKey().Key;
-
+                ConsoleKey returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+                
                 if (returnKey == ConsoleKey.Enter)
                 {
                     return true;
                 }
                 else if (returnKey == ConsoleKey.Escape)
                 {
+                    Console.Write("A");//added character here because code eats it somewhere
                     return false;
                 }
                 ClearCurrentConsoleLine();
