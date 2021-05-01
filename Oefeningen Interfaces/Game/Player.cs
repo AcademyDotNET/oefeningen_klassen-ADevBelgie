@@ -43,9 +43,13 @@ namespace Game
         {
             if (Location.X != 0)//check if map border
             {
-                if ((new SoortElement[] { SoortElement.Monster, SoortElement.RockDestroyer }.Contains(speelveld.Array[Location.X - 1, Location.Y].DitElement)))
+                if (speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                }
+                else if (speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.RockDestroyer)
+                {
+                    speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if(speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.Leeg)
                 {
@@ -59,9 +63,13 @@ namespace Game
         {
             if (Location.X != 19)//check if map border
             {
-                if ((new SoortElement[] { SoortElement.Monster, SoortElement.RockDestroyer }.Contains(speelveld.Array[Location.X + 1, Location.Y].DitElement)))
+                if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                }
+                else if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.RockDestroyer)
+                {
+                    speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.Leeg)
                 {
@@ -79,9 +87,13 @@ namespace Game
         {
             if (Location.Y != 0) //check if map border
             {
-                if ((new SoortElement[] { SoortElement.Monster, SoortElement.RockDestroyer }.Contains(speelveld.Array[Location.X, Location.Y - 1].DitElement)))
+                if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                }
+                else if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.RockDestroyer)
+                {
+                    speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.Leeg)
                 {
@@ -95,9 +107,13 @@ namespace Game
         {
             if (Location.Y != 19) //check if map border
             {
-                if ((new SoortElement[] { SoortElement.Monster, SoortElement.RockDestroyer }.Contains(speelveld.Array[Location.X, Location.Y + 1].DitElement)))
+                if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                }
+                else if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.RockDestroyer)
+                {
+                    speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.Leeg)
                 {

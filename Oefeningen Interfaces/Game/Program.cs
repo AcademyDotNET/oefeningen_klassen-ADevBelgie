@@ -140,15 +140,22 @@ namespace Game
                 default:
                     break;
             }
-            
+
+            EndOfGame(gameSettings);
+        }
+        private static void EndOfGame(Settings gameSettings)
+        {
             Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
             System.Threading.Thread.Sleep(180);
             while (Console.KeyAvailable)// skips previous input chars
                 Console.ReadKey(false);
-
+            var SavePosition = Console.GetCursorPosition();
+            ClearCurrentConsoleLine();
             ConsoleKey returnKey = Console.ReadKey().Key;
             while (returnKey != ConsoleKey.Enter && returnKey != ConsoleKey.Escape)
             {
+
+                Console.SetCursorPosition(0, SavePosition.Top);
                 returnKey = Console.ReadKey().Key;
             }
             if (returnKey == ConsoleKey.Enter)
@@ -196,6 +203,13 @@ namespace Game
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine(speelVeld);
             Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        public static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }

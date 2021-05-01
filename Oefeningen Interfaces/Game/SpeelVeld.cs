@@ -151,12 +151,12 @@ namespace Game
             {
                 case GameState.LostByDestroyer:
                     Console.WriteLine("You lost the game by the destroyer.");
-                    Console.WriteLine("\nThe destroyer destroys rocks to his left and right wherever he goes");
-                    Console.WriteLine("be careful not to get too close");
+                    Console.WriteLine("\nHint:\nThe destroyer destroys rocks to his left and right wherever he goes.");
+                    Console.WriteLine("Be careful not to get too close.");
                     break;
                 case GameState.LostByWalkingIntoMonster:
                     Console.WriteLine("You lost the game by walking into a monster.");
-                    Console.WriteLine("\nMonsters don't attack on their own,");
+                    Console.WriteLine("\nHint:\nMonsters don't attack on their own,");
                     Console.WriteLine("as long as you don't walk into them they are harmless.");
                     break;
                 case GameState.LostByTurnLimit:
