@@ -22,11 +22,14 @@ namespace Game
                     case 2:
                         gameSettings.ChangeSettingsGame();
                         break;
+                    case 3:
+                        Console.Clear();
+                        break;
                     default:
                         break;
                 }
 
-            } while (keuze != 3);
+            } while (keuze != 4);
         }
 
         
@@ -36,6 +39,8 @@ namespace Game
             MenuOutput();
             while (true)
             {
+                ClearKeyBuffer();
+                ClearCurrentConsoleLine();
                 var input = Console.ReadKey();
                 if (input.Key == ConsoleKey.NumPad1 || input.Key == ConsoleKey.D1)
                 {
@@ -49,10 +54,9 @@ namespace Game
                 {
                     return 3;
                 }
-                else
+                else if (input.Key == ConsoleKey.NumPad4 || input.Key == ConsoleKey.D4)
                 {
-                    Console.Clear();
-                    MenuOutput();
+                    return 4;
                 }
             }
         }
@@ -62,8 +66,9 @@ namespace Game
             Console.WriteLine("Menu\n");
             Console.WriteLine("1. Play Game");
             Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
-            Console.WriteLine("3. Quit Game\n");
-            Console.Write("Press 1, 2 or 3 to continue ");
+            Console.WriteLine("3. Hiscores (coming soon)");
+            Console.WriteLine("4. Quit Game\n");
+            Console.WriteLine("Press 1, 2, 3 or 4 to continue ");
         }
 
         private static void PlayGame(Settings gameSettings)
@@ -120,13 +125,14 @@ namespace Game
                 speelVeld.GameScore.GameTurns++;
                 ClearSpeelveld(speelVeld);
             }
-
-            Console.Clear();
-            // game over
             if (speelVeld.GameScore.GameTurns >= 500)
             {
                 speelVeld.CurrentGameState = GameState.LostByTurnLimit;
             }
+
+            Console.Clear();
+
+            // game over
             switch (speelVeld.CurrentGameState)
             {
                 case GameState.Won:
@@ -146,22 +152,21 @@ namespace Game
         private static void EndOfGame(Settings gameSettings)
         {
             Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
-            System.Threading.Thread.Sleep(180);
-            while (Console.KeyAvailable)// skips previous input chars
-                Console.ReadKey(false);
-            var SavePosition = Console.GetCursorPosition();
+
+            ClearKeyBuffer();
             ClearCurrentConsoleLine();
             ConsoleKey returnKey = Console.ReadKey().Key;
+
             while (returnKey != ConsoleKey.Enter && returnKey != ConsoleKey.Escape)
             {
-
-                Console.SetCursorPosition(0, SavePosition.Top);
+                ClearCurrentConsoleLine();
                 returnKey = Console.ReadKey().Key;
             }
             if (returnKey == ConsoleKey.Enter)
             {
                 PlayGame(gameSettings);
             }
+
             Console.Clear();
         }
 
@@ -210,6 +215,12 @@ namespace Game
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
+        }
+        public static void ClearKeyBuffer()
+        {
+            System.Threading.Thread.Sleep(180);
+            while (Console.KeyAvailable)// skips previous input chars
+                Console.ReadKey(false);
         }
     }
 }
