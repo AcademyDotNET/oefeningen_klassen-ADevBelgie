@@ -17,7 +17,7 @@ namespace Game
                 switch (keuze)
                 {
                     case 1:
-                        PlayGame(gameSettings);
+                        while (PlayGame(gameSettings)) {}
                         break;
                     case 2:
                         gameSettings.ChangeSettingsGame();
@@ -74,7 +74,7 @@ namespace Game
             Console.WriteLine("Press 1, 2, 3 or 4 to continue ");
         }
 
-        private static void PlayGame(Settings gameSettings)
+        private static bool PlayGame(Settings gameSettings)
         {
             Console.Clear();
             GameInfo gameInfo = new GameInfo();
@@ -133,9 +133,9 @@ namespace Game
                 speelVeld.CurrentGameState = GameState.LostByTurnLimit;
             }
 
-            Console.Clear();
 
             // game over
+            Console.Clear();
             switch (speelVeld.CurrentGameState)
             {
                 case GameState.Won:
@@ -150,27 +150,28 @@ namespace Game
                     break;
             }
 
-            EndOfGame(gameSettings);
+            return EndOfGame(gameSettings);
         }
-        private static void EndOfGame(Settings gameSettings)
+        private static bool EndOfGame(Settings gameSettings)
         {
             Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
 
-            ClearKeyBuffer();
-            ClearCurrentConsoleLine();
-            ConsoleKey returnKey = Console.ReadKey().Key;
-
-            while (returnKey != ConsoleKey.Enter && returnKey != ConsoleKey.Escape)
+            while (true)
             {
+                ClearKeyBuffer();
+                ConsoleKey returnKey = Console.ReadKey().Key;
+
+                if (returnKey == ConsoleKey.Enter)
+                {
+                    return true;
+                }
+                else if (returnKey == ConsoleKey.Escape)
+                {
+                    return false;
+                }
                 ClearCurrentConsoleLine();
-                returnKey = Console.ReadKey().Key;
             }
-            if (returnKey == ConsoleKey.Enter)
-            {
-                PlayGame(gameSettings);
-            }
-
-            Console.Clear();
+            
         }
 
         private static void WriteSpeelveld(SpeelVeld speelVeld)
