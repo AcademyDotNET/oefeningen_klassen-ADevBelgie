@@ -10,7 +10,7 @@ namespace Game
     {
         public void DisplayInfo(Settings gameSettings)
         {
-            
+            //this info is diplayed to the right of the game while the game is being played
             int indent = 46;
             int GameDifficultyStartLine = 0;
             int keybindsStartLine = 2;

@@ -23,6 +23,7 @@ namespace Game
                         gameSettings.ChangeSettingsGame();
                         break;
                     case 3:
+                        //Hiscores placeholder
                         Console.Clear();
                         break;
                     default:
@@ -32,10 +33,9 @@ namespace Game
             } while (keuze != 4);
         }
 
-        
-
         private static int Menu()
         {
+            //returns int value selected by the user
             Console.Clear();
             MenuOutput();
 
@@ -63,9 +63,9 @@ namespace Game
                 }
             }
         }
-
         private static void MenuOutput()
         {
+            //Writes to console what options the user can choose from
             Console.WriteLine("Menu\n");
             Console.WriteLine("1. Play Game");
             Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
@@ -77,14 +77,15 @@ namespace Game
         private static bool PlayGame(Settings gameSettings)
         {
             Console.Clear();
+
+            //init game settings and map elements
             GameInfo gameInfo = new GameInfo();
             gameInfo.DisplayInfo(gameSettings);
-            
-            SpeelVeld speelVeld = new SpeelVeld(gameSettings.Difficulty); // chance of monsters, 0 being the most amount of monsters
+            SpeelVeld speelVeld = new SpeelVeld(gameSettings.Difficulty);
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
             // game
-            while (speelVeld.CurrentGameState == GameState.GameInProgress && speelVeld.GameScore.GameTurns < 500)
+            while (speelVeld.CurrentGameState == GameState.GameInProgress)
             {
                 WriteSpeelveld(speelVeld);
 
@@ -126,15 +127,14 @@ namespace Game
                 speelVeld.ShootMonsters();
 
                 speelVeld.GameScore.GameTurns++;
+                if (speelVeld.GameScore.GameTurns >= 500)
+                {
+                    speelVeld.CurrentGameState = GameState.LostByTurnLimit;
+                }
                 ClearSpeelveld(speelVeld);
             }
-            if (speelVeld.GameScore.GameTurns >= 500)
-            {
-                speelVeld.CurrentGameState = GameState.LostByTurnLimit;
-            }
-
-
-            // game over
+            
+            // game over result screen
             Console.Clear();
             switch (speelVeld.CurrentGameState)
             {
@@ -150,6 +150,7 @@ namespace Game
                     break;
             }
 
+            //if end of game return true, the PlayGame method will be called again
             return EndOfGame(gameSettings);
         }
         private static bool EndOfGame(Settings gameSettings)
@@ -176,6 +177,7 @@ namespace Game
 
         private static void WriteSpeelveld(SpeelVeld speelVeld)
         {
+            //writes speeldveld to console
             Console.SetCursorPosition(0, 2);
             //STRING SPLIT voor kleuren
             string stringSpeelVeld = speelVeld.ToString();
@@ -205,16 +207,19 @@ namespace Game
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
         }
-
         private static void ClearSpeelveld(SpeelVeld speelVeld)
         {
+            //clears speeldveld in console
+            //this is way faster then using Console.Clear();
             Console.SetCursorPosition(0, 2);
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine(speelVeld);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
+
         public static void ClearCurrentConsoleLine()
         {
+            //clears the line in the console, is used for in menu screens or end of game screen
             int currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
@@ -222,8 +227,10 @@ namespace Game
         }
         public static void ClearKeyBuffer()
         {
+            // skips previous input chars.
+            // this method is here for if people hold down a key for too long causing the button press to go into a buffer.
             System.Threading.Thread.Sleep(180);
-            while (Console.KeyAvailable)// skips previous input chars
+            while (Console.KeyAvailable)
                 Console.ReadKey(false);
         }
     }

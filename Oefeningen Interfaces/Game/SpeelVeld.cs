@@ -89,6 +89,7 @@ namespace Game
 
         private void Remove(int row, int col)
         {
+            //replaces mapelement with Leeg element
             if (col > 0 && col < Array.GetLength(1) && row > 0 && row < Array.GetLength(0))
             {
                 if (Array[row, col].DitElement == SoortElement.Player)
@@ -105,6 +106,7 @@ namespace Game
 
         public void MoveMonsters()
         {
+            //all monsters in the playfield move in a random direction
             Random rand = new Random();
             foreach (var monster in AllMonsters)
             {
@@ -130,6 +132,7 @@ namespace Game
         }
         public void ShootMonsters()
         {
+            //makes the rockdetroyer shoot
             for (int i = 0; i < AllMonsters.Count; i++)
             {
                 if (AllMonsters[i].DitElement == SoortElement.RockDestroyer)
