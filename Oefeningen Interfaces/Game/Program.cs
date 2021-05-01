@@ -86,34 +86,34 @@ namespace Game
                 WriteSpeelveld(speelVeld);
 
                 //players turn
-                var input = Console.ReadKey();
-                if (input.Key == gameSettings.MoveUpKey)
+                ConsoleKey input = Console.ReadKey().Key;
+                if (input == gameSettings.MoveUpKey)
                 {
                     player1.MoveUp(speelVeld);
                 }
-                else if (input.Key == gameSettings.MoveDownKey)
+                else if (input == gameSettings.MoveDownKey)
                 {
                     player1.MoveDown(speelVeld);
                 }
-                else if (input.Key == gameSettings.MoveRightKey)
+                else if (input == gameSettings.MoveRightKey)
                 {
                     player1.MoveRight(speelVeld);
                 }
-                else if (input.Key == gameSettings.MoveLeftKey)
+                else if (input == gameSettings.MoveLeftKey)
                 {
                     player1.MoveLeft(speelVeld);
                 }
-                else if (input.Key == gameSettings.ShootRightKey)
+                else if (input == gameSettings.ShootRightKey)
                 {
                     speelVeld.GameScore.ShotsFired++;
                     player1.ShootRight(speelVeld);
                 }
-                else if (input.Key == gameSettings.ShootLeftKey)
+                else if (input == gameSettings.ShootLeftKey)
                 {
                     speelVeld.GameScore.ShotsFired++;
                     player1.ShootLeft(speelVeld);
                 }
-                else if (input.Key == ConsoleKey.Escape)
+                else if (input == ConsoleKey.Escape)
                 {
                     speelVeld.CurrentGameState = GameState.ExitGameInProgress;
                 }
