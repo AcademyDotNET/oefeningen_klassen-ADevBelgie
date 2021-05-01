@@ -12,10 +12,11 @@ namespace Game
         {
             
             int indent = 46;
+            int GameDifficultyStartLine = 0;
             int keybindsStartLine = 2;
             int gameInfoStartLine = 9;
 
-            Console.SetCursorPosition(indent, 0);
+            Console.SetCursorPosition(indent, GameDifficultyStartLine);
             Console.WriteLine($"Difficulty: {gameSettings.DifficultyString}");
             Console.SetCursorPosition(indent, keybindsStartLine);
             Console.Write($"Keybinds:");
