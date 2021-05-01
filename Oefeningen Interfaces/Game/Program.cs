@@ -118,7 +118,7 @@ namespace Game
                 speelVeld.ShootMonsters();
 
                 speelVeld.GameScore.GameTurns++;
-                if (speelVeld.GameScore.GameTurns >= 500)
+                if (speelVeld.GameScore.GameTurns >= 150)
                 {
                     speelVeld.CurrentGameState = GameState.LostByTurnLimit;
                 }
