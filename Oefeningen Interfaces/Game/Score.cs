@@ -26,7 +26,10 @@ namespace Game
             //more normal score would be one with +-30 turns and 0-5 monsters killed with 80% accuracy
 
             double score = 20000/ (GameTurns/10.0);
-            score += ( MonstersKilled*100 )*( (MonstersKilled + RockDestroyed) / (double)ShotsFired );
+            if (ShotsFired > 0)
+            {
+                score += (MonstersKilled * 100) * ((MonstersKilled + RockDestroyed) / (double)ShotsFired);
+            }
 
             score = Math.Min(10000, score);
             string scoreString = Convert.ToString(Math.Round(score));

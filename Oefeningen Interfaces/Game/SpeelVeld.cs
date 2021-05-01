@@ -177,10 +177,10 @@ namespace Game
             Console.WriteLine($"Shots fired: {GameScore.ShotsFired}");
             Console.WriteLine($"Monsters killed: {GameScore.MonstersKilled}");
             Console.WriteLine($"Rocks destroyed: {GameScore.RockDestroyed}");
-            Console.WriteLine($"Accuracy: {((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired )*100}%");
+            Console.WriteLine($"Accuracy: {(GameScore.ShotsFired != 0?((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired )*100:100)}%");
             Console.WriteLine($"\nScore: {GameScore}");
-            //add to highscore (BP - 6997)
-            Console.ReadLine();
+            Console.WriteLine($"\nTurns elapsed has the biggest influence on the score");
+            //add to highscore (BP - 7143)
         }
 
         public override string ToString()
