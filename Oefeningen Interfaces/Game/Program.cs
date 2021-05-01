@@ -6,11 +6,11 @@ namespace Game
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int keuze;
             Settings gameSettings = new Settings();
-
+            
             do
             {
                 keuze = Menu();
@@ -72,7 +72,7 @@ namespace Game
             GameInfo gameInfo = new GameInfo();
             gameInfo.DisplayInfo(gameSettings);
             
-            SpeelVeld speelVeld = new SpeelVeld(6); // chance of monsters, 0 being the most amount of monsters
+            SpeelVeld speelVeld = new SpeelVeld(gameSettings.Difficulty); // chance of monsters, 0 being the most amount of monsters
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
 
             // game
@@ -108,6 +108,10 @@ namespace Game
                     speelVeld.GameScore.ShotsFired++;
                     player1.ShootLeft(speelVeld);
                 }
+                else if (input.Key == ConsoleKey.Escape)
+                {
+                    speelVeld.CurrentGameState = GameState.ExitGameInProgress;
+                }
 
                 //monsters turn
                 speelVeld.MoveMonsters();
@@ -134,9 +138,15 @@ namespace Game
                     speelVeld.LoseScreen();
                     break;
                 default:
-                    Console.WriteLine("You went over this games limits...");
                     break;
             }
+            Console.WriteLine("\n\nPress enter to play again... or any other to go back to menu");
+            ConsoleKey returnKey = Console.ReadKey().Key;
+            if (returnKey == ConsoleKey.Enter)
+            {
+                PlayGame(gameSettings);
+            }
+            Console.Clear();
         }
 
         private static void WriteSpeelveld(SpeelVeld speelVeld)

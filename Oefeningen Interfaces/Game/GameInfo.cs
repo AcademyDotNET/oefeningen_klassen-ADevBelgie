@@ -10,11 +10,13 @@ namespace Game
     {
         public void DisplayInfo(Settings gameSettings)
         {
-            Console.WriteLine($"Game");
+            
             int indent = 46;
-            int keybindsStartLine = 1;
-            int gameInfoStartLine = 8;
+            int keybindsStartLine = 2;
+            int gameInfoStartLine = 9;
 
+            Console.SetCursorPosition(indent, 0);
+            Console.WriteLine($"Difficulty: {gameSettings.DifficultyString}");
             Console.SetCursorPosition(indent, keybindsStartLine);
             Console.Write($"Keybinds:");
             Console.SetCursorPosition(indent, keybindsStartLine+1);
@@ -24,7 +26,7 @@ namespace Game
             Console.SetCursorPosition(indent, keybindsStartLine+3);
             Console.Write($"{gameSettings.ShootLeftKey}= Shoot left\t{gameSettings.ShootRightKey}= Shoot right");
             Console.SetCursorPosition(indent, keybindsStartLine+4);
-            Console.Write($"Other=skip turn\n");
+            Console.Write($"ESC= Exit game\tOther= Skip turn");
 
             Console.SetCursorPosition(indent, gameInfoStartLine);
             Console.Write($"Game info:");

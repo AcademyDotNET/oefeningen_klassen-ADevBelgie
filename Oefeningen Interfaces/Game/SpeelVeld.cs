@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster, LostByTurnLimit, LostByError}
+    public enum GameState { GameInProgress, Won, LostByDestroyer, LostByWalkingIntoMonster, LostByTurnLimit, LostByError, ExitGameInProgress}
     class SpeelVeld
     {
         public SpeelVeld()
@@ -89,7 +89,7 @@ namespace Game
 
         private void Remove(int row, int col)
         {
-            if (row < Array.GetLength(0) && col < Array.GetLength(1))
+            if (col > 0 && col < Array.GetLength(1) && row > 0 && row < Array.GetLength(0))
             {
                 if (Array[row, col].DitElement == SoortElement.Player)
                 {
@@ -151,9 +151,13 @@ namespace Game
             {
                 case GameState.LostByDestroyer:
                     Console.WriteLine("You lost the game by the destroyer.");
+                    Console.WriteLine("\nThe destroyer destroys rocks to his left and right wherever he goes");
+                    Console.WriteLine("be careful not to get too close");
                     break;
                 case GameState.LostByWalkingIntoMonster:
                     Console.WriteLine("You lost the game by walking into a monster.");
+                    Console.WriteLine("\nMonsters don't attack on their own,");
+                    Console.WriteLine("as long as you don't walk into them they are harmless.");
                     break;
                 case GameState.LostByTurnLimit:
                     Console.WriteLine("Congratulations! You lost the game by turn limit.");
@@ -163,8 +167,7 @@ namespace Game
                     Console.WriteLine("You lost the game by unknown");
                     break;
             }
-            Console.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
-            Console.ReadLine();
+            Console.WriteLine($"\n\n\nTurns elapsed: {GameScore.GameTurns}");
         }
 
         public void WinScreen()
@@ -176,6 +179,7 @@ namespace Game
             Console.WriteLine($"Rocks destroyed: {GameScore.RockDestroyed}");
             Console.WriteLine($"Accuracy: {((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired )*100}%");
             Console.WriteLine($"\nScore: {GameScore}");
+            //add to highscore (BP - 6997)
             Console.ReadLine();
         }
 

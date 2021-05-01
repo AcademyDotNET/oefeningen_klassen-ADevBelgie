@@ -25,7 +25,7 @@ namespace Game
         }
         public void Destroy(int row, int col, SpeelVeld speelveld)
         {
-            if (row < speelveld.Array.GetLength(0) && col < speelveld.Array.GetLength(1))
+            if (col > 0 && col < speelveld.Array.GetLength(1))
             {
                 if (speelveld.Array[row, col].DitElement == SoortElement.Monster) //het is niet mogelijk een rockdestroyer te doden
                 {

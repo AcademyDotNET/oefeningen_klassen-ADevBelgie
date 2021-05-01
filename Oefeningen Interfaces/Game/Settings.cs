@@ -10,12 +10,32 @@ namespace Game
     {
         public Settings()
         {
+            Difficulty = 6;
             MoveUpKey= ConsoleKey.Z; 
             MoveDownKey= ConsoleKey.S;
             MoveLeftKey = ConsoleKey.Q;
             MoveRightKey = ConsoleKey.D;
             ShootLeftKey = ConsoleKey.A;
             ShootRightKey = ConsoleKey.E;
+        }
+        public int Difficulty { get; set; }
+        public string DifficultyString 
+        {
+            get 
+            {
+                if (Difficulty == 2)
+                {
+                    return "Hard";
+                }
+                else if (Difficulty == 6)
+                {
+                    return "Medium";
+                }
+                else
+                {
+                    return "Easy";
+                }
+            } 
         }
         public ConsoleKey MoveUpKey { get; set; }
         public ConsoleKey MoveDownKey { get; set; }
@@ -50,8 +70,33 @@ namespace Game
             }
         }
 
-        private static void ChangeDifficulty()
+        private void ChangeDifficulty()
         {
+            ChangeDifficultyOutput();
+
+            var input = Console.ReadKey();
+            if (input.Key == ConsoleKey.NumPad1 || input.Key == ConsoleKey.D1)
+            {
+                Difficulty = 12;
+            }
+            else if (input.Key == ConsoleKey.NumPad2 || input.Key == ConsoleKey.D2)
+            {
+                Difficulty = 6; //default
+            }
+            else if (input.Key == ConsoleKey.NumPad3 || input.Key == ConsoleKey.D3)
+            {
+                Difficulty = 2;
+            }
+        }
+
+        private void ChangeDifficultyOutput()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose difficulty:\n");
+            Console.WriteLine("1. Easy");
+            Console.WriteLine("2. Medium (default)");
+            Console.WriteLine("3. Hard");
+            Console.Write("\nPress 1, 2 or 3 to continue ");
         }
 
         private void ChangeSettingsGameOutput()
@@ -61,6 +106,7 @@ namespace Game
             Console.WriteLine("1. Change keybinds");
             Console.WriteLine("2. Change Difficulty");
             Console.WriteLine("3. Go back to main menu");
+            Console.Write("\nPress 1, 2 or 3 to continue ");
         }
         private void ChangeKeyBinds()
         {
