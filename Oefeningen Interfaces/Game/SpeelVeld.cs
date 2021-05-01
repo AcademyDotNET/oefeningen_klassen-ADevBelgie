@@ -181,6 +181,7 @@ namespace Game
             Console.WriteLine($"\nScore: {GameScore}");
             Console.WriteLine($"\nTurns elapsed has the biggest influence on the score");
             //add to highscore (BP - 7143)
+            System.Threading.Thread.Sleep(200);
         }
 
         public override string ToString()

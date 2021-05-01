@@ -141,12 +141,16 @@ namespace Game
                     break;
             }
             
-            Console.WriteLine("\n\nPress enter to play again... or any other to go back to menu");
+            Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
             System.Threading.Thread.Sleep(180);
             while (Console.KeyAvailable)// skips previous input chars
                 Console.ReadKey(false);
 
             ConsoleKey returnKey = Console.ReadKey().Key;
+            while (returnKey != ConsoleKey.Enter && returnKey != ConsoleKey.Escape)
+            {
+                returnKey = Console.ReadKey().Key;
+            }
             if (returnKey == ConsoleKey.Enter)
             {
                 PlayGame(gameSettings);
