@@ -36,25 +36,28 @@ namespace Game
 
         private static int Menu()
         {
+            Console.Clear();
             MenuOutput();
+
             while (true)
             {
                 ClearKeyBuffer();
                 ClearCurrentConsoleLine();
-                var input = Console.ReadKey();
-                if (input.Key == ConsoleKey.NumPad1 || input.Key == ConsoleKey.D1)
+                ConsoleKey input = Console.ReadKey().Key;
+
+                if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
                 {
                     return 1;
                 }
-                else if (input.Key == ConsoleKey.NumPad2 || input.Key == ConsoleKey.D2)
+                else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
                 {
                     return 2;
                 }
-                else if (input.Key == ConsoleKey.NumPad3 || input.Key == ConsoleKey.D3)
+                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
                 {
                     return 3;
                 }
-                else if (input.Key == ConsoleKey.NumPad4 || input.Key == ConsoleKey.D4)
+                else if (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4)
                 {
                     return 4;
                 }
