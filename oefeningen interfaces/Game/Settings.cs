@@ -47,56 +47,69 @@ namespace Game
         public void ChangeSettingsGame()
         {
             Console.Clear();
-            
-            bool returnToMainMenu = false;
-            while (!returnToMainMenu)
-            {
-                ChangeSettingsGameOutput();
+            ChangeSettingsGameOutput();
 
+            while (true)
+            {
+                Program.ClearKeyBuffer();
+                Program.ClearCurrentConsoleLine();
                 ConsoleKey input = Console.ReadKey().Key;
+
                 if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
                 {
                     ChangeKeyBinds();
+                    Console.Clear();
+                    ChangeSettingsGameOutput();
                 }
                 else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
                 {
                     ChangeDifficulty();
+                    Console.Clear();
+                    ChangeSettingsGameOutput();
                 }
                 else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
                 {
-                    Console.Clear();
-                    returnToMainMenu = true;
+                    return;
                 }
             }
         }
 
         private void ChangeDifficulty()
         {
+            Console.Clear();
             ChangeDifficultyOutput();
 
-            var input = Console.ReadKey();
-            if (input.Key == ConsoleKey.NumPad1 || input.Key == ConsoleKey.D1)
+            while (true)
             {
-                Difficulty = 12;
-            }
-            else if (input.Key == ConsoleKey.NumPad2 || input.Key == ConsoleKey.D2)
-            {
-                Difficulty = 6; //default
-            }
-            else if (input.Key == ConsoleKey.NumPad3 || input.Key == ConsoleKey.D3)
-            {
-                Difficulty = 2;
+                Program.ClearKeyBuffer();
+                Program.ClearCurrentConsoleLine();
+                ConsoleKey input = Console.ReadKey().Key;
+
+                if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
+                {
+                    Difficulty = 12;
+                    return;
+                }
+                else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
+                {
+                    Difficulty = 6; //default
+                    return;
+                }
+                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
+                {
+                    Difficulty = 2;
+                    return;
+                }
             }
         }
 
         private void ChangeDifficultyOutput()
         {
-            Console.Clear();
             Console.WriteLine("Choose difficulty:\n");
             Console.WriteLine("1. Easy");
             Console.WriteLine("2. Medium (default)");
             Console.WriteLine("3. Hard");
-            Console.Write("\nPress 1, 2 or 3 to continue ");
+            Console.WriteLine("\nPress 1, 2 or 3 to continue ");
         }
 
         private void ChangeSettingsGameOutput()
@@ -106,7 +119,7 @@ namespace Game
             Console.WriteLine("1. Change keybinds");
             Console.WriteLine("2. Change Difficulty");
             Console.WriteLine("3. Go back to main menu");
-            Console.Write("\nPress 1, 2 or 3 to continue ");
+            Console.WriteLine("\nPress 1, 2 or 3 to continue ");
         }
         private void ChangeKeyBinds()
         {
