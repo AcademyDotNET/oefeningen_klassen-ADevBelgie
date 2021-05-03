@@ -21,7 +21,7 @@ namespace Game
             PlayerChar = '☺';
             RockDestroyerChar = '☻';
             RockChar = '☼';
-            MonsterChar = '◆';
+            MonsterChar = '♦';
         }
         public char PlayerChar;
         public char RockDestroyerChar;
