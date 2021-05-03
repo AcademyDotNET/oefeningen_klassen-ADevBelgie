@@ -28,7 +28,7 @@ namespace Game
 
         public void Destroy(int row, int col, SpeelVeld speelveld)
         {
-            if (col > 0 && col < speelveld.Array.GetLength(1))
+            if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
                 if (speelveld.Array[row, col].DitElement == SoortElement.Player)
                 {

@@ -10,7 +10,8 @@ namespace Game
         {
             int keuze;
             Settings gameSettings = new Settings();
-            
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             do
             {
                 keuze = Menu();
@@ -78,7 +79,7 @@ namespace Game
             // game
             while (speelVeld.CurrentGameState == GameState.GameInProgress)
             {
-                WriteSpeelveld(speelVeld);
+                WriteSpeelveld(speelVeld, gameSettings);
 
                 //players turn
                 ConsoleKey input = Console.ReadKey().Key;
@@ -167,8 +168,9 @@ namespace Game
             
         }
 
-        private static void WriteSpeelveld(SpeelVeld speelVeld)
+        private static void WriteSpeelveld(SpeelVeld speelVeld, Settings gameSettings)
         {
+            ////Console.WriteLine(":relaxed:☻╣╝×¹²³«»╠╣═║‡†∞∩≈↑→↓:left_right_arrow::arrow_up_down:↨∑←⌂▓▒░▌☼:diamonds::hearts::clubs::spades:╔╗╬╚╝§¤¶");
             //writes speeldveld to console
             Console.SetCursorPosition(0, 2);
             //STRING SPLIT voor kleuren
@@ -178,23 +180,39 @@ namespace Game
             {
                 switch (mapElement)
                 {
+                    case "\nP":
+                        Console.WriteLine();
+                        goto case "P";
                     case "P":
                         Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"{gameSettings.PlayerChar} ");
                         break;
+                    case "\nM":
+                        Console.WriteLine();
+                        goto case "M";
                     case "M":
                         Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"{gameSettings.MonsterChar} ");
                         break;
+                    case "\nR":
+                        Console.WriteLine();
+                        goto case "R";
                     case "R":
                         Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write($"{gameSettings.RockChar} ");
                         break;
+                    case "\nX":
+                        Console.WriteLine();
+                        goto case "X";
                     case "X":
                         Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.Write($"{gameSettings.RockDestroyerChar} ");
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write(mapElement + " ");
                         break;
                 }
-                Console.Write(mapElement+" ");
             }
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
