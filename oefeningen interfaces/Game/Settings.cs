@@ -17,7 +17,16 @@ namespace Game
             MoveRightKey = ConsoleKey.D;
             ShootLeftKey = ConsoleKey.A;
             ShootRightKey = ConsoleKey.E;
+
+            PlayerChar = '☺';
+            RockDestroyerChar = '☻';
+            RockChar = '☼';
+            MonsterChar = '♦';
         }
+        public char PlayerChar;
+        public char RockDestroyerChar;
+        public char MonsterChar;
+        public char RockChar;
         public int Difficulty { get; set; }
         public string DifficultyString 
         {

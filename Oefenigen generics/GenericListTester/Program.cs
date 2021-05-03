@@ -8,8 +8,20 @@ namespace GenericListTester
         static void Main(string[] args)
         {
             Console.WriteLine("GenericListTester\n");
-            EenderType<int> lijstInt = new EenderType<int>();
-            EenderType<string> lijstString = new EenderType<string>();
+            var lijstInt = new ListEenderType<int>();
+            var lijstString = new ListEenderType<string>();
+
+            lijstInt.Add(100);
+            lijstInt.Add(150);
+            lijstInt.Add(200);
+
+            lijstString.Add("ABC");
+            lijstString.Add("DEF");
+            lijstString.Add("GHI");
+            lijstString.Remove("DEF");
+
+            Console.WriteLine(lijstString);
+            Console.WriteLine(lijstInt);
 
 
         }
