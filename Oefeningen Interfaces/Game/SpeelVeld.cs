@@ -190,7 +190,7 @@ namespace Game
             {
                 for (int y = 0; y < arrayColumns; y++)
                 {
-                    if (Array[i, y].DitElementChar != SoortElementChar.L)
+                    if (Array[i, y] is not Leeg)
                     {
                         playFieldString += Array[i, y].DitElementChar + " ";
                     }
