@@ -135,15 +135,11 @@ namespace Game
             //makes the rockdetroyer shoot
             for (int i = 0; i < AllMonsters.Count; i++)
             {
-                if (AllMonsters[i].DitElement == SoortElement.RockDestroyer)
+                RockDestroyer RD = AllMonsters[i] as RockDestroyer;
+                if (RD != null)
                 {
-                    RockDestroyer RD = (RockDestroyer)AllMonsters[i];
-                    int rockDestroyed = GameScore.RockDestroyed;
-                    int monstersKilled = GameScore.MonstersKilled;
                     RD.ShootLeft(this);
                     RD.ShootRight(this);
-                    GameScore.RockDestroyed = rockDestroyed;
-                    GameScore.MonstersKilled = monstersKilled;
                 }
             }
         }

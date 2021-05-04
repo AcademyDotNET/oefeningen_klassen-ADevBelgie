@@ -36,7 +36,6 @@ namespace Game
                 }
                 else if (speelveld.Array[row, col] is Rock)
                 {
-                    speelveld.GameScore.RockDestroyed++;
                     speelveld.Array[row, col] = new Leeg(row, col); //remove Rock in SpeeldVeld.Array 
                 }
             }
