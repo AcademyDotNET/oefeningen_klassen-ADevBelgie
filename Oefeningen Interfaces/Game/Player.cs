@@ -10,7 +10,6 @@ namespace Game
     {
         public Player()
         {
-            DitElement = SoortElement.Player;
             DitElementChar = SoortElementChar.P;
         }
         public void ShootRight(SpeelVeld speelveld)

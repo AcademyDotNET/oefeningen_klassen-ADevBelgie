@@ -92,11 +92,11 @@ namespace Game
             //replaces mapelement with Leeg element
             if (col > 0 && col < Array.GetLength(1) && row > 0 && row < Array.GetLength(0))
             {
-                if (Array[row, col].DitElement == SoortElement.Player)
+                if (Array[row, col] is Player)
                 {
                     CurrentGameState = GameState.LostByError; 
                 }
-                else if (Array[row, col].DitElement == SoortElement.Monster) //het is niet mogelijk een rockdestroyer te doden
+                else if (Array[row, col] is Monster) //het is niet mogelijk een rockdestroyer te doden
                 {
                     AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
                 }

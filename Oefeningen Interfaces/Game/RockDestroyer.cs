@@ -10,7 +10,6 @@ namespace Game
     {
         public RockDestroyer(int x, int y) : base(x, y)
         {
-            DitElement = SoortElement.RockDestroyer;
             DitElementChar = SoortElementChar.X;
         }
 

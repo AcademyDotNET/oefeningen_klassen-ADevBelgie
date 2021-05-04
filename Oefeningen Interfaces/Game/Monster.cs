@@ -10,7 +10,6 @@ namespace Game
     {
         public Monster(int x, int y) : base(x,y)
         {
-            DitElement = SoortElement.Monster;
             DitElementChar = SoortElementChar.M;
         }
         public void MoveUp(SpeelVeld speelveld)

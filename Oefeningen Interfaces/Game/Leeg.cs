@@ -10,7 +10,6 @@ namespace Game
     {
         public Leeg(int x, int y) : base(x, y)
         {
-            DitElement = SoortElement.Leeg;
             DitElementChar = SoortElementChar.L;
         }
     }

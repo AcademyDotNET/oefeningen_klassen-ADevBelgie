@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    enum SoortElement { Player, Monster, Leeg, Rock, RockDestroyer}
-    enum SoortElementChar { P, M, L, R, X }
+    enum SoortElementChar { P, M, L, R, X } //used to make string of speelveld 
 
     abstract class MapElement
     {
@@ -20,7 +19,6 @@ namespace Game
             //for the Leeg, Monster, Rock
             Location = new Point() { X = x, Y = y };
         }
-        public SoortElement DitElement { get; set; } // Player, Monster, leeg, Rots
         public SoortElementChar DitElementChar { get; set; } // Player, Monster, leeg, Rots
         public Point Location { get; set; } //location in 2D speelveld
     }

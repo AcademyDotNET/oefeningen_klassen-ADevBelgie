@@ -82,6 +82,8 @@ namespace Game
                 WriteSpeelveld(speelVeld, gameSettings);
 
                 //players turn
+                ClearKeyBuffer();
+                ClearCurrentConsoleLine();
                 ConsoleKey input = Console.ReadKey().Key;
                 if (input == gameSettings.MoveUpKey)
                 {
