@@ -10,6 +10,11 @@ namespace GenericListTester
             Console.WriteLine("GenericListTester\n");
             var lijstInt = new ListEenderType<int>();
             var lijstString = new ListEenderType<string>();
+            var lijstDouble = new List<double>();
+
+            lijstDouble.Add(100);
+            lijstDouble.Add(150);
+            lijstDouble.Add(180);
 
             lijstInt.Add(100);
             lijstInt.Add(150);
@@ -23,7 +28,10 @@ namespace GenericListTester
             Console.WriteLine(lijstString);
             Console.WriteLine(lijstInt);
 
-
+            foreach (var item in lijstDouble)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
