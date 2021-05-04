@@ -30,11 +30,11 @@ namespace Game
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
-                if (speelveld.Array[row, col].DitElement == SoortElement.Player)
+                if (speelveld.Array[row, col] is Player)
                 {
                     speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
-                else if (speelveld.Array[row, col].DitElement == SoortElement.Rock)
+                else if (speelveld.Array[row, col] is Rock)
                 {
                     speelveld.GameScore.RockDestroyed++;
                     speelveld.Array[row, col] = new Leeg(row, col); //remove Rock in SpeeldVeld.Array 

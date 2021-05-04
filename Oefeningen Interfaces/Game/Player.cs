@@ -27,12 +27,12 @@ namespace Game
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
-                if (speelveld.Array[row, col].DitElement == SoortElement.Monster) //het is niet mogelijk een rockdestroyer te doden
+                if (speelveld.Array[row, col] is Monster ) //het is niet mogelijk een rockdestroyer te doden
                 {
                     speelveld.GameScore.MonstersKilled++; 
                     speelveld.AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
                 }
-                else if (speelveld.Array[row, col].DitElement == SoortElement.Rock)
+                else if (speelveld.Array[row, col] is Rock)
                 {
                     speelveld.GameScore.RockDestroyed++;
                 }
@@ -43,15 +43,15 @@ namespace Game
         {
             if (Location.X != 0)//check if map border
             {
-                if (speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.Monster)
+                if (speelveld.Array[Location.X - 1, Location.Y] is Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
-                else if (speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.RockDestroyer)
+                else if (speelveld.Array[Location.X - 1, Location.Y] is RockDestroyer)
                 {
                     speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
-                else if(speelveld.Array[Location.X - 1, Location.Y].DitElement == SoortElement.Leeg)
+                else if(speelveld.Array[Location.X - 1, Location.Y] is Leeg)
                 {
                     speelveld.Array[Location.X - 1, Location.Y] = this;
                     speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
@@ -63,15 +63,15 @@ namespace Game
         {
             if (Location.X != 19)//check if map border
             {
-                if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.Monster)
+                if (speelveld.Array[Location.X + 1, Location.Y] is Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
-                else if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.RockDestroyer)
+                else if (speelveld.Array[Location.X + 1, Location.Y] is RockDestroyer)
                 {
                     speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
-                else if (speelveld.Array[Location.X + 1, Location.Y].DitElement == SoortElement.Leeg)
+                else if (speelveld.Array[Location.X + 1, Location.Y] is Leeg)
                 {
                     speelveld.Array[Location.X + 1, Location.Y] = this;
                     speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
@@ -87,15 +87,15 @@ namespace Game
         {
             if (Location.Y != 0) //check if map border
             {
-                if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.Monster)
+                if (speelveld.Array[Location.X, Location.Y - 1] is Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
-                else if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.RockDestroyer)
+                else if (speelveld.Array[Location.X, Location.Y - 1] is RockDestroyer)
                 {
                     speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
-                else if (speelveld.Array[Location.X, Location.Y - 1].DitElement == SoortElement.Leeg)
+                else if (speelveld.Array[Location.X, Location.Y - 1] is Leeg)
                 {
                     speelveld.Array[Location.X, Location.Y - 1] = this;
                     speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
@@ -107,15 +107,15 @@ namespace Game
         {
             if (Location.Y != 19) //check if map border
             {
-                if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.Monster)
+                if (speelveld.Array[Location.X, Location.Y + 1] is Monster)
                 {
                     speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
-                else if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.RockDestroyer)
+                else if (speelveld.Array[Location.X, Location.Y + 1] is RockDestroyer)
                 {
                     speelveld.CurrentGameState = GameState.LostByDestroyer;
                 }
-                else if (speelveld.Array[Location.X, Location.Y + 1].DitElement == SoortElement.Leeg)
+                else if (speelveld.Array[Location.X, Location.Y + 1] is Leeg)
                 {
                     speelveld.Array[Location.X, Location.Y + 1] = this;
                     speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
