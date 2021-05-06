@@ -46,9 +46,6 @@ namespace Student_Organizer
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 Console.WriteLine("selected student 0");
                 editStudent = 0;
             }
@@ -62,9 +59,6 @@ namespace Student_Organizer
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 lijst[editStudent].Naam = "-1";
             }
 
@@ -100,9 +94,6 @@ namespace Student_Organizer
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 InputLeeftijd = -1;
             }
             return InputLeeftijd;
@@ -120,9 +111,6 @@ namespace Student_Organizer
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 InputKlas = Klassen.unknown;
             }
             
@@ -142,9 +130,6 @@ namespace Student_Organizer
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-            finally
-            {
                 InputPunten = -1;
             }
             
@@ -200,7 +185,7 @@ namespace Student_Organizer
             Console.WriteLine("1: Student gegevens invoeren");
             Console.WriteLine("2: Student gegevens tonen");
 
-            int userKeuze;
+            int userKeuze =5;
             try
             {
                 while (!Int32.TryParse(Console.ReadLine(), out userKeuze) || (userKeuze != 1 && userKeuze != 2))

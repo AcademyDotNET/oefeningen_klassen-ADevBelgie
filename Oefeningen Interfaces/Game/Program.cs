@@ -11,6 +11,7 @@ namespace Game
             int keuze;
             Settings gameSettings = new Settings();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            HiScores hiScoresList = new HiScores();
 
             do
             {
@@ -18,7 +19,7 @@ namespace Game
                 switch (keuze)
                 {
                     case 1:
-                        while (PlayGame(gameSettings)) {}
+                        while (PlayGame(gameSettings, hiScoresList)) {}
                         break;
                     case 2:
                         gameSettings.ChangeSettingsGame();
@@ -63,10 +64,10 @@ namespace Game
             Console.WriteLine("1. Play Game");
             Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
             Console.WriteLine("3. Quit Game\n");
-            Console.WriteLine("Press 1, 2, 3 or 4 to continue ");
+            Console.WriteLine("Press 1, 2 or 3 to continue ");
         }
 
-        private static bool PlayGame(Settings gameSettings)
+        private static bool PlayGame(Settings gameSettings, HiScores hiScoresList)
         {
             Console.Clear();
 
@@ -177,45 +178,80 @@ namespace Game
             Console.SetCursorPosition(0, 2);
             //STRING SPLIT voor kleuren
             string stringSpeelVeld = speelVeld.ToString();
-            string[] subStringSpeelVeld = stringSpeelVeld.Split(' ');
-            foreach (var mapElement in subStringSpeelVeld)
+            string[] linesSpeelVeld = stringSpeelVeld.Split('\n');
+            foreach (var line in linesSpeelVeld)
             {
-                switch (mapElement)
+                string[] subStringLine= line.Split(' ');
+                foreach (var mapElement in subStringLine)
                 {
-                    case "\nP":
-                        Console.WriteLine();
-                        goto case "P";
-                    case "P":
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write($"{gameSettings.PlayerChar} ");
-                        break;
-                    case "\nM":
-                        Console.WriteLine();
-                        goto case "M";
-                    case "M":
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($"{gameSettings.MonsterChar} ");
-                        break;
-                    case "\nR":
-                        Console.WriteLine();
-                        goto case "R";
-                    case "R":
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write($"{gameSettings.RockChar} ");
-                        break;
-                    case "\nX":
-                        Console.WriteLine();
-                        goto case "X";
-                    case "X":
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.Write($"{gameSettings.RockDestroyerChar} ");
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write(mapElement + " ");
-                        break;
+                    switch (mapElement)
+                    {
+                        case "P":
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($"{gameSettings.PlayerChar} ");
+                            break;
+                        case "M":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write($"{gameSettings.MonsterChar} ");
+                            break;
+                        case "R":
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.Write($"{gameSettings.RockChar} ");
+                            break;
+                        case "X":
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.Write($"{gameSettings.RockDestroyerChar} ");
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.Write(mapElement + " ");
+                            break;
+                    }
                 }
+                Console.WriteLine();
             }
+
+            ////STRING SPLIT voor kleuren
+            //string stringSpeelVeld = speelVeld.ToString();
+            //string[] subStringSpeelVeld = stringSpeelVeld.Split(' ');
+            //foreach (var mapElement in subStringSpeelVeld)
+            //{
+            //    switch (mapElement)
+            //    {
+            //        case "\nP":
+            //            Console.WriteLine();
+            //            goto case "P";
+            //        case "P":
+            //            Console.ForegroundColor = ConsoleColor.Green;
+            //            Console.Write($"{gameSettings.PlayerChar} ");
+            //            break;
+            //        case "\nM":
+            //            Console.WriteLine();
+            //            goto case "M";
+            //        case "M":
+            //            Console.ForegroundColor = ConsoleColor.Red;
+            //            Console.Write($"{gameSettings.MonsterChar} ");
+            //            break;
+            //        case "\nR":
+            //            Console.WriteLine();
+            //            goto case "R";
+            //        case "R":
+            //            Console.ForegroundColor = ConsoleColor.Gray;
+            //            Console.Write($"{gameSettings.RockChar} ");
+            //            break;
+            //        case "\nX":
+            //            Console.WriteLine();
+            //            goto case "X";
+            //        case "X":
+            //            Console.ForegroundColor = ConsoleColor.Magenta;
+            //            Console.Write($"{gameSettings.RockDestroyerChar} ");
+            //            break;
+            //        default:
+            //            Console.ForegroundColor = ConsoleColor.Gray;
+            //            Console.Write(mapElement + " ");
+            //            break;
+            //    }
+            //}
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
         }

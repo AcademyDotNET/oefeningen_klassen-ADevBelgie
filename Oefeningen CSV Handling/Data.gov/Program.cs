@@ -14,7 +14,7 @@ namespace Data.gov
             Console.WriteLine("Data.gov\n");
 
             //get file from web and input into array
-            string[,] CSVInArray;
+            string[,] CSVInArray =null;
             try
             {
                 CSVInArray = CSVReader.Read();
@@ -23,11 +23,12 @@ namespace Data.gov
             {
                 Console.WriteLine("unable to get file from web and input into array");
                 Console.ReadLine();
+                CSVInArray = new string[1, 1]
+                    {
+                        { "" }
+                    };
             }
-            finally
-            {
-                CSVInArray = null;
-            }
+
 
             //input user
             for (int j = 0; j < CSVInArray.GetLength(1); j++)
