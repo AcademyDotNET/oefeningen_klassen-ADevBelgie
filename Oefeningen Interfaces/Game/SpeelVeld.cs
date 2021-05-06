@@ -181,8 +181,22 @@ namespace Game
             Console.WriteLine($"\nTurns elapsed has the biggest influence on the score");
 
             //add to highscore (BP - 7143)
-            Console.WriteLine($"\nGeef uw naam in voor de highscores");
-            hiScoresList.AddEntry(GameScore.ToString(), Console.ReadLine()); 
+            Console.WriteLine($"\nWilt u deze score toevoegen aan de Hiscore's?(Y/N)");
+            ConsoleKey returnKey = ConsoleKey.Enter;
+            while (returnKey != ConsoleKey.N)
+            {
+                Program.ClearCurrentConsoleLine();
+                Program.ClearKeyBuffer();
+                returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+
+                if (returnKey == ConsoleKey.Y)
+                {
+                    Console.WriteLine($"\nOnder welke naam?");
+                    hiScoresList.AddEntry(GameScore.ToString(), Console.ReadLine());
+                    returnKey = ConsoleKey.N;
+                }
+            }
+
             Console.WriteLine($"\n{hiScoresList}");
 
             System.Threading.Thread.Sleep(200);
