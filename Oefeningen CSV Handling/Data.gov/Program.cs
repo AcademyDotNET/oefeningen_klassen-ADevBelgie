@@ -14,7 +14,20 @@ namespace Data.gov
             Console.WriteLine("Data.gov\n");
 
             //get file from web and input into array
-            string[,] CSVInArray = CSVReader.Read();
+            string[,] CSVInArray;
+            try
+            {
+                CSVInArray = CSVReader.Read();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("unable to get file from web and input into array");
+                Console.ReadLine();
+            }
+            finally
+            {
+                CSVInArray = null;
+            }
 
             //input user
             for (int j = 0; j < CSVInArray.GetLength(1); j++)
@@ -22,9 +35,52 @@ namespace Data.gov
                 Console.Write($"{CSVInArray[0,j]} ({j}){(j < CSVInArray.GetLength(1)- 1?",": "")} ");
             }
             Console.WriteLine("\nGeef welke eigenschap je wilt:");
-            int inputEigenschap = Convert.ToInt32(Console.ReadLine());
+
+            int inputEigenschap;
+            while (true)
+            {
+                try
+                {
+                    inputEigenschap = Convert.ToInt32(Console.ReadLine());
+                    if (inputEigenschap< 0 || inputEigenschap> CSVInArray.GetLength(1)-1)
+                    {
+                        throw new Exception($"Try number between 0 - {CSVInArray.GetLength(1)-1}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is a good number.");
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            
             Console.WriteLine($"Geef van welke record je hem wilt({1}-{CSVInArray.GetLength(0) - 2}):");
-            int inputRecord = Convert.ToInt32(Console.ReadLine());
+            int inputRecord;
+            while (true)
+            {
+                try
+                {
+                    inputRecord = Convert.ToInt32(Console.ReadLine());
+                    if (inputRecord < 0 || inputRecord > (CSVInArray.GetLength(0) - 2))
+                    {
+                        throw new Exception($"Try number between 0 - {CSVInArray.GetLength(0) - 2}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is a good number.");
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
 
             //output console
             Console.WriteLine($"Het opgevgraagt gegeven is {CSVInArray[inputRecord, inputEigenschap]}");
