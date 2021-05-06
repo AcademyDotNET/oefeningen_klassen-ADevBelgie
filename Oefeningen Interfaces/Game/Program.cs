@@ -24,11 +24,14 @@ namespace Game
                     case 2:
                         gameSettings.ChangeSettingsGame();
                         break;
+                    case 3:
+                        hiScoresList.ShowHiScores();
+                        break;
                     default:
                         break;
                 }
 
-            } while (keuze != 3);
+            } while (keuze != 4);
         }
 
         private static int Menu()
@@ -55,6 +58,10 @@ namespace Game
                 {
                     return 3;
                 }
+                else if (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4)
+                {
+                    return 4;
+                }
             }
         }
         private static void MenuOutput()
@@ -63,7 +70,8 @@ namespace Game
             Console.WriteLine("Menu\n");
             Console.WriteLine("1. Play Game");
             Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
-            Console.WriteLine("3. Quit Game\n");
+            Console.WriteLine("3. Hiscore's");
+            Console.WriteLine("4. Quit Game\n");
             Console.WriteLine("Press 1, 2 or 3 to continue ");
         }
 
@@ -134,7 +142,7 @@ namespace Game
             switch (speelVeld.CurrentGameState)
             {
                 case GameState.Won:
-                    speelVeld.WinScreen();
+                    speelVeld.WinScreen(hiScoresList);
                     break;
                 case GameState.LostByWalkingIntoMonster:
                 case GameState.LostByDestroyer:

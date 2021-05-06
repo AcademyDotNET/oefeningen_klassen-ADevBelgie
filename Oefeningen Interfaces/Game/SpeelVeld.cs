@@ -169,7 +169,7 @@ namespace Game
             Console.WriteLine($"\n\n\nTurns elapsed: {GameScore.GameTurns}");
         }
 
-        public void WinScreen()
+        public void WinScreen(HiScores hiScoresList)
         {
             Console.WriteLine("You won the game");
             Console.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
@@ -179,8 +179,12 @@ namespace Game
             Console.WriteLine($"Accuracy: {(GameScore.ShotsFired != 0?((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired )*100:100)}%");
             Console.WriteLine($"\nScore: {GameScore}");
             Console.WriteLine($"\nTurns elapsed has the biggest influence on the score");
+
             //add to highscore (BP - 7143)
-            hiScoresList.AddEntry("", "");
+            Console.WriteLine($"\nGeef uw naam in voor de highscores");
+            hiScoresList.AddEntry(GameScore.ToString(), Console.ReadLine()); 
+            Console.WriteLine($"\n{hiScoresList}");
+
             System.Threading.Thread.Sleep(200);
         }
 

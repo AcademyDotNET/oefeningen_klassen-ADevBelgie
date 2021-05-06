@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryCatch", "TestGrond\TryCatch.csproj", "{569BEEE7-5939-4BD5-93C5-931D8A49EE73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game", "..\Oefeningen Interfaces\Game\Game.csproj", "{24012C31-5B4B-4F39-9BD3-64C4D206EA39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{569BEEE7-5939-4BD5-93C5-931D8A49EE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{569BEEE7-5939-4BD5-93C5-931D8A49EE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{569BEEE7-5939-4BD5-93C5-931D8A49EE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{569BEEE7-5939-4BD5-93C5-931D8A49EE73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24012C31-5B4B-4F39-9BD3-64C4D206EA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24012C31-5B4B-4F39-9BD3-64C4D206EA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24012C31-5B4B-4F39-9BD3-64C4D206EA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24012C31-5B4B-4F39-9BD3-64C4D206EA39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A19D9298-CB8E-4756-B97E-4431FE67DE35}
+	EndGlobalSection
+EndGlobal
