@@ -25,12 +25,21 @@ namespace Bookmark_Manager
             int index = -2;
             do
             {
+                string userRequest;
                 if (index == -1)
                 {
                     Console.WriteLine($"That bookmark was not valid");
                 }
                 Console.WriteLine($"What bookmark do you want to open?");
-                string userRequest = Console.ReadLine();
+                try
+                {
+                    userRequest = Console.ReadLine();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    userRequest = null;
+                }
 
                 index = bookmarks.FindIndex(b => b.Naam == userRequest);
             } while (index == -1);
