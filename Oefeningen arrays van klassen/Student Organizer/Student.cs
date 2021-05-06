@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Student_Organizer
 {
-    enum Klassen { EA1, EA2, EA3, EA4 }
+    enum Klassen { EA1, EA2, EA3, EA4, unknown }
 
     class Student
     {

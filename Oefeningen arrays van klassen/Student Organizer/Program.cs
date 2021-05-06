@@ -36,14 +36,37 @@ namespace Student_Organizer
             int editStudent;
             //get student to edit
             Console.WriteLine("Welke student wil je editen?");
-            while (!Int32.TryParse(Console.ReadLine(), out editStudent) || !(editStudent >= 0 && editStudent <= amountOfStudents-1))
+            try
             {
-                Console.WriteLine($"Geef een valide student in (0-{amountOfStudents-1})");
+                while (!Int32.TryParse(Console.ReadLine(), out editStudent) || !(editStudent >= 0 && editStudent <= amountOfStudents - 1))
+                {
+                    Console.WriteLine($"Geef een valide student in (0-{amountOfStudents - 1})");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("selected student 0");
+                editStudent = 0;
             }
 
             //get user to change said user data
             Console.WriteLine($"Geef naam student {editStudent}");
-            lijst[editStudent].Naam = Console.ReadLine();
+            try
+            {
+                lijst[editStudent].Naam = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                lijst[editStudent].Naam = "-1";
+            }
 
             Console.WriteLine($"Leeftijd {lijst[editStudent].Naam}: ");
             lijst[editStudent].Leeftijd = GetLeeftijd();
@@ -67,29 +90,64 @@ namespace Student_Organizer
         private static int GetLeeftijd()
         {
             int InputLeeftijd;
-            while (!Int32.TryParse(Console.ReadLine(), out InputLeeftijd) || InputLeeftijd < 1)
+            try
             {
-                Console.WriteLine($"Geef een valide leeftijd");
+                while (!Int32.TryParse(Console.ReadLine(), out InputLeeftijd) || InputLeeftijd < 1)
+                {
+                    Console.WriteLine($"Geef een valide leeftijd");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                InputLeeftijd = -1;
             }
             return InputLeeftijd;
         }
         private static Klassen Getklas()
         {
             Klassen InputKlas;
-            while (!Klassen.TryParse(Console.ReadLine().ToUpper(), out InputKlas))
+            try
             {
-                Console.WriteLine($"Geef een valide klas");
+                while (!Klassen.TryParse(Console.ReadLine().ToUpper(), out InputKlas))
+                {
+                    Console.WriteLine($"Geef een valide klas");
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                InputKlas = Klassen.unknown;
+            }
+            
             return InputKlas;
         }
 
         private static int GetPunten()
         {
             int InputPunten;
-            while (!Int32.TryParse(Console.ReadLine(), out InputPunten) || !(InputPunten >= 0 && InputPunten <= 100))
+            try
             {
-                Console.WriteLine($"Geef valide punten");
+                while (!Int32.TryParse(Console.ReadLine(), out InputPunten) || !(InputPunten >= 0 && InputPunten <= 100))
+                {
+                    Console.WriteLine($"Geef valide punten");
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                InputPunten = -1;
+            }
+            
             return InputPunten; 
         }
 
@@ -97,10 +155,23 @@ namespace Student_Organizer
         {
             int amountOfStudents;
             Console.WriteLine("Hoeveel studenten?");
-            while (!Int32.TryParse(Console.ReadLine(), out amountOfStudents) || !(amountOfStudents >= 1 && amountOfStudents <= 20))
+            try
             {
-                Console.WriteLine("Geef een valide int (1-20)");
+                while (!Int32.TryParse(Console.ReadLine(), out amountOfStudents) || !(amountOfStudents >= 1 && amountOfStudents <= 20))
+                {
+                    Console.WriteLine("Geef een valide int (1-20)");
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Set amountOfStudents to 1");
+                amountOfStudents = 1;
+            }
+            
             Console.Clear();
             return amountOfStudents;
         }
@@ -130,9 +201,17 @@ namespace Student_Organizer
             Console.WriteLine("2: Student gegevens tonen");
 
             int userKeuze;
-            while (!Int32.TryParse(Console.ReadLine(), out userKeuze) || (userKeuze != 1 && userKeuze != 2))
+            try
             {
-                Console.WriteLine("Geef een valide int (1-2)");
+                while (!Int32.TryParse(Console.ReadLine(), out userKeuze) || (userKeuze != 1 && userKeuze != 2))
+                {
+                    Console.WriteLine("Geef een valide int (1-2)");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                userKeuze = 3;
             }
 
             Console.Clear();
