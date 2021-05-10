@@ -10,7 +10,7 @@ namespace Game
     {
         public Menu(string[] keuzes)
         {
-            Keuzes = keuzes;
+            Keuzes = keuzes;//maximaal 9 keuzes
         }
         private string[] Keuzes { get; set; }
 
@@ -33,17 +33,37 @@ namespace Game
                 {
                     return 2;
                 }
-                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
+                else if (Keuzes.Length >= 3 && (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3) )
                 {
                     return 3;
                 }
-                else if (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4)
+                else if (Keuzes.Length >= 4 && (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4) )
                 {
                     return 4;
                 }
+                else if (Keuzes.Length >= 5 && (input == ConsoleKey.NumPad5 || input == ConsoleKey.D5) )
+                {
+                    return 5;
+                }
+                else if (Keuzes.Length >= 6 && (input == ConsoleKey.NumPad6 || input == ConsoleKey.D6) )
+                {
+                    return 6;
+                }
+                else if (Keuzes.Length >= 7 && (input == ConsoleKey.NumPad7 || input == ConsoleKey.D7) )
+                {
+                    return 7;
+                }
+                else if (Keuzes.Length >= 8 && (input == ConsoleKey.NumPad8 || input == ConsoleKey.D8) )
+                {
+                    return 8;
+                }
+                else if (Keuzes.Length >= 9 && (input == ConsoleKey.NumPad9 || input == ConsoleKey.D9) )
+                {
+                    return 9;
+                }
             }
         }
-        private void MenuOutput()
+        public void MenuOutput()
         {
             //Writes to console what options the user can choose from
             Console.WriteLine("Menu\n");
@@ -55,9 +75,9 @@ namespace Game
             Console.Write("Press");
             for (int i = 0; i < Keuzes.Length; i++)
             {
-                Console.Write($"{(i == Keuzes.Length - 1 ? "\n" : "")}");
+                Console.Write($"{(i == Keuzes.Length - 1 ? "or" : "")} {i+1}{(i < Keuzes.Length - 2 ? "," : " ")}");
             }
-            Console.WriteLine(" to continue ");
+            Console.WriteLine("to continue ");
         }
     }
 }

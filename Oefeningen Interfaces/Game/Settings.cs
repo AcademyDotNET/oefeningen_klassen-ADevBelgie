@@ -55,80 +55,65 @@ namespace Game
 
         public void ChangeSettingsGame()
         {
-            Console.Clear();
-            ChangeSettingsGameOutput();
-
+            string[] menuOptions =
+            {
+                "Change keybinds",
+                "Change Difficulty",
+                "Return to main menu"
+            };
+            Menu settingsMenu = new Menu(menuOptions);
+            int keuze;
             while (true)
             {
-                Program.ClearKeyBuffer();
-                Program.ClearCurrentConsoleLine();
-                ConsoleKey input = Console.ReadKey().Key;
-
-                if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
+                keuze = settingsMenu.Start();
+                switch (keuze)
                 {
-                    ChangeKeyBinds();
-                    Console.Clear();
-                    ChangeSettingsGameOutput();
+                    case 1:
+                        ChangeKeyBinds();
+                        Console.Clear();
+                        settingsMenu.MenuOutput();
+                        break;
+                    case 2:
+                        ChangeDifficulty();
+                        Console.Clear();
+                        settingsMenu.MenuOutput();
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        break;
                 }
-                else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
-                {
-                    ChangeDifficulty();
-                    Console.Clear();
-                    ChangeSettingsGameOutput();
-                }
-                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
-                {
-                    return;
-                }
-            }
+            } 
         }
 
         private void ChangeDifficulty()
         {
-            Console.Clear();
-            ChangeDifficultyOutput();
-
+            string[] menuOptions =
+            {
+                "Easy",
+                "Medium (default)",
+                "Hard"
+            };
+            Menu changeDifficultyMenu = new Menu(menuOptions);
+            int keuze;
             while (true)
             {
-                Program.ClearKeyBuffer();
-                Program.ClearCurrentConsoleLine();
-                ConsoleKey input = Console.ReadKey().Key;
-
-                if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
+                keuze = changeDifficultyMenu.Start();
+                switch (keuze)
                 {
-                    Difficulty = 12;
-                    return;
-                }
-                else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
-                {
-                    Difficulty = 6; //default
-                    return;
-                }
-                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
-                {
-                    Difficulty = 2;
-                    return;
+                    case 1:
+                        Difficulty = 12;
+                        return;
+                    case 2:
+                        Difficulty = 6; //default
+                        return;
+                    case 3:
+                        Difficulty = 2;
+                        return;
+                    default:
+                        break;
                 }
             }
-        }
-
-        private void ChangeDifficultyOutput()
-        {
-            Console.WriteLine("Choose difficulty:\n");
-            Console.WriteLine("1. Easy");
-            Console.WriteLine("2. Medium (default)");
-            Console.WriteLine("3. Hard");
-            Console.WriteLine("\nPress 1, 2 or 3 to continue ");
-        }
-
-        private void ChangeSettingsGameOutput()
-        {
-            Console.Clear();
-            Console.WriteLine("Current game settings:\n");
-            Console.WriteLine("1. Change keybinds");
-            Console.WriteLine("2. Change Difficulty");
-            Console.WriteLine("3. Go back to main menu");
-            Console.WriteLine("\nPress 1, 2 or 3 to continue ");
         }
         private void ChangeKeyBinds()
         {

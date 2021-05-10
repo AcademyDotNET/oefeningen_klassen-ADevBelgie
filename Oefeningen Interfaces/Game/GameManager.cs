@@ -26,6 +26,7 @@ namespace Game
                 "Quit Game"
             };
             Menu mainMenu = new Menu(menuOptions);
+
             return mainMenu.Start();
         }
         
