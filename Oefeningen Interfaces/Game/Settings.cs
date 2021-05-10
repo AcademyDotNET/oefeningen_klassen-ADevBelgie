@@ -19,8 +19,8 @@ namespace Game
             ShootRightKey = ConsoleKey.E;
 
             PlayerChar = '☺';
-            RockDestroyerChar = '☻';
-            RockChar = '☼';
+            RockDestroyerChar = 'X';
+            RockChar = '҈';
             MonsterChar = '♦';
         }
         public char PlayerChar;

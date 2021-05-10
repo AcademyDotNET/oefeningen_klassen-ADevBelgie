@@ -50,7 +50,16 @@ namespace Game
                             Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.Write($"{gameSettings.RockDestroyerChar} ");
                             break;
+                        case "L":
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.Write($"  ");
+                            break;
+                        case "+":
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.Write($"+ ");
+                            break;
                         default:
+                            Console.BackgroundColor = ConsoleColor.Black;
                             Console.ForegroundColor = ConsoleColor.Gray;
                             Console.Write(mapElement + " ");
                             break;

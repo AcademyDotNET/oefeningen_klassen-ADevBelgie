@@ -210,14 +210,7 @@ namespace Game
             {
                 for (int y = 0; y < arrayColumns; y++)
                 {
-                    if (Array[i, y] is not Leeg)
-                    {
-                        playFieldString += Array[i, y].DitElementChar + " ";
-                    }
-                    else
-                    {
-                        playFieldString += "  ";
-                    }
+                    playFieldString += Array[i, y].DitElementChar + " ";
                 }
                 playFieldString += "\n";
             }
