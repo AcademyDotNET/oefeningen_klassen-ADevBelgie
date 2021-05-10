@@ -10,70 +10,26 @@ namespace Game
         {
             int keuze;
             GameManager gameManager = new GameManager();
-            Settings gameSettings = new Settings();
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            HiScores hiScoresList = new HiScores();
-
+            
             do
             {
-                keuze = Menu();
+                keuze = gameManager.MainMenu();
                 switch (keuze)
                 {
                     case 1:
-                        while (PlayGame(gameSettings, hiScoresList)) {}
+                        while (PlayGame(gameManager.settings, gameManager.hiScores)) {}
                         break;
                     case 2:
-                        gameSettings.ChangeSettingsGame();
+                        gameManager.settings.ChangeSettingsGame();
                         break;
                     case 3:
-                        hiScoresList.ShowHiScores();
+                        gameManager.hiScores.ShowHiScores();
                         break;
                     default:
                         break;
                 }
 
             } while (keuze != 4);
-        }
-
-        private static int Menu()
-        {
-            //returns int value selected by the user
-            Console.Clear();
-            MenuOutput();
-
-            while (true)
-            {
-                ClearKeyBuffer();
-                ClearCurrentConsoleLine();
-                ConsoleKey input = Console.ReadKey().Key;
-
-                if (input == ConsoleKey.NumPad1 || input == ConsoleKey.D1)
-                {
-                    return 1;
-                }
-                else if (input == ConsoleKey.NumPad2 || input == ConsoleKey.D2)
-                {
-                    return 2;
-                }
-                else if (input == ConsoleKey.NumPad3 || input == ConsoleKey.D3)
-                {
-                    return 3;
-                }
-                else if (input == ConsoleKey.NumPad4 || input == ConsoleKey.D4)
-                {
-                    return 4;
-                }
-            }
-        }
-        private static void MenuOutput()
-        {
-            //Writes to console what options the user can choose from
-            Console.WriteLine("Menu\n");
-            Console.WriteLine("1. Play Game");
-            Console.WriteLine("2. Change Game settings/ keybinds (recommended!)");
-            Console.WriteLine("3. Hiscore's");
-            Console.WriteLine("4. Quit Game\n");
-            Console.WriteLine("Press 1, 2 or 3 to continue ");
         }
 
         private static bool PlayGame(Settings gameSettings, HiScores hiScoresList)
