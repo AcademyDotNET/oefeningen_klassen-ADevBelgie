@@ -142,22 +142,25 @@ namespace Game
         }
         private ConsoleKey Change1Key(string keyInfo, ConsoleKey defaultKey)
         {
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+
             Console.WriteLine($"\nChoose which key to bind for the \"{keyInfo}\": ");
 
-            ConsoleKey returnKey = Console.ReadKey().Key;
-            
-            while (returnKey != defaultKey && (returnKey == MoveUpKey || returnKey == MoveDownKey || returnKey == MoveLeftKey || returnKey == MoveRightKey || returnKey == ShootLeftKey || returnKey == ShootRightKey))
+            input.GetKey();
+
+
+            while (input.UserInputKey != defaultKey && (input.UserInputKey == MoveUpKey || input.UserInputKey == MoveDownKey || input.UserInputKey == MoveLeftKey || input.UserInputKey == MoveRightKey || input.UserInputKey == ShootLeftKey || input.UserInputKey == ShootRightKey))
             {
-                Program.ClearCurrentConsoleLine();
-                Console.WriteLine($"{(returnKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
-                returnKey = Console.ReadKey().Key;
+                Console.WriteLine($"{(input.UserInputKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
+                input.GetKey();
             }
-            if (returnKey == ConsoleKey.Enter)
+            if (input.UserInputKey == ConsoleKey.Enter)
             {
-                returnKey = defaultKey;
+                input.UserInputKey = defaultKey;
             }
 
-            return returnKey;
+            return input.UserInputKey;
         }
 
         public override string ToString()

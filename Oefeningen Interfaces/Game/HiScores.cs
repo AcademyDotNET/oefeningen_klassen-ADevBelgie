@@ -21,6 +21,8 @@ namespace Game
         }
         public void ShowHiScores()
         {
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
             Console.Clear();
             Console.WriteLine("Hiscore's:");
             Console.WriteLine(this);
@@ -29,19 +31,17 @@ namespace Game
             Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
             while (true)
             {
-                Program.ClearKeyBuffer();
-                ConsoleKey returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+                input.GetKey();
 
-                if (returnKey == ConsoleKey.Enter)
+                if (input.UserInputKey == ConsoleKey.Enter)
                 {
                     return;
                 }
-                else if (returnKey == ConsoleKey.Escape)
+                else if (input.UserInputKey == ConsoleKey.Escape)
                 {
                     Console.Write("A");//added character here because code eats it somewhere
                     return;
                 }
-                Program.ClearCurrentConsoleLine();
             }
         }
         public override string ToString()

@@ -15,7 +15,7 @@ namespace Game
         public Settings Settings { get; set; } = new Settings();
         public HiScores HiScores { get; set; } = new HiScores();
         public GameEngine GameEngine { get; set; } = new GameEngine();
-        public int MainMenu()
+        public void MainMenu()
         {
             //returns int value selected by the user
             string[] menuOptions = 
@@ -27,27 +27,45 @@ namespace Game
             };
             Menu mainMenu = new Menu(menuOptions);
 
-            return mainMenu.Start();
+            int keuze;
+            do
+            {
+                keuze = mainMenu.Start();
+                switch (keuze)
+                {
+                    case 1:
+                        while (GameEngine.Start(this)) { }
+                        break;
+                    case 2:
+                        Settings.ChangeSettingsGame();
+                        break;
+                    case 3:
+                        HiScores.ShowHiScores();
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (keuze != 4);
         }
         public bool EndOfGame(Settings gameSettings)
         {
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
             Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
 
             while (true)
             {
-                Program.ClearKeyBuffer();
-                ConsoleKey returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+                input.GetKey();
 
-                if (returnKey == ConsoleKey.Enter)
+                if (input.UserInputKey == ConsoleKey.Enter)
                 {
                     return true;
                 }
-                else if (returnKey == ConsoleKey.Escape)
+                else if (input.UserInputKey == ConsoleKey.Escape)
                 {
-                    Console.Write("A");//added character here because code eats it somewhere
                     return false;
                 }
-                Program.ClearCurrentConsoleLine();
             }
 
         }

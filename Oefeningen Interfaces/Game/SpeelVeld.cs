@@ -171,6 +171,9 @@ namespace Game
 
         public void WinScreen(HiScores hiScoresList)
         {
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+
             Console.WriteLine("You won the game");
             Console.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
             Console.WriteLine($"Shots fired: {GameScore.ShotsFired}");
@@ -182,18 +185,16 @@ namespace Game
 
             //add to highscore (BP - 7143)
             Console.WriteLine($"\nWilt u deze score toevoegen aan de Hiscore's?(Y/N)");
-            ConsoleKey returnKey = ConsoleKey.Enter;
-            while (returnKey != ConsoleKey.N)
+            input.UserInputKey = ConsoleKey.Enter;
+            while (input.UserInputKey != ConsoleKey.N)
             {
-                Program.ClearCurrentConsoleLine();
-                Program.ClearKeyBuffer();
-                returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+                input.GetKey();
 
-                if (returnKey == ConsoleKey.Y)
+                if (input.UserInputKey == ConsoleKey.Y)
                 {
                     Console.WriteLine($"\nOnder welke naam?");
                     hiScoresList.AddEntry(GameScore.ToString(), Console.ReadLine());
-                    returnKey = ConsoleKey.N;
+                    input.UserInputKey = ConsoleKey.N;
                 }
             }
 

@@ -18,42 +18,41 @@ namespace Game
             SpeelVeld speelVeld = new SpeelVeld(gameManager.Settings.Difficulty);
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
             IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+
             // game
             while (speelVeld.CurrentGameState == GameState.GameInProgress)
             {
                 output.WriteSpeelveld(speelVeld, gameManager.Settings);
 
-                //players turn
-                Program.ClearKeyBuffer();
-                Program.ClearCurrentConsoleLine();
-                ConsoleKey input = Console.ReadKey().Key;
-                if (input == gameManager.Settings.MoveUpKey)
+                input.GetKey();
+                if (input.UserInputKey == gameManager.Settings.MoveUpKey)
                 {
                     player1.MoveUp(speelVeld);
                 }
-                else if (input == gameManager.Settings.MoveDownKey)
+                else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
                 {
                     player1.MoveDown(speelVeld);
                 }
-                else if (input == gameManager.Settings.MoveRightKey)
+                else if (input.UserInputKey == gameManager.Settings.MoveRightKey)
                 {
                     player1.MoveRight(speelVeld);
                 }
-                else if (input == gameManager.Settings.MoveLeftKey)
+                else if (input.UserInputKey == gameManager.Settings.MoveLeftKey)
                 {
                     player1.MoveLeft(speelVeld);
                 }
-                else if (input == gameManager.Settings.ShootRightKey)
+                else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
                 {
                     speelVeld.GameScore.ShotsFired++;
                     player1.ShootRight(speelVeld);
                 }
-                else if (input == gameManager.Settings.ShootLeftKey)
+                else if (input.UserInputKey == gameManager.Settings.ShootLeftKey)
                 {
                     speelVeld.GameScore.ShotsFired++;
                     player1.ShootLeft(speelVeld);
                 }
-                else if (input == ConsoleKey.Escape)
+                else if (input.UserInputKey == ConsoleKey.Escape)
                 {
                     speelVeld.CurrentGameState = GameState.ExitGameInProgress;
                 }
