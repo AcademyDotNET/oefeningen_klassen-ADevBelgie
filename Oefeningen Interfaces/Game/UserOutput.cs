@@ -16,6 +16,10 @@ namespace Game
         {
             Console.Write(toWrite);
         }
+        public void Clear()
+        {
+            Console.Clear();
+        }
         public void WriteSpeelveld(SpeelVeld speelVeld, Settings gameSettings)
         {
             //writes speeldveld to console

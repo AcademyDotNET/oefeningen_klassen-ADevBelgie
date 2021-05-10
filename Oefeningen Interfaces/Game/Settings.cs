@@ -117,8 +117,12 @@ namespace Game
         }
         private void ChangeKeyBinds()
         {
-            Console.Clear();
-            Console.WriteLine(this);
+            //init interfaces
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+
+            output.Clear();
+            output.WriteLine(this.ToString());
             ConsoleKey tempMoveUpKey = MoveUpKey;
             MoveUpKey = ConsoleKey.Escape;
             ConsoleKey tempMoveDownKey = MoveDownKey;
@@ -132,7 +136,7 @@ namespace Game
             ConsoleKey tempShootRightKey = ShootRightKey;
             ShootRightKey = ConsoleKey.Escape;
 
-            Console.WriteLine("\n\nPress enter for default key shown above");  
+            output.WriteLine("\n\nPress enter for default key shown above");  
             MoveUpKey = Change1Key("move up key", tempMoveUpKey);
             MoveDownKey = Change1Key("move down key", tempMoveDownKey);
             MoveLeftKey = Change1Key("move left key", tempMoveLeftKey);
@@ -145,14 +149,14 @@ namespace Game
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
 
-            Console.WriteLine($"\nChoose which key to bind for the \"{keyInfo}\": ");
+            output.WriteLine($"\nChoose which key to bind for the \"{keyInfo}\": ");
 
             input.GetKey();
 
 
             while (input.UserInputKey != defaultKey && (input.UserInputKey == MoveUpKey || input.UserInputKey == MoveDownKey || input.UserInputKey == MoveLeftKey || input.UserInputKey == MoveRightKey || input.UserInputKey == ShootLeftKey || input.UserInputKey == ShootRightKey))
             {
-                Console.WriteLine($"{(input.UserInputKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
+                output.WriteLine($"{(input.UserInputKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
                 input.GetKey();
             }
             if (input.UserInputKey == ConsoleKey.Enter)

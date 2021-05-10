@@ -10,6 +10,7 @@ namespace Game
     {
         public void WriteLine(string toWrite = "");
         public void Write(string toWrite = "");
+        public void Clear();
         public void WriteSpeelveld(SpeelVeld speelVeld, Settings gameSettings);
         public void ClearSpeelveld(SpeelVeld speelVeld);
     }

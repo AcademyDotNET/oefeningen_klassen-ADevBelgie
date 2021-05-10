@@ -10,21 +10,24 @@ namespace Game
     {
         public bool Start(GameManager gameManager)
         {
-            Console.Clear();
+            //init interfaces
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+            output.Clear();
 
             //init game settings and map elements
             GameInfo gameInfo = new GameInfo();
             gameInfo.DisplayInfo(gameManager.Settings);
             SpeelVeld speelVeld = new SpeelVeld(gameManager.Settings.Difficulty);
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
-            IUserOutput output = new UserOutput();
-            IUserInput input = new UserInput();
+            
 
-            // game
+            // Game loop
             while (speelVeld.CurrentGameState == GameState.GameInProgress)
             {
                 output.WriteSpeelveld(speelVeld, gameManager.Settings);
 
+                // Get user key and perform action
                 input.GetKey();
                 if (input.UserInputKey == gameManager.Settings.MoveUpKey)
                 {
@@ -70,7 +73,7 @@ namespace Game
             }
 
             // game over result screen
-            Console.Clear();
+            output.Clear();
             switch (speelVeld.CurrentGameState)
             {
                 case GameState.Won:

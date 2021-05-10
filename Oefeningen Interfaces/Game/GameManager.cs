@@ -52,7 +52,8 @@ namespace Game
         {
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
-            Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
+
+            output.WriteLine("Press enter to play again... or ESC to go back to menu");
 
             while (true)
             {
