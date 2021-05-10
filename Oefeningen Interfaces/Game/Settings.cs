@@ -61,7 +61,7 @@ namespace Game
                 "Change Difficulty",
                 "Return to main menu"
             };
-            Menu settingsMenu = new Menu(menuOptions);
+            Menu settingsMenu = new Menu(menuOptions, "Settings");
             int keuze;
             while (true)
             {
@@ -94,7 +94,7 @@ namespace Game
                 "Medium (default)",
                 "Hard"
             };
-            Menu changeDifficultyMenu = new Menu(menuOptions);
+            Menu changeDifficultyMenu = new Menu(menuOptions, "Difficulty");
             int keuze;
             while (true)
             {

@@ -11,8 +11,15 @@ namespace Game
         public Menu(string[] keuzes)
         {
             Keuzes = keuzes;//maximaal 9 keuzes
+            MenuName = "";
+        }
+        public Menu(string[] keuzes, string menuName)
+        {
+            Keuzes = keuzes;//maximaal 9 keuzes
+            MenuName = menuName;
         }
         private string[] Keuzes { get; set; }
+        public string MenuName { get; set; }
 
         public int Start()
         {
@@ -66,7 +73,7 @@ namespace Game
         public void MenuOutput()
         {
             //Writes to console what options the user can choose from
-            Console.WriteLine("Menu\n");
+            Console.WriteLine($"{MenuName}{(MenuName != ""? " " :"")}Menu\n");
 
             for (int i = 0; i < Keuzes.Length; i++)
             {
