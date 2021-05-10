@@ -8,22 +8,22 @@ namespace Game
     {
         static void Main()
         {
-            int keuze;
             GameManager gameManager = new GameManager();
-            
+
+            int keuze;
             do
             {
                 keuze = gameManager.MainMenu();
                 switch (keuze)
                 {
                     case 1:
-                        while (PlayGame(gameManager.settings, gameManager.hiScores)) {}
+                        while (gameManager.GameEngine.Start(gameManager)) {}
                         break;
                     case 2:
-                        gameManager.settings.ChangeSettingsGame();
+                        gameManager.Settings.ChangeSettingsGame();
                         break;
                     case 3:
-                        gameManager.hiScores.ShowHiScores();
+                        gameManager.HiScores.ShowHiScores();
                         break;
                     default:
                         break;
@@ -31,205 +31,7 @@ namespace Game
 
             } while (keuze != 4);
         }
-
-        private static bool PlayGame(Settings gameSettings, HiScores hiScoresList)
-        {
-            Console.Clear();
-
-            //init game settings and map elements
-            GameInfo gameInfo = new GameInfo();
-            gameInfo.DisplayInfo(gameSettings);
-            SpeelVeld speelVeld = new SpeelVeld(gameSettings.Difficulty);
-            Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
-
-            // game
-            while (speelVeld.CurrentGameState == GameState.GameInProgress)
-            {
-                WriteSpeelveld(speelVeld, gameSettings);
-
-                //players turn
-                ClearKeyBuffer();
-                ClearCurrentConsoleLine();
-                ConsoleKey input = Console.ReadKey().Key;
-                if (input == gameSettings.MoveUpKey)
-                {
-                    player1.MoveUp(speelVeld);
-                }
-                else if (input == gameSettings.MoveDownKey)
-                {
-                    player1.MoveDown(speelVeld);
-                }
-                else if (input == gameSettings.MoveRightKey)
-                {
-                    player1.MoveRight(speelVeld);
-                }
-                else if (input == gameSettings.MoveLeftKey)
-                {
-                    player1.MoveLeft(speelVeld);
-                }
-                else if (input == gameSettings.ShootRightKey)
-                {
-                    speelVeld.GameScore.ShotsFired++;
-                    player1.ShootRight(speelVeld);
-                }
-                else if (input == gameSettings.ShootLeftKey)
-                {
-                    speelVeld.GameScore.ShotsFired++;
-                    player1.ShootLeft(speelVeld);
-                }
-                else if (input == ConsoleKey.Escape)
-                {
-                    speelVeld.CurrentGameState = GameState.ExitGameInProgress;
-                }
-
-                //monsters turn
-                speelVeld.MoveMonsters();
-                speelVeld.ShootMonsters();
-
-                speelVeld.GameScore.GameTurns++;
-                if (speelVeld.GameScore.GameTurns >= 150)
-                {
-                    speelVeld.CurrentGameState = GameState.LostByTurnLimit;
-                }
-                ClearSpeelveld(speelVeld);
-            }
-            
-            // game over result screen
-            Console.Clear();
-            switch (speelVeld.CurrentGameState)
-            {
-                case GameState.Won:
-                    speelVeld.WinScreen(hiScoresList);
-                    break;
-                case GameState.LostByWalkingIntoMonster:
-                case GameState.LostByDestroyer:
-                case GameState.LostByTurnLimit:
-                    speelVeld.LoseScreen();
-                    break;
-                default:
-                    break;
-            }
-
-            //if end of game return true, the PlayGame method will be called again
-            return EndOfGame(gameSettings);
-        }
-        private static bool EndOfGame(Settings gameSettings)
-        {
-            Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
-
-            while (true)
-            {
-                ClearKeyBuffer();
-                ConsoleKey returnKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
-                
-                if (returnKey == ConsoleKey.Enter)
-                {
-                    return true;
-                }
-                else if (returnKey == ConsoleKey.Escape)
-                {
-                    Console.Write("A");//added character here because code eats it somewhere
-                    return false;
-                }
-                ClearCurrentConsoleLine();
-            }
-            
-        }
-
-        private static void WriteSpeelveld(SpeelVeld speelVeld, Settings gameSettings)
-        {
-            ////Console.WriteLine(":relaxed:☻╣╝×¹²³«»╠╣═║‡†∞∩≈↑→↓:left_right_arrow::arrow_up_down:↨∑←⌂▓▒░▌☼:diamonds::hearts::clubs::spades:╔╗╬╚╝§¤¶");
-            //writes speeldveld to console
-            Console.SetCursorPosition(0, 2);
-            //STRING SPLIT voor kleuren
-            string stringSpeelVeld = speelVeld.ToString();
-            string[] linesSpeelVeld = stringSpeelVeld.Split('\n');
-            foreach (var line in linesSpeelVeld)
-            {
-                string[] subStringLine= line.Split(' ');
-                foreach (var mapElement in subStringLine)
-                {
-                    switch (mapElement)
-                    {
-                        case "P":
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write($"{gameSettings.PlayerChar} ");
-                            break;
-                        case "M":
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write($"{gameSettings.MonsterChar} ");
-                            break;
-                        case "R":
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.Write($"{gameSettings.RockChar} ");
-                            break;
-                        case "X":
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.Write($"{gameSettings.RockDestroyerChar} ");
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.Write(mapElement + " ");
-                            break;
-                    }
-                }
-                Console.WriteLine();
-            }
-
-            ////STRING SPLIT voor kleuren
-            //string stringSpeelVeld = speelVeld.ToString();
-            //string[] subStringSpeelVeld = stringSpeelVeld.Split(' ');
-            //foreach (var mapElement in subStringSpeelVeld)
-            //{
-            //    switch (mapElement)
-            //    {
-            //        case "\nP":
-            //            Console.WriteLine();
-            //            goto case "P";
-            //        case "P":
-            //            Console.ForegroundColor = ConsoleColor.Green;
-            //            Console.Write($"{gameSettings.PlayerChar} ");
-            //            break;
-            //        case "\nM":
-            //            Console.WriteLine();
-            //            goto case "M";
-            //        case "M":
-            //            Console.ForegroundColor = ConsoleColor.Red;
-            //            Console.Write($"{gameSettings.MonsterChar} ");
-            //            break;
-            //        case "\nR":
-            //            Console.WriteLine();
-            //            goto case "R";
-            //        case "R":
-            //            Console.ForegroundColor = ConsoleColor.Gray;
-            //            Console.Write($"{gameSettings.RockChar} ");
-            //            break;
-            //        case "\nX":
-            //            Console.WriteLine();
-            //            goto case "X";
-            //        case "X":
-            //            Console.ForegroundColor = ConsoleColor.Magenta;
-            //            Console.Write($"{gameSettings.RockDestroyerChar} ");
-            //            break;
-            //        default:
-            //            Console.ForegroundColor = ConsoleColor.Gray;
-            //            Console.Write(mapElement + " ");
-            //            break;
-            //    }
-            //}
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.BackgroundColor = ConsoleColor.Black;
-        }
-        private static void ClearSpeelveld(SpeelVeld speelVeld)
-        {
-            //clears speeldveld in console
-            //this is way faster then using Console.Clear();
-            Console.SetCursorPosition(0, 2);
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(speelVeld);
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
-
+        
         public static void ClearCurrentConsoleLine()
         {
             //clears the line in the console, is used for in menu screens or end of game screen
