@@ -9,6 +9,7 @@ namespace Game
         static void Main()
         {
             int keuze;
+            GameManager gameManager = new GameManager();
             Settings gameSettings = new Settings();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             HiScores hiScoresList = new HiScores();

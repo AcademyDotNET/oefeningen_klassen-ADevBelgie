@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pokémon
 {
@@ -6,18 +7,21 @@ namespace Pokémon
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Pokémon\n");
-            Pokémon Bulbasaur = new Pokémon();
-            InitBulbasaur(Bulbasaur);
+            ILog log = new Log();
+            log.WriteLine("Pokémon\n");
+            List<Pokémon> pokemons = new List<Pokémon>();
+            pokemons.Add(new Pokémon());
+            pokemons.Add(new Pokémon());
+            pokemons.Add(new Pokémon());
 
-            Pokémon Ivysaur = new Pokémon();
-            InitIvysaur(Ivysaur);
+            InitBulbasaur(pokemons[0]);
+            InitIvysaur(pokemons[1]);
+            InitMewtwo(pokemons[2]);
 
-            Pokémon Mewtwo = new Pokémon();
-            InitMewtwo(Mewtwo);
+            log.WriteLine();
 
-            Console.WriteLine();
-            Mewtwo.ShowInfo();
+            IPokémon pokémonMewtwo = pokemons[2];
+            pokémonMewtwo.ShowInfo();
 
             //Console.WriteLine($"Attack_Full: {Mewtwo.Attack_Full}");
             //for (int i = 0; i<100;i++)
@@ -29,6 +33,7 @@ namespace Pokémon
 
         static void InitBulbasaur(Pokémon Bulbasaur)
         {
+            ILog log = new Log();
             Bulbasaur.Naam = "Bulbasaur";
             Bulbasaur.HP_Base = 45;
             Bulbasaur.Attack_Base = 49;
@@ -36,13 +41,14 @@ namespace Pokémon
             Bulbasaur.SpecialAttack_Base = 65;
             Bulbasaur.SpecialDefense_Base = 65;
             Bulbasaur.Speed_Base = 45;
-            Console.WriteLine("Bulbasaur");
-            Console.WriteLine($"Total: {Bulbasaur.Total}");
-            Console.WriteLine($"Average: {Bulbasaur.Average}");
+            log.WriteLine("Bulbasaur");
+            log.WriteLine($"Total: {Bulbasaur.Total}");
+            log.WriteLine($"Average: {Bulbasaur.Average}");
         }
 
         static void InitIvysaur(Pokémon Ivysaur)
         {
+            ILog log = new Log();
             Ivysaur.Naam = "Ivysaur";
             Ivysaur.HP_Base = 60;
             Ivysaur.Attack_Base = 62;
@@ -50,13 +56,14 @@ namespace Pokémon
             Ivysaur.SpecialAttack_Base = 80;
             Ivysaur.SpecialDefense_Base = 80;
             Ivysaur.Speed_Base = 60;
-            Console.WriteLine("\nIvysaur");
-            Console.WriteLine($"Total: {Ivysaur.Total}");
-            Console.WriteLine($"Average: {Ivysaur.Average}");
+            log.WriteLine("\nIvysaur");
+            log.WriteLine($"Total: {Ivysaur.Total}");
+            log.WriteLine($"Average: {Ivysaur.Average}");
         }
 
         static void InitMewtwo(Pokémon Mewtwo)
         {
+            ILog log = new Log();
             Mewtwo.Naam = "Mewtwo";
             Mewtwo.HP_Base = 106;
             Mewtwo.Attack_Base = 110;
@@ -64,9 +71,9 @@ namespace Pokémon
             Mewtwo.SpecialAttack_Base = 154;
             Mewtwo.SpecialDefense_Base = 90;
             Mewtwo.Speed_Base = 130;
-            Console.WriteLine("\nMewtwo");
-            Console.WriteLine($"Total: {Mewtwo.Total}");
-            Console.WriteLine($"Average: {Mewtwo.Average}");
+            log.WriteLine("\nMewtwo");
+            log.WriteLine($"Total: {Mewtwo.Total}");
+            log.WriteLine($"Average: {Mewtwo.Average}");
         }
     }
 }

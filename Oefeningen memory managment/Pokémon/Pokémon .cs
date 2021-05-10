@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokémon
 {
-    class Pokémon
+    class Pokémon: IPokémon
     {
         //base stats
         private int _HP_Base;
@@ -165,26 +165,27 @@ namespace Pokémon
         //De Pokémontester methode
         public void ShowInfo()
         {
-            Console.WriteLine($"{Naam} (level {_Level})");
+            ILog log = new Log();
+            log.WriteLine($"{Naam} (level {_Level})");
 
-            Console.WriteLine("Base stats:");
-            Console.WriteLine($"\t* Health = {HP_Base}");
-            Console.WriteLine($"\t* Attack = {Attack_Base}");
-            Console.WriteLine($"\t* Defence = {Defense_Base}");
-            Console.WriteLine($"\t* SP Attack = {SpecialAttack_Base}");
-            Console.WriteLine($"\t* SP Defence = {SpecialDefense_Base}");
-            Console.WriteLine($"\t* Speed = {Speed_Base}");
+            log.WriteLine("Base stats:");
+            log.WriteLine($"\t* Health = {HP_Base}");
+            log.WriteLine($"\t* Attack = {Attack_Base}");
+            log.WriteLine($"\t* Defence = {Defense_Base}");
+            log.WriteLine($"\t* SP Attack = {SpecialAttack_Base}");
+            log.WriteLine($"\t* SP Defence = {SpecialDefense_Base}");
+            log.WriteLine($"\t* Speed = {Speed_Base}");
 
-            Console.WriteLine($"\n\t* Average = {Average}");
-            Console.WriteLine($"\t* Total = {Total}");
+            log.WriteLine($"\n\t* Average = {Average}");
+            log.WriteLine($"\t* Total = {Total}");
 
-            Console.WriteLine("Full stats:");
-            Console.WriteLine($"\t* Health = {HP_Full}");
-            Console.WriteLine($"\t* Attack = {Attack_Full}");
-            Console.WriteLine($"\t* Defence = {Defense_Full}");
-            Console.WriteLine($"\t* SP Attack = {SpecialAttack_Full}");
-            Console.WriteLine($"\t* SP Defence = {SpecialDefense_Full}");
-            Console.WriteLine($"\t* Speed = {Speed_Full}");
+            log.WriteLine("Full stats:");
+            log.WriteLine($"\t* Health = {HP_Full}");
+            log.WriteLine($"\t* Attack = {Attack_Full}");
+            log.WriteLine($"\t* Defence = {Defense_Full}");
+            log.WriteLine($"\t* SP Attack = {SpecialAttack_Full}");
+            log.WriteLine($"\t* SP Defence = {SpecialDefense_Full}");
+            log.WriteLine($"\t* Speed = {Speed_Full}");
         }
     }
 }
