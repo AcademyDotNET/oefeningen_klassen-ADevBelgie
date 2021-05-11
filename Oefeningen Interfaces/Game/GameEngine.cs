@@ -31,29 +31,29 @@ namespace Game
                 input.GetKey();
                 if (input.UserInputKey == gameManager.Settings.MoveUpKey)
                 {
-                    player1.MoveUp(speelVeld);
+                    player1.MoveUp(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
                 {
-                    player1.MoveDown(speelVeld);
+                    player1.MoveDown(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == gameManager.Settings.MoveRightKey)
                 {
-                    player1.MoveRight(speelVeld);
+                    player1.MoveRight(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == gameManager.Settings.MoveLeftKey)
                 {
-                    player1.MoveLeft(speelVeld);
+                    player1.MoveLeft(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
                 {
                     gameManager.GameScore.ShotsFired++;
-                    player1.ShootRight(speelVeld);
+                    player1.ShootRight(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == gameManager.Settings.ShootLeftKey)
                 {
                     gameManager.GameScore.ShotsFired++;
-                    player1.ShootLeft(speelVeld);
+                    player1.ShootLeft(speelVeld, gameManager);
                 }
                 else if (input.UserInputKey == ConsoleKey.Escape)
                 {
@@ -62,7 +62,7 @@ namespace Game
 
                 //monsters turn
                 speelVeld.MoveMonsters();
-                speelVeld.ShootMonsters();
+                speelVeld.ShootMonsters(gameManager);
 
                 gameManager.GameScore.GameTurns++;
                 if (gameManager.GameScore.GameTurns >= 150)
@@ -89,7 +89,7 @@ namespace Game
             }
 
             //if end of game return true, the PlayGame method will be called again
-            return gameManager.EndOfGame();
+            return gameManager.EndOfGameEngine();
         }
     }
 }

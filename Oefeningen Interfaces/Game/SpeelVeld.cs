@@ -116,7 +116,7 @@ namespace Game
                 }
             }
         }
-        public void ShootMonsters()
+        public void ShootMonsters(GameManager gameManager)
         {
             //makes the rockdetroyer shoot
             for (int i = 0; i < AllMonsters.Count; i++)
@@ -124,8 +124,8 @@ namespace Game
                 RockDestroyer RD = AllMonsters[i] as RockDestroyer;
                 if (RD != null)
                 {
-                    RD.ShootLeft(this);
-                    RD.ShootRight(this);
+                    RD.ShootLeft(this, gameManager);
+                    RD.ShootRight(this, gameManager);
                 }
             }
         }

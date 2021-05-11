@@ -111,7 +111,7 @@ namespace Game
 
             System.Threading.Thread.Sleep(200);
         }
-        public bool EndOfGame()
+        public bool EndOfGameEngine()
         {
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();

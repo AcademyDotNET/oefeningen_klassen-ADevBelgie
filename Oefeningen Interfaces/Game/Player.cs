@@ -12,43 +12,43 @@ namespace Game
         {
             DitElementChar = SoortElementChar.P;
         }
-        public void ShootRight(SpeelVeld speelveld)
+        public void ShootRight(SpeelVeld speelveld, GameManager gameManager)
         {
             //naar rechts schieten 
-            Destroy(Location.X, Location.Y + 1, speelveld); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y + 1, speelveld, gameManager); //X is rows, Y is Cols
         }
-        public void ShootLeft(SpeelVeld speelveld)
+        public void ShootLeft(SpeelVeld speelveld, GameManager gameManager)
         {
             //naar links schieten 
-            Destroy(Location.X, Location.Y - 1, speelveld); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y - 1, speelveld, gameManager); //X is rows, Y is Cols
         }
-        public void Destroy(int row, int col, SpeelVeld speelveld)
+        public void Destroy(int row, int col, SpeelVeld speelveld, GameManager gameManager)
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
                 if (speelveld.Array[row, col] is Monster ) //het is niet mogelijk een rockdestroyer te doden
                 {
-                    speelveld.GameScore.MonstersKilled++; 
+                    gameManager.GameScore.MonstersKilled++; 
                     speelveld.AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
                 }
                 else if (speelveld.Array[row, col] is Rock)
                 {
-                    speelveld.GameScore.RockDestroyed++;
+                    gameManager.GameScore.RockDestroyed++;
                 }
                 speelveld.Array[row, col] = new Leeg(row, col);
             }
         }
-        public void MoveUp(SpeelVeld speelveld)
+        public void MoveUp(SpeelVeld speelveld, GameManager gameManager)
         {
             if (Location.X != 0)//check if map border
             {
                 if (speelveld.Array[Location.X - 1, Location.Y] is Monster)
                 {
-                    speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
                 else if (speelveld.Array[Location.X - 1, Location.Y] is RockDestroyer)
                 {
-                    speelveld.CurrentGameState = GameState.LostByDestroyer;
+                    gameManager.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if(speelveld.Array[Location.X - 1, Location.Y] is Leeg)
                 {
@@ -58,17 +58,17 @@ namespace Game
                 }
             }
         }
-        public void MoveDown(SpeelVeld speelveld)
+        public void MoveDown(SpeelVeld speelveld, GameManager gameManager)
         {
             if (Location.X != 19)//check if map border
             {
                 if (speelveld.Array[Location.X + 1, Location.Y] is Monster)
                 {
-                    speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
                 else if (speelveld.Array[Location.X + 1, Location.Y] is RockDestroyer)
                 {
-                    speelveld.CurrentGameState = GameState.LostByDestroyer;
+                    gameManager.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X + 1, Location.Y] is Leeg)
                 {
@@ -79,20 +79,20 @@ namespace Game
             }
             else if (Location.X == 19 && Location.Y < 12 && Location.Y > 7)
             {
-                speelveld.CurrentGameState = GameState.Won;
+                gameManager.CurrentGameState = GameState.Won;
             }
         }
-        public void MoveLeft(SpeelVeld speelveld)
+        public void MoveLeft(SpeelVeld speelveld, GameManager gameManager)
         {
             if (Location.Y != 0) //check if map border
             {
                 if (speelveld.Array[Location.X, Location.Y - 1] is Monster)
                 {
-                    speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
                 else if (speelveld.Array[Location.X, Location.Y - 1] is RockDestroyer)
                 {
-                    speelveld.CurrentGameState = GameState.LostByDestroyer;
+                    gameManager.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X, Location.Y - 1] is Leeg)
                 {
@@ -102,17 +102,17 @@ namespace Game
                 }
             }
         }
-        public void MoveRight(SpeelVeld speelveld)
+        public void MoveRight(SpeelVeld speelveld, GameManager gameManager)
         {
             if (Location.Y != 19) //check if map border
             {
                 if (speelveld.Array[Location.X, Location.Y + 1] is Monster)
                 {
-                    speelveld.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
                 }
                 else if (speelveld.Array[Location.X, Location.Y + 1] is RockDestroyer)
                 {
-                    speelveld.CurrentGameState = GameState.LostByDestroyer;
+                    gameManager.CurrentGameState = GameState.LostByDestroyer;
                 }
                 else if (speelveld.Array[Location.X, Location.Y + 1] is Leeg)
                 {

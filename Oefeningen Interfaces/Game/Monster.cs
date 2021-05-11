@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Monster : MapElement, IMovable
+    class Monster : MapElement, IMovableMonster
     {
         public Monster(int x, int y) : base(x,y)
         {
