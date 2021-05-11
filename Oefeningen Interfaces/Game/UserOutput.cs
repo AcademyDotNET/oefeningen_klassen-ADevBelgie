@@ -8,6 +8,10 @@ namespace Game
 {
     class UserOutput: IUserOutput
     {
+        public UserOutput()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+        }
         public void WriteLine(string toWrite = "")
         {
             Console.WriteLine(toWrite);

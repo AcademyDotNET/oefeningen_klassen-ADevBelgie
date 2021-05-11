@@ -11,7 +11,6 @@ namespace Game
     {
         public GameManager()
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
             CurrentGameState = GameState.InMenu;
         }
         public Settings Settings { get; set; } = new Settings();
@@ -117,6 +116,7 @@ namespace Game
             IUserInput input = new UserInput();
 
             output.WriteLine("Press enter to play again... or ESC to go back to menu");
+            CurrentGameState = GameState.InMenu;
 
             while (true)
             {
