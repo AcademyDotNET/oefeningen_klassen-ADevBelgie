@@ -72,19 +72,21 @@ namespace Game
         }
         public void MenuOutput()
         {
+            IUserOutput output = new UserOutput();
+
             //Writes to console what options the user can choose from
-            Console.WriteLine($"{MenuName}{(MenuName != ""? " " :"")}Menu\n");
+            output.WriteLine($"{MenuName}{(MenuName != ""? " " :"")}Menu\n");
 
             for (int i = 0; i < Keuzes.Length; i++)
             {
                 Console.WriteLine($"{i+1}. {Keuzes[i]}{(i==Keuzes.Length-1?"\n":"")}");
             }
-            Console.Write("Press");
+            output.Write("Press");
             for (int i = 0; i < Keuzes.Length; i++)
             {
                 Console.Write($"{(i == Keuzes.Length - 1 ? "or" : "")} {i+1}{(i < Keuzes.Length - 2 ? "," : " ")}");
             }
-            Console.WriteLine("to continue ");
+            output.WriteLine("to continue ");
         }
     }
 }
