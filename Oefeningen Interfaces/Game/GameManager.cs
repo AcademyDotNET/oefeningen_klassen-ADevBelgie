@@ -94,16 +94,16 @@ namespace Game
 
             //add to highscore (BP - 7143)
             Console.WriteLine($"\nWilt u deze score toevoegen aan de Hiscore's?(Y/N)");
-            input.UserInputKey = ConsoleKey.Enter;
-            while (input.UserInputKey != ConsoleKey.N)
+            input.UserInputKey = input.Enter;
+            while (input.UserInputKey != input.N)
             {
                 input.GetKey();
 
-                if (input.UserInputKey == ConsoleKey.Y)
+                if (input.UserInputKey == input.Y)
                 {
                     Console.WriteLine($"\nOnder welke naam?");
-                    HiScores.AddEntry(GameScore.ToString(), Console.ReadLine());
-                    input.UserInputKey = ConsoleKey.N;
+                    HiScores.AddEntry(GameScore.ToString(), output.ReadLine());
+                    input.UserInputKey = input.N;
                 }
             }
 
@@ -122,11 +122,11 @@ namespace Game
             {
                 input.GetKey();
 
-                if (input.UserInputKey == ConsoleKey.Enter)
+                if (input.UserInputKey == input.Enter)
                 {
                     return true;
                 }
-                else if (input.UserInputKey == ConsoleKey.Escape)
+                else if (input.UserInputKey == input.Escape)
                 {
                     return false;
                 }

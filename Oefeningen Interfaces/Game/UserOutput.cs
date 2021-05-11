@@ -16,6 +16,10 @@ namespace Game
         {
             Console.Write(toWrite);
         }
+        public string ReadLine()
+        {
+            return Console.ReadLine();
+        }
         public void Clear()
         {
             Console.Clear();

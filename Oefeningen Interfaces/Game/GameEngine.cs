@@ -55,7 +55,7 @@ namespace Game
                     gameManager.GameScore.ShotsFired++;
                     player1.ShootLeft(speelVeld, gameManager);
                 }
-                else if (input.UserInputKey == ConsoleKey.Escape)
+                else if (input.UserInputKey == input.Escape)
                 {
                     gameManager.CurrentGameState = GameState.ExitGameInProgress;
                 }

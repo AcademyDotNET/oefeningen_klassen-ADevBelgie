@@ -8,8 +8,6 @@ namespace Game
 {
     class UserInput: IUserInput
     {
-        public ConsoleKey UserInputKey { get; set; }
-
         public ConsoleKey GetKey()
         {
             ClearKeyBuffer();
@@ -23,6 +21,11 @@ namespace Game
             }
             return UserInputKey;
         }
+        public ConsoleKey UserInputKey { get; set; }
+        public ConsoleKey Escape { get; } = ConsoleKey.Escape;
+        public ConsoleKey Enter { get; } = ConsoleKey.Enter;
+        public ConsoleKey Y { get; } = ConsoleKey.Y;
+        public ConsoleKey N { get; } = ConsoleKey.N;
 
         private void ClearCurrentConsoleLine()
         {
