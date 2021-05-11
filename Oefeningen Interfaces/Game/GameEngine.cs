@@ -20,10 +20,10 @@ namespace Game
             gameInfo.DisplayInfo(gameManager.Settings);
             SpeelVeld speelVeld = new SpeelVeld(gameManager.Settings.Difficulty);
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
-            
+            gameManager.CurrentGameState = GameState.GameInProgress;
 
             // Game loop
-            while (speelVeld.CurrentGameState == GameState.GameInProgress)
+            while (gameManager.CurrentGameState == GameState.GameInProgress)
             {
                 output.WriteSpeelveld(speelVeld, gameManager.Settings);
 
@@ -47,49 +47,49 @@ namespace Game
                 }
                 else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
                 {
-                    speelVeld.GameScore.ShotsFired++;
+                    gameManager.GameScore.ShotsFired++;
                     player1.ShootRight(speelVeld);
                 }
                 else if (input.UserInputKey == gameManager.Settings.ShootLeftKey)
                 {
-                    speelVeld.GameScore.ShotsFired++;
+                    gameManager.GameScore.ShotsFired++;
                     player1.ShootLeft(speelVeld);
                 }
                 else if (input.UserInputKey == ConsoleKey.Escape)
                 {
-                    speelVeld.CurrentGameState = GameState.ExitGameInProgress;
+                    gameManager.CurrentGameState = GameState.ExitGameInProgress;
                 }
 
                 //monsters turn
                 speelVeld.MoveMonsters();
                 speelVeld.ShootMonsters();
 
-                speelVeld.GameScore.GameTurns++;
-                if (speelVeld.GameScore.GameTurns >= 150)
+                gameManager.GameScore.GameTurns++;
+                if (gameManager.GameScore.GameTurns >= 150)
                 {
-                    speelVeld.CurrentGameState = GameState.LostByTurnLimit;
+                    gameManager.CurrentGameState = GameState.LostByTurnLimit;
                 }
                 output.ClearSpeelveld(speelVeld);
             }
 
             // game over result screen
             output.Clear();
-            switch (speelVeld.CurrentGameState)
+            switch (gameManager.CurrentGameState)
             {
                 case GameState.Won:
-                    speelVeld.WinScreen(gameManager.HiScores);
+                    gameManager.WinScreen();
                     break;
                 case GameState.LostByWalkingIntoMonster:
                 case GameState.LostByDestroyer:
                 case GameState.LostByTurnLimit:
-                    speelVeld.LoseScreen();
+                    gameManager.LoseScreen();
                     break;
                 default:
                     break;
             }
 
             //if end of game return true, the PlayGame method will be called again
-            return gameManager.EndOfGame(gameManager.Settings);
+            return gameManager.EndOfGame();
         }
     }
 }
