@@ -124,17 +124,17 @@ namespace Game
             output.Clear();
             output.WriteLine(this.ToString());
             ConsoleKey tempMoveUpKey = MoveUpKey;
-            MoveUpKey = ConsoleKey.Escape;
+            MoveUpKey = input.Escape;
             ConsoleKey tempMoveDownKey = MoveDownKey;
-            MoveDownKey = ConsoleKey.Escape;
+            MoveDownKey = input.Escape;
             ConsoleKey tempMoveLeftKey = MoveLeftKey;
-            MoveLeftKey = ConsoleKey.Escape;
+            MoveLeftKey = input.Escape;
             ConsoleKey tempMoveRightKey = MoveRightKey;
-            MoveRightKey = ConsoleKey.Escape;
+            MoveRightKey = input.Escape;
             ConsoleKey tempShootLeftKey = ShootLeftKey;
-            ShootLeftKey = ConsoleKey.Escape;
+            ShootLeftKey = input.Escape;
             ConsoleKey tempShootRightKey = ShootRightKey;
-            ShootRightKey = ConsoleKey.Escape;
+            ShootRightKey = input.Escape;
 
             output.WriteLine("\n\nPress enter for default key shown above");  
             MoveUpKey = Change1Key("move up key", tempMoveUpKey);
@@ -156,10 +156,10 @@ namespace Game
 
             while (input.UserInputKey != defaultKey && (input.UserInputKey == MoveUpKey || input.UserInputKey == MoveDownKey || input.UserInputKey == MoveLeftKey || input.UserInputKey == MoveRightKey || input.UserInputKey == ShootLeftKey || input.UserInputKey == ShootRightKey))
             {
-                output.WriteLine($"{(input.UserInputKey == ConsoleKey.Escape?"T":"")}That key is already taken for an action ");//when pressing
+                output.WriteLine($"{(input.UserInputKey == input.Escape?"T":"")}That key is already taken for an action ");//when pressing
                 input.GetKey();
             }
-            if (input.UserInputKey == ConsoleKey.Enter)
+            if (input.UserInputKey == input.Enter)
             {
                 input.UserInputKey = defaultKey;
             }
