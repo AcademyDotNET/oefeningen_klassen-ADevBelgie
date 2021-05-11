@@ -95,7 +95,7 @@ namespace Game
 
             output.Clear();
             output.ForegroundColor = ConsoleColor.Green;
-            output.WriteLine("You won the game");
+            output.WriteLine("You won the game.");
             output.ForegroundColor = ConsoleColor.Yellow;
             output.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
             output.WriteLine($"Shots fired: {GameScore.ShotsFired}");
@@ -104,9 +104,9 @@ namespace Game
             output.WriteLine($"Accuracy: {(GameScore.ShotsFired != 0 ? ((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired) * 100 : 100)}%");
             output.WriteLine($"\nScore: {GameScore}");
             output.ForegroundColor = ConsoleColor.Gray;
-            output.WriteLine($"\nTurns elapsed has the biggest influence on the score");
+            output.WriteLine($"\nTurns elapsed has the biggest influence on the score.");
 
-            output.WriteLine($"\nWilt u deze score toevoegen aan de Hiscore's?(Y/N)");
+            output.WriteLine($"\nDo you want to add your score to the Hiscore's?(Y/N)");
             input.UserInputKey = input.Enter;
             while (input.UserInputKey != input.N)
             {
