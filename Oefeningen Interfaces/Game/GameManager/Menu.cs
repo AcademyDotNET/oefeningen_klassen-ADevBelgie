@@ -75,7 +75,9 @@ namespace Game
             IUserOutput output = new UserOutput();
 
             //Writes to console what options the user can choose from
+            output.ForegroundColor = ConsoleColor.Red;
             output.WriteLine($"{MenuName}{(MenuName != ""? " " :"")}Menu\n");
+            output.ForegroundColor = ConsoleColor.Gray;
 
             for (int i = 0; i < Keuzes.Length; i++)
             {

@@ -16,7 +16,7 @@ namespace Game
         public Settings Settings { get; set; } = new Settings();
         public HiScores HiScores { get; set; } = new HiScores();
         public GameEngine GameEngine { get; set; } = new GameEngine();
-        public Score GameScore { get; set; } = new Score();
+        public Score GameScore { get; set; }
         public GameState CurrentGameState { get; set; }
         
         public void MainMenu()
@@ -56,27 +56,36 @@ namespace Game
         {
             IUserOutput output = new UserOutput();
 
+            output.Clear();
+            output.ForegroundColor = ConsoleColor.Red;
             switch (CurrentGameState)
             {
                 case GameState.LostByDestroyer:
+                    
                     output.WriteLine("You lost the game by the destroyer.");
+                    output.ForegroundColor = ConsoleColor.Gray;
                     output.WriteLine("\nHint:\nThe destroyer destroys anything to his left and right wherever he goes.");
                     output.WriteLine("Be careful not to get too close.");
                     break;
                 case GameState.LostByWalkingIntoMonster:
                     output.WriteLine("You lost the game by walking into a monster.");
+                    output.ForegroundColor = ConsoleColor.Gray;
                     output.WriteLine("\nHint:\nMonsters don't attack on their own,");
                     output.WriteLine("as long as you don't walk into them, they are harmless.");
                     break;
                 case GameState.LostByTurnLimit:
                     output.WriteLine("Congratulations! You lost the game by turn limit.");
+                    output.ForegroundColor = ConsoleColor.Gray;
                     output.WriteLine("This is an achievement on it's own.");
                     break;
                 default:
                     output.WriteLine("You lost the game by unknown");
+                    
                     break;
             }
+            output.ForegroundColor = ConsoleColor.Yellow;
             output.WriteLine($"\n\n\nTurns elapsed: {GameScore.GameTurns}");
+            output.ForegroundColor = ConsoleColor.Gray;
         }
 
         public void WinScreen()
@@ -85,13 +94,16 @@ namespace Game
             IUserInput input = new UserInput();
 
             output.Clear();
+            output.ForegroundColor = ConsoleColor.Green;
             output.WriteLine("You won the game");
+            output.ForegroundColor = ConsoleColor.Yellow;
             output.WriteLine($"\nTurns elapsed: {GameScore.GameTurns}");
             output.WriteLine($"Shots fired: {GameScore.ShotsFired}");
             output.WriteLine($"Monsters killed: {GameScore.MonstersKilled}");
             output.WriteLine($"Rocks destroyed: {GameScore.RockDestroyed}");
             output.WriteLine($"Accuracy: {(GameScore.ShotsFired != 0 ? ((GameScore.MonstersKilled + GameScore.RockDestroyed) / GameScore.ShotsFired) * 100 : 100)}%");
             output.WriteLine($"\nScore: {GameScore}");
+            output.ForegroundColor = ConsoleColor.Gray;
             output.WriteLine($"\nTurns elapsed has the biggest influence on the score");
 
             output.WriteLine($"\nWilt u deze score toevoegen aan de Hiscore's?(Y/N)");
@@ -102,13 +114,15 @@ namespace Game
 
                 if (input.UserInputKey == input.Y)
                 {
-                    output.WriteLine($"\nOnder welke naam?");
+                    output.WriteLine($"\n\nOnder welke naam?");
                     HiScores.AddEntry(GameScore.ToString(), input.ReadLine());
                     input.UserInputKey = input.N;
                 }
             }
 
+            output.ForegroundColor = ConsoleColor.Yellow;
             output.WriteLine($"\n{HiScores}");
+            output.ForegroundColor = ConsoleColor.Gray;
 
             System.Threading.Thread.Sleep(200);
         }
@@ -117,7 +131,7 @@ namespace Game
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
 
-            output.WriteLine("Press enter to play again... or ESC to go back to menu");
+            output.WriteLine("\nPress enter to play again... or ESC to go back to menu");
             CurrentGameState = GameState.InMenu;
 
             while (true)

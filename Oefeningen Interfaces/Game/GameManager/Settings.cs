@@ -122,7 +122,10 @@ namespace Game
             IUserInput input = new UserInput();
 
             output.Clear();
+            output.ForegroundColor = ConsoleColor.Yellow;
             output.WriteLine(this.ToString());
+            output.ForegroundColor = ConsoleColor.Gray;
+
             ConsoleKey tempMoveUpKey = MoveUpKey;
             MoveUpKey = input.Escape;
             ConsoleKey tempMoveDownKey = MoveDownKey;

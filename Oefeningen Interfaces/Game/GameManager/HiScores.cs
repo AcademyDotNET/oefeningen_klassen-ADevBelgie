@@ -23,12 +23,14 @@ namespace Game
         {
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
-            Console.Clear();
-            Console.WriteLine("Hiscore's:");
-            Console.WriteLine(this);
+            output.Clear();
+            
+            output.WriteLine("Hiscore's:\n");
+            output.ForegroundColor = ConsoleColor.Yellow;
+            output.WriteLine(this.ToString());
+            output.ForegroundColor = ConsoleColor.Gray;
 
-
-            Console.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
+            output.WriteLine("\n\nPress enter to play again... or ESC to go back to menu");
             while (true)
             {
                 input.GetKey();
@@ -39,7 +41,7 @@ namespace Game
                 }
                 else if (input.UserInputKey == ConsoleKey.Escape)
                 {
-                    Console.Write("A");//added character here because code eats it somewhere
+                    output.Write("A");//added character here because code eats it somewhere
                     return;
                 }
             }
