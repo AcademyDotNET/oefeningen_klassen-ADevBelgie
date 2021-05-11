@@ -46,11 +46,34 @@ namespace Game
                     case 3:
                         HiScores.ShowHiScores();
                         break;
+                    case 4:
+                        keuze = QuitGame(); //make sure user wants to quit
+                        break;
                     default:
                         break;
                 }
+            } while (keuze != 5);
+        }
 
-            } while (keuze != 4);
+        private int QuitGame()
+        {
+            IUserOutput output = new UserOutput();
+            IUserInput input = new UserInput();
+
+            output.WriteLine($"\nDo you really want to quit the game?(Y/N)");
+            input.GetKey();
+            while (input.UserInputKey != input.N && input.UserInputKey != input.Y)
+            {
+                input.GetKey();
+            }
+            if (input.UserInputKey == input.N)
+            {
+                return 4;
+            }
+            else
+            {
+                return 5;
+            }
         }
         public void LoseScreen()
         {
@@ -87,7 +110,6 @@ namespace Game
             output.WriteLine($"\n\n\nTurns elapsed: {GameScore.GameTurns}");
             output.ForegroundColor = ConsoleColor.Gray;
         }
-
         public void WinScreen()
         {
             IUserOutput output = new UserOutput();
@@ -107,7 +129,6 @@ namespace Game
             output.WriteLine($"\nTurns elapsed has the biggest influence on the score.");
 
             output.WriteLine($"\nDo you want to add your score to the Hiscore's?(Y/N)");
-            input.UserInputKey = input.Enter;
             while (input.UserInputKey != input.N)
             {
                 input.GetKey();

@@ -8,25 +8,25 @@ namespace Game
 {
     class UserInput: IUserInput
     {
+        public ConsoleKey UserInputKey { get; set; }
+        public ConsoleKey Escape { get; } = ConsoleKey.Escape;
+        public ConsoleKey Backspace { get; } = ConsoleKey.Backspace;
+        public ConsoleKey Enter { get; } = ConsoleKey.Enter;
+        public ConsoleKey Y { get; } = ConsoleKey.Y;
+        public ConsoleKey N { get; } = ConsoleKey.N;
         public ConsoleKey GetKey()
         {
             ClearKeyBuffer();
             ClearCurrentConsoleLine();
-            UserInputKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed
+            UserInputKey = Console.ReadKey().Key; //this line seems to eat character when ESC is pressed (but not after getting published)
 
-            if (UserInputKey == ConsoleKey.Escape)
-            {
-                Console.Write("A");//added character here because code eats it somewhere
-                Console.SetCursorPosition(Console.GetCursorPosition().Left, Console.GetCursorPosition().Top+1);
-            }
+            //if (UserInputKey == ConsoleKey.Escape)//added character here because console eats eat when not published
+            //{
+            //    Console.Write("A");
+            //    Console.SetCursorPosition(Console.GetCursorPosition().Left, Console.GetCursorPosition().Top + 1);
+            //}
             return UserInputKey;
         }
-        public ConsoleKey UserInputKey { get; set; }
-        public ConsoleKey Escape { get; } = ConsoleKey.Escape;
-        public ConsoleKey Enter { get; } = ConsoleKey.Enter;
-        public ConsoleKey Y { get; } = ConsoleKey.Y;
-        public ConsoleKey N { get; } = ConsoleKey.N;
-
         private void ClearCurrentConsoleLine()
         {
             //clears the line in the console, is used for in menu screens or end of game screen
@@ -43,7 +43,6 @@ namespace Game
             while (Console.KeyAvailable)
                 Console.ReadKey(false);
         }
-
         public string ReadLine()
         {
             return Console.ReadLine();

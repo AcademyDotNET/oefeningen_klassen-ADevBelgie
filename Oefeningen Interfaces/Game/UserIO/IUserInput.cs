@@ -10,6 +10,7 @@ namespace Game
     {
         public ConsoleKey UserInputKey { get; set; }
         public ConsoleKey Escape { get; }
+        public ConsoleKey Backspace { get; }
         public ConsoleKey Enter { get; }
         public ConsoleKey Y { get; }
         public ConsoleKey N { get; }

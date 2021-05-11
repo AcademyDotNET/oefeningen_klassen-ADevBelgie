@@ -132,19 +132,19 @@ namespace Game
             output.ForegroundColor = ConsoleColor.Gray;
 
             ConsoleKey tempMoveUpKey = MoveUpKey;
-            MoveUpKey = input.Escape;
+            MoveUpKey = input.Backspace;
             ConsoleKey tempMoveDownKey = MoveDownKey;
-            MoveDownKey = input.Escape;
+            MoveDownKey = input.Backspace;
             ConsoleKey tempMoveLeftKey = MoveLeftKey;
-            MoveLeftKey = input.Escape;
+            MoveLeftKey = input.Backspace;
             ConsoleKey tempMoveRightKey = MoveRightKey;
-            MoveRightKey = input.Escape;
+            MoveRightKey = input.Backspace;
             ConsoleKey tempShootLeftKey = ShootLeftKey;
-            ShootLeftKey = input.Escape;
+            ShootLeftKey = input.Backspace;
             ConsoleKey tempShootRightKey = ShootRightKey;
-            ShootRightKey = input.Escape;
+            ShootRightKey = input.Backspace;
 
-            output.WriteLine("\n\nPress enter for default key shown above");  
+            output.WriteLine("\n\nPress Enter/Esc for default key shown above");  
             MoveUpKey = Change1Key("move up key", tempMoveUpKey);
             MoveDownKey = Change1Key("move down key", tempMoveDownKey);
             MoveLeftKey = Change1Key("move left key", tempMoveLeftKey);
