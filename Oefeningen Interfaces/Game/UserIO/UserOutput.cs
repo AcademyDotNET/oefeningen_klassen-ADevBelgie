@@ -12,6 +12,17 @@ namespace Game
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
         }
+        private ConsoleColor _ForegroundColor;
+
+        public ConsoleColor ForegroundColor
+        {
+            get { return _ForegroundColor; }
+            set
+            {
+                Console.ForegroundColor = value;
+                _ForegroundColor = value;
+            }
+        }
         public void WriteLine(string toWrite = "")
         {
             Console.WriteLine(toWrite);
@@ -20,9 +31,9 @@ namespace Game
         {
             Console.Write(toWrite);
         }
-        public string ReadLine()
+        public void SetCursorPosition(int left, int top)
         {
-            return Console.ReadLine();
+            Console.SetCursorPosition(left, top);
         }
         public void Clear()
         {

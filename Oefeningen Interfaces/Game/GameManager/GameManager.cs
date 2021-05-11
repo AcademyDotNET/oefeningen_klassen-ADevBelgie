@@ -101,7 +101,7 @@ namespace Game
                 if (input.UserInputKey == input.Y)
                 {
                     Console.WriteLine($"\nOnder welke naam?");
-                    HiScores.AddEntry(GameScore.ToString(), output.ReadLine());
+                    HiScores.AddEntry(GameScore.ToString(), input.ReadLine());
                     input.UserInputKey = input.N;
                 }
             }

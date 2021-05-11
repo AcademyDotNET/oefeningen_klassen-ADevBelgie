@@ -8,9 +8,10 @@ namespace Game
 {
     interface IUserOutput
     {
+        public ConsoleColor ForegroundColor { get; set; }
         public void WriteLine(string toWrite = "");
         public void Write(string toWrite = "");
-        public string ReadLine();
+        public void SetCursorPosition(int left, int top);
         public void Clear();
         public void WriteSpeelveld(SpeelVeld speelVeld, Settings gameSettings);
         public void ClearSpeelveld(SpeelVeld speelVeld);

@@ -43,5 +43,10 @@ namespace Game
             while (Console.KeyAvailable)
                 Console.ReadKey(false);
         }
+
+        public string ReadLine()
+        {
+            return Console.ReadLine();
+        }
     }
 }

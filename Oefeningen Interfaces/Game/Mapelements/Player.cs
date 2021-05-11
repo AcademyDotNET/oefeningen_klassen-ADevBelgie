@@ -28,8 +28,8 @@ namespace Game
             {
                 if (speelveld.Array[row, col] is Monster ) //het is niet mogelijk een rockdestroyer te doden
                 {
-                    gameManager.GameScore.MonstersKilled++; 
-                    speelveld.AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
+                    gameManager.GameScore.MonstersKilled++;
+                    speelveld.AllMonsters.Remove(speelveld.Array[row, col] as Monster); //also gets removed from monster list
                 }
                 else if (speelveld.Array[row, col] is Rock)
                 {

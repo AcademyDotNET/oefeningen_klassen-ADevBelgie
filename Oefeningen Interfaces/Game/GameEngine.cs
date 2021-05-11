@@ -16,7 +16,7 @@ namespace Game
             output.Clear();
 
             //init game settings and map elements
-            GameInfo gameInfo = new GameInfo();
+            GameInfo gameInfo = new GameInfo();//SRP?
             gameInfo.DisplayInfo(gameManager.Settings);
             SpeelVeld speelVeld = new SpeelVeld(gameManager.Settings.Difficulty);
             Player player1 = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];

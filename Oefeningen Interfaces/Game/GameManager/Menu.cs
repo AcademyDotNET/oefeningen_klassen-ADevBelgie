@@ -25,7 +25,7 @@ namespace Game
         {
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
-            Console.Clear();
+            output.Clear();
             MenuOutput();
 
             while (true)

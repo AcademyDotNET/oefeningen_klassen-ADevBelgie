@@ -14,5 +14,6 @@ namespace Game
         public ConsoleKey Y { get; }
         public ConsoleKey N { get; }
         public ConsoleKey GetKey();
+        public string ReadLine();
     }
 }
