@@ -55,6 +55,8 @@ namespace Game
 
         public void ChangeSettingsGame()
         {
+            IUserOutput output = new UserOutput();
+
             string[] menuOptions =
             {
                 "Change keybinds",
@@ -70,12 +72,12 @@ namespace Game
                 {
                     case 1:
                         ChangeKeyBinds();
-                        Console.Clear();
+                        output.Clear();
                         settingsMenu.MenuOutput();
                         break;
                     case 2:
                         ChangeDifficulty();
-                        Console.Clear();
+                        output.Clear();
                         settingsMenu.MenuOutput();
                         break;
                     case 3:
@@ -92,7 +94,8 @@ namespace Game
             {
                 "Easy",
                 "Medium (default)",
-                "Hard"
+                "Hard",
+                "Return"
             };
             Menu changeDifficultyMenu = new Menu(menuOptions, "Difficulty");
             int keuze;
@@ -109,6 +112,8 @@ namespace Game
                         return;
                     case 3:
                         Difficulty = 2;
+                        return;
+                    case 4:
                         return;
                     default:
                         break;
@@ -159,10 +164,9 @@ namespace Game
 
             while (input.UserInputKey != defaultKey && (input.UserInputKey == MoveUpKey || input.UserInputKey == MoveDownKey || input.UserInputKey == MoveLeftKey || input.UserInputKey == MoveRightKey || input.UserInputKey == ShootLeftKey || input.UserInputKey == ShootRightKey))
             {
-                output.WriteLine($"{(input.UserInputKey == input.Escape?"T":"")}That key is already taken for an action ");//when pressing
                 input.GetKey();
             }
-            if (input.UserInputKey == input.Enter)
+            if (input.UserInputKey == input.Enter || input.UserInputKey == input.Escape)
             {
                 input.UserInputKey = defaultKey;
             }

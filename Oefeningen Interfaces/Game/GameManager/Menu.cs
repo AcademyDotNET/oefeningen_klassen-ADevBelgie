@@ -68,6 +68,10 @@ namespace Game
                 {
                     return 9;
                 }
+                else if (input.UserInputKey == ConsoleKey.Escape)
+                {
+                    return Keuzes.Length;
+                }
             }
         }
         public void MenuOutput()
