@@ -76,7 +76,6 @@ namespace Game
             Remove(0, 10); //remove potential monster from the list
             Array[0, 10] = new Player() { Location = PlayerLocation};
         }
-
         private void Remove(int row, int col)
         {
             //replaces mapelement with Leeg element
@@ -87,46 +86,6 @@ namespace Game
                     AllMonsters.RemoveAll(m => m.Location.X == row && m.Location.Y == col); //remove monster in monster list 
                 }
                 Array[row, col] = new Leeg(row, col);
-            }
-        }
-
-        public void MoveMonsters()
-        {
-            //all monsters in the playfield move in a random direction
-            Random rand = new Random();
-            foreach (var monster in AllMonsters)
-            {
-                int roll = rand.Next(0,4); //4 directions
-                switch (roll)
-                {
-                    case 0://Boven
-                        monster.MoveUp(this);
-                        break;
-                    case 1://Onder
-                        monster.MoveDown(this);
-                        break;
-                    case 2://links
-                        monster.MoveLeft(this);
-                        break;
-                    case 3://rechts
-                        monster.MoveRight(this);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        public void ShootMonsters(GameManager gameManager)
-        {
-            //makes the rockdetroyer shoot
-            for (int i = 0; i < AllMonsters.Count; i++)
-            {
-                RockDestroyer RD = AllMonsters[i] as RockDestroyer;
-                if (RD != null)
-                {
-                    RD.ShootLeft(this, gameManager);
-                    RD.ShootRight(this, gameManager);
-                }
             }
         }
         public override string ToString()
