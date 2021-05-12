@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Monster : MapElement, IMovableMonster
+    class Monster : MapElement, IMovable
     {
         public Monster(int x, int y) : base(x,y)
         {
@@ -21,31 +21,24 @@ namespace Game
                 Location.X--;
             }
         }
-        public void MoveDown(SpeelVeld speelveld)
+        public void Move(int direction, SpeelVeld speelveld, GameManager gameManager)
         {
-            if (Location.X != 19 && speelveld.Array[Location.X + 1, Location.Y] is Leeg)
+            switch (direction)
             {
-                speelveld.Array[Location.X + 1, Location.Y] = this;
-                speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                Location.X++;
-            }
-        }
-        public void MoveLeft(SpeelVeld speelveld)
-        {
-            if (Location.Y != 0 && speelveld.Array[Location.X, Location.Y - 1] is Leeg)
-            {
-                speelveld.Array[Location.X, Location.Y - 1] = this;
-                speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                Location.Y--;
-            }
-        }
-        public void MoveRight(SpeelVeld speelveld)
-        {
-            if (Location.Y != 19 && speelveld.Array[Location.X, Location.Y + 1] is Leeg)
-            {
-                speelveld.Array[Location.X, Location.Y + 1] = this;
-                speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                Location.Y++;
+                case 0: //up
+                    speelveld.MoveElement(this, Location.X - 1, Location.Y, gameManager);
+                    break;
+                case 1: //right
+                    speelveld.MoveElement(this, Location.X, Location.Y + 1, gameManager);
+                    break;
+                case 2: //down
+                    speelveld.MoveElement(this, Location.X + 1, Location.Y, gameManager);
+                    break;
+                case 3: //left
+                    speelveld.MoveElement(this, Location.X, Location.Y - 1, gameManager);
+                    break;
+                default:
+                    break;
             }
         }
     }

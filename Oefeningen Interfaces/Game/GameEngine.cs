@@ -64,19 +64,19 @@ namespace Game
             input.GetKey();
             if (input.UserInputKey == gameManager.Settings.MoveUpKey)
             {
-                player.MoveUp(speelVeld, gameManager);
-            }
-            else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
-            {
-                player.MoveDown(speelVeld, gameManager);
+                player.Move(0, speelVeld, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveRightKey)
             {
-                player.MoveRight(speelVeld, gameManager);
+                player.Move(1, speelVeld, gameManager);
+            }
+            else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
+            {
+                player.Move(2, speelVeld, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveLeftKey)
             {
-                player.MoveLeft(speelVeld, gameManager);
+                player.Move(3, speelVeld, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
             {
@@ -95,7 +95,7 @@ namespace Game
         }
         public void MonsterTurn(GameManager gameManager, SpeelVeld speelVeld)
         {
-            MonstersMove(speelVeld);
+            MonstersMove(gameManager, speelVeld);
             MonstersSchoot(gameManager, speelVeld);
         }
         public void MonstersSchoot(GameManager gameManager, SpeelVeld speelVeld)
@@ -111,30 +111,14 @@ namespace Game
                 }
             }
         }
-        public void MonstersMove(SpeelVeld speelVeld)
+        public void MonstersMove(GameManager gameManager, SpeelVeld speelVeld)
         {
             //all monsters in the playfield move in a random direction
             Random rand = new Random();
             foreach (var monster in speelVeld.AllMonsters)
             {
                 int roll = rand.Next(0, 4); //4 directions
-                switch (roll)
-                {
-                    case 0://Boven
-                        monster.MoveUp(speelVeld);
-                        break;
-                    case 1://Onder
-                        monster.MoveDown(speelVeld);
-                        break;
-                    case 2://links
-                        monster.MoveLeft(speelVeld);
-                        break;
-                    case 3://rechts
-                        monster.MoveRight(speelVeld);
-                        break;
-                    default:
-                        break;
-                }
+                monster.Move(roll, speelVeld, gameManager);
             }
         }
         public void ResultScreen(GameManager gameManager)

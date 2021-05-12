@@ -88,6 +88,34 @@ namespace Game
                 Array[row, col] = new Leeg(row, col);
             }
         }
+        public void MoveElement(MapElement movingElement, int x, int y, GameManager gameManager)
+        {
+            if (x >= 0 && x < Array.GetLength(0) && y >= 0 && y < Array.GetLength(1)) //check if in boundaries
+            {
+                if (Array[x, y] is Leeg)
+                {
+                    Array[x, y] = movingElement;
+                    Array[movingElement.Location.X, movingElement.Location.Y] = new Leeg(movingElement.Location.X, movingElement.Location.Y);
+                    movingElement.Location.X = x;
+                    movingElement.Location.Y = y;
+                }
+                else if (movingElement is Player)
+                {
+                    if (Array[x, y] is Monster)
+                    {
+                        gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
+                    }
+                    else if (Array[x, y] is RockDestroyer)
+                    {
+                        gameManager.CurrentGameState = GameState.LostByDestroyer;
+                    }
+                }
+            }
+            else if (movingElement is Player && (x == Array.GetLength(0) && y < 12 && y > 7) )
+            {
+                gameManager.CurrentGameState = GameState.Won;
+            }
+        }
         public override string ToString()
         {
             string playFieldString = "";

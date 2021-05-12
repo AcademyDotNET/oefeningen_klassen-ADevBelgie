@@ -38,88 +38,24 @@ namespace Game
                 speelveld.Array[row, col] = new Leeg(row, col);
             }
         }
-        public void MoveUp(SpeelVeld speelveld, GameManager gameManager)
+        public void Move(int direction, SpeelVeld speelveld, GameManager gameManager)
         {
-            if (Location.X != 0)//check if map border
+            switch (direction)
             {
-                if (speelveld.Array[Location.X - 1, Location.Y] is Monster)
-                {
-                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
-                }
-                else if (speelveld.Array[Location.X - 1, Location.Y] is RockDestroyer)
-                {
-                    gameManager.CurrentGameState = GameState.LostByDestroyer;
-                }
-                else if(speelveld.Array[Location.X - 1, Location.Y] is Leeg)
-                {
-                    speelveld.Array[Location.X - 1, Location.Y] = this;
-                    speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                    Location.X--;
-                }
-            }
-        }
-        public void MoveDown(SpeelVeld speelveld, GameManager gameManager)
-        {
-            if (Location.X != 19)//check if map border
-            {
-                if (speelveld.Array[Location.X + 1, Location.Y] is Monster)
-                {
-                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
-                }
-                else if (speelveld.Array[Location.X + 1, Location.Y] is RockDestroyer)
-                {
-                    gameManager.CurrentGameState = GameState.LostByDestroyer;
-                }
-                else if (speelveld.Array[Location.X + 1, Location.Y] is Leeg)
-                {
-                    speelveld.Array[Location.X + 1, Location.Y] = this;
-                    speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                    Location.X++;
-                }
-            }
-            else if (Location.X == 19 && Location.Y < 12 && Location.Y > 7)
-            {
-                gameManager.CurrentGameState = GameState.Won;
-            }
-        }
-        public void MoveLeft(SpeelVeld speelveld, GameManager gameManager)
-        {
-            if (Location.Y != 0) //check if map border
-            {
-                if (speelveld.Array[Location.X, Location.Y - 1] is Monster)
-                {
-                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
-                }
-                else if (speelveld.Array[Location.X, Location.Y - 1] is RockDestroyer)
-                {
-                    gameManager.CurrentGameState = GameState.LostByDestroyer;
-                }
-                else if (speelveld.Array[Location.X, Location.Y - 1] is Leeg)
-                {
-                    speelveld.Array[Location.X, Location.Y - 1] = this;
-                    speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                    Location.Y--;
-                }
-            }
-        }
-        public void MoveRight(SpeelVeld speelveld, GameManager gameManager)
-        {
-            if (Location.Y != 19) //check if map border
-            {
-                if (speelveld.Array[Location.X, Location.Y + 1] is Monster)
-                {
-                    gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
-                }
-                else if (speelveld.Array[Location.X, Location.Y + 1] is RockDestroyer)
-                {
-                    gameManager.CurrentGameState = GameState.LostByDestroyer;
-                }
-                else if (speelveld.Array[Location.X, Location.Y + 1] is Leeg)
-                {
-                    speelveld.Array[Location.X, Location.Y + 1] = this;
-                    speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                    Location.Y++;
-                }
+                case 0: //up
+                    speelveld.MoveElement(this, Location.X -1 , Location.Y, gameManager);
+                    break;
+                case 1: //right
+                    speelveld.MoveElement(this, Location.X, Location.Y + 1, gameManager);
+                    break;
+                case 2: //down
+                    speelveld.MoveElement(this, Location.X + 1, Location.Y, gameManager);
+                    break;
+                case 3: //left
+                    speelveld.MoveElement(this, Location.X, Location.Y - 1, gameManager);
+                    break;
+                default:
+                    break;
             }
         }
     }
