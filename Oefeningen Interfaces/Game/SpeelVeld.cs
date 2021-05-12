@@ -92,26 +92,26 @@ namespace Game
         {
             if (x >= 0 && x < Array.GetLength(0) && y >= 0 && y < Array.GetLength(1)) //check if in boundaries
             {
-                if (Array[x, y] is Leeg)
+                if (Array[x, y].DitElementChar == SoortElementChar.L)
                 {
                     Array[x, y] = movingElement;
                     Array[movingElement.Location.X, movingElement.Location.Y] = new Leeg(movingElement.Location.X, movingElement.Location.Y);
                     movingElement.Location.X = x;
                     movingElement.Location.Y = y;
                 }
-                else if (movingElement is Player)
+                else if (movingElement.DitElementChar == SoortElementChar.P)
                 {
-                    if (Array[x, y] is Monster)
+                    if (Array[x, y].DitElementChar == SoortElementChar.M)
                     {
                         gameManager.CurrentGameState = GameState.LostByWalkingIntoMonster;
                     }
-                    else if (Array[x, y] is RockDestroyer)
+                    else if (Array[x, y].DitElementChar == SoortElementChar.X)
                     {
                         gameManager.CurrentGameState = GameState.LostByDestroyer;
                     }
                 }
             }
-            else if (movingElement is Player && (x == Array.GetLength(0) && y < 12 && y > 7) )
+            else if (movingElement.DitElementChar == SoortElementChar.P && (x == Array.GetLength(0) && y < 12 && y > 7) )
             {
                 gameManager.CurrentGameState = GameState.Won;
             }

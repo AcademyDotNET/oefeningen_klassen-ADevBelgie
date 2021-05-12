@@ -39,7 +39,7 @@ namespace Game
         {
             // skips previous input chars.
             // this method is here for if people hold down a key for too long causing the button press to go into a buffer.
-            System.Threading.Thread.Sleep(180);
+            System.Threading.Thread.Sleep(100);
             while (Console.KeyAvailable)
                 Console.ReadKey(false);
         }
