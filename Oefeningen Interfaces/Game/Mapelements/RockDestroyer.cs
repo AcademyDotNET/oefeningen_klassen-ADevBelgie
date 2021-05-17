@@ -8,24 +8,26 @@ namespace Game
 {
     class RockDestroyer : Monster, IDestroyer
     {
-        public RockDestroyer(int x, int y) : base(x, y)
+        SpeelVeld speelveld;
+        public RockDestroyer(int x, int y, SpeelVeld speelveld) : base(x, y, speelveld)
         {
+            this.speelveld = speelveld;
             DitElementChar = SoortElementChar.X;
         }
 
-        public void ShootLeft(SpeelVeld speelveld, GameManager gameManager)
+        public void ShootLeft(GameManager gameManager)
         {
             //naar links schieten 
-            Destroy(Location.X, Location.Y - 1, speelveld, gameManager); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y - 1, gameManager); //X is rows, Y is Cols
         }
 
-        public void ShootRight(SpeelVeld speelveld, GameManager gameManager)
+        public void ShootRight(GameManager gameManager)
         {
             //naar rechts schieten 
-            Destroy(Location.X, Location.Y + 1, speelveld, gameManager);
+            Destroy(Location.X, Location.Y + 1, gameManager);
         }
 
-        public void Destroy(int row, int col, SpeelVeld speelveld, GameManager gameManager)
+        public void Destroy(int row, int col, GameManager gameManager)
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {

@@ -8,20 +8,13 @@ namespace Game
 {
     class Monster : MapElement, IMovable
     {
-        public Monster(int x, int y) : base(x,y)
+        SpeelVeld speelveld;
+        public Monster(int x, int y, SpeelVeld speelveld) : base(x,y)
         {
+            this.speelveld = speelveld;
             DitElementChar = SoortElementChar.M;
         }
-        public void MoveUp(SpeelVeld speelveld)
-        {
-            if (Location.X != 0 && speelveld.Array[Location.X - 1, Location.Y] is Leeg)
-            {
-                speelveld.Array[Location.X - 1, Location.Y] = this;
-                speelveld.Array[Location.X, Location.Y] = new Leeg(Location.X, Location.Y);
-                Location.X--;
-            }
-        }
-        public void Move(int direction, SpeelVeld speelveld, GameManager gameManager)
+        public void Move(int direction, GameManager gameManager)
         {
             switch (direction)
             {

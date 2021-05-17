@@ -64,29 +64,29 @@ namespace Game
             input.GetKey();
             if (input.UserInputKey == gameManager.Settings.MoveUpKey)
             {
-                player.Move(0, speelVeld, gameManager);
+                player.Move(0, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveRightKey)
             {
-                player.Move(1, speelVeld, gameManager);
+                player.Move(1, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
             {
-                player.Move(2, speelVeld, gameManager);
+                player.Move(2, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveLeftKey)
             {
-                player.Move(3, speelVeld, gameManager);
+                player.Move(3, gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
             {
                 gameManager.GameScore.ShotsFired++;
-                player.ShootRight(speelVeld, gameManager);
+                player.ShootRight(gameManager);
             }
             else if (input.UserInputKey == gameManager.Settings.ShootLeftKey)
             {
                 gameManager.GameScore.ShotsFired++;
-                player.ShootLeft(speelVeld, gameManager);
+                player.ShootLeft(gameManager);
             }
             else if (input.UserInputKey == input.Escape)
             {
@@ -106,8 +106,8 @@ namespace Game
                 RockDestroyer RD = speelVeld.AllMonsters[i] as RockDestroyer;
                 if (RD != null)
                 {
-                    RD.ShootLeft(speelVeld, gameManager);
-                    RD.ShootRight(speelVeld, gameManager);
+                    RD.ShootLeft(gameManager);
+                    RD.ShootRight(gameManager);
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace Game
             foreach (var monster in speelVeld.AllMonsters)
             {
                 int roll = rand.Next(0, 4); //4 directions
-                monster.Move(roll, speelVeld, gameManager);
+                monster.Move(roll, gameManager);
             }
         }
         public void ResultScreen(GameManager gameManager)

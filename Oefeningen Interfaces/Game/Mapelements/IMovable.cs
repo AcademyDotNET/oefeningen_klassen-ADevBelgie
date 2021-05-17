@@ -8,6 +8,6 @@ namespace Game
 {
     interface IMovable
     {
-        public void Move(int direction, SpeelVeld speelveld, GameManager gameManager);
+        public void Move(int direction, GameManager gameManager);
     }
 }

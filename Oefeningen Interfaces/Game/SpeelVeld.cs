@@ -50,7 +50,7 @@ namespace Game
                             genElement = rand.Next(0, chanceOfMonsters);
                             if (genElement == 0)
                                 {
-                                    Array[row, col] = new Monster(row, col);
+                                    Array[row, col] = new Monster(row, col, this);
                                     AllMonsters.Add((Monster)Array[row, col]);
                                 }
                             else
@@ -69,12 +69,12 @@ namespace Game
             }
             //generate Rockdestroyer
             Remove(10, 10); //remove potential monster from the list
-            Array[10, 10] = new RockDestroyer(10, 10);
+            Array[10, 10] = new RockDestroyer(10, 10, this);
             AllMonsters.Add((Monster)Array[10, 10]);
 
             //generate player(should be last)
             Remove(0, 10); //remove potential monster from the list
-            Array[0, 10] = new Player() { Location = PlayerLocation};
+            Array[0, 10] = new Player(this) { Location = PlayerLocation};
         }
         private void Remove(int row, int col)
         {

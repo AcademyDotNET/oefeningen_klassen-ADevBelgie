@@ -8,21 +8,23 @@ namespace Game
 {
     class Player:MapElement, IMovable, IDestroyer
     {
-        public Player()
+        SpeelVeld speelveld;
+        public Player(SpeelVeld speelveld)
         {
+            this.speelveld = speelveld;
             DitElementChar = SoortElementChar.P;
         }
-        public void ShootRight(SpeelVeld speelveld, GameManager gameManager)
+        public void ShootRight(GameManager gameManager)
         {
             //naar rechts schieten 
-            Destroy(Location.X, Location.Y + 1, speelveld, gameManager); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y + 1, gameManager); //X is rows, Y is Cols
         }
-        public void ShootLeft(SpeelVeld speelveld, GameManager gameManager)
+        public void ShootLeft(GameManager gameManager)
         {
             //naar links schieten 
-            Destroy(Location.X, Location.Y - 1, speelveld, gameManager); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y - 1, gameManager); //X is rows, Y is Cols
         }
-        public void Destroy(int row, int col, SpeelVeld speelveld, GameManager gameManager)
+        public void Destroy(int row, int col, GameManager gameManager)
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
@@ -38,7 +40,7 @@ namespace Game
                 speelveld.Array[row, col] = new Leeg(row, col);
             }
         }
-        public void Move(int direction, SpeelVeld speelveld, GameManager gameManager)
+        public void Move(int direction, GameManager gameManager)
         {
             switch (direction)
             {
