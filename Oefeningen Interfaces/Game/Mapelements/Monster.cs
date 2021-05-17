@@ -14,7 +14,7 @@ namespace Game
             this.speelveld = speelveld;
             DitElementChar = SoortElementChar.M;
         }
-        public void Move(int direction, GameManager gameManager)
+        public void Move(int direction)
         {
             switch (direction)
             {

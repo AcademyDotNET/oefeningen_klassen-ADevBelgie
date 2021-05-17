@@ -8,7 +8,7 @@ namespace Game
 {
     interface IDestroyer
     {
-        public void ShootRight(GameManager gameManager);
-        public void ShootLeft(GameManager gameManager);
+        public void ShootRight();
+        public void ShootLeft();
     }
 }

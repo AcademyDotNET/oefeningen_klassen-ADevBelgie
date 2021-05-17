@@ -12,10 +12,11 @@ namespace Game
         public GameManager()
         {
             CurrentGameState = GameState.InMenu;
+            GameEngine = new GameEngine(this);
         }
         public Settings Settings { get; set; } = new Settings();
         public HiScores HiScores { get; set; } = new HiScores();
-        public GameEngine GameEngine { get; set; } = new GameEngine();
+        public GameEngine GameEngine { get; set; }
         public Score GameScore { get; set; }
         public GameState CurrentGameState { get; set; }
         
@@ -38,7 +39,7 @@ namespace Game
                 switch (keuze)
                 {
                     case 1:
-                        while (GameEngine.Start(this)) { }
+                        while (GameEngine.Start()) { }
                         break;
                     case 2:
                         Settings.ChangeSettingsGame();

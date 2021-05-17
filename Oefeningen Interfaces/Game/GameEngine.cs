@@ -8,10 +8,15 @@ namespace Game
 {
     class GameEngine
     {
-        public bool Start(GameManager gameManager)
+        GameManager gameManager;
+        public GameEngine(GameManager gameManager)
+        {
+            this.gameManager = gameManager;
+        }
+        public bool Start()
         {
             // Init game
-            InitGameScreen(gameManager);
+            InitGameScreen();
             gameManager.GameScore = new Score();
             SpeelVeld speelVeld = new SpeelVeld(gameManager);
             Player player = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
@@ -20,13 +25,13 @@ namespace Game
             // Game loop
             while (gameManager.CurrentGameState == GameState.GameInProgress)
             {
-                WriteGameField(speelVeld, gameManager);
+                WriteGameField(speelVeld);
                 
                 // Get user key and perform action
-                UserTurn(gameManager, speelVeld, player);
+                UserTurn(speelVeld, player);
 
                 // monsters move in random direction & RockDestroyer schiet
-                MonsterTurn(gameManager, speelVeld);
+                MonsterTurn(speelVeld);
 
                 gameManager.GameScore.GameTurns++;
                 if (gameManager.GameScore.GameTurns >= 150)
@@ -36,12 +41,12 @@ namespace Game
             }
 
             // Result screen
-            ResultScreen(gameManager);
+            ResultScreen();
             
             // if end of game return true, the PlayGame method will be called again
             return gameManager.EndOfGameEngine();
         }
-        public void InitGameScreen(GameManager gameManager)
+        public void InitGameScreen()
         {
             IUserOutput output = new UserOutput();
 
@@ -49,14 +54,14 @@ namespace Game
             GameInfo gameInfo = new GameInfo();
             gameInfo.DisplayInfo(gameManager.Settings);
         }
-        public void WriteGameField(SpeelVeld speelVeld, GameManager gameManager)
+        public void WriteGameField(SpeelVeld speelVeld)
         {
             IUserOutput output = new UserOutput();
 
             output.ClearSpeelveld(speelVeld);
             output.WriteSpeelveld(speelVeld, gameManager.Settings);
         }
-        public void UserTurn(GameManager gameManager, SpeelVeld speelVeld, Player player)
+        public void UserTurn(SpeelVeld speelVeld, Player player)
         {
             IUserOutput output = new UserOutput();
             IUserInput input = new UserInput();
@@ -64,41 +69,41 @@ namespace Game
             input.GetKey();
             if (input.UserInputKey == gameManager.Settings.MoveUpKey)
             {
-                player.Move(0, gameManager);
+                player.Move(0);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveRightKey)
             {
-                player.Move(1, gameManager);
+                player.Move(1);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveDownKey)
             {
-                player.Move(2, gameManager);
+                player.Move(2);
             }
             else if (input.UserInputKey == gameManager.Settings.MoveLeftKey)
             {
-                player.Move(3, gameManager);
+                player.Move(3);
             }
             else if (input.UserInputKey == gameManager.Settings.ShootRightKey)
             {
                 gameManager.GameScore.ShotsFired++;
-                player.ShootRight(gameManager);
+                player.ShootRight();
             }
             else if (input.UserInputKey == gameManager.Settings.ShootLeftKey)
             {
                 gameManager.GameScore.ShotsFired++;
-                player.ShootLeft(gameManager);
+                player.ShootLeft();
             }
             else if (input.UserInputKey == input.Escape)
             {
                 gameManager.CurrentGameState = GameState.ExitGameInProgress;
             }
         }
-        public void MonsterTurn(GameManager gameManager, SpeelVeld speelVeld)
+        public void MonsterTurn(SpeelVeld speelVeld)
         {
-            MonstersMove(gameManager, speelVeld);
-            MonstersSchoot(gameManager, speelVeld);
+            MonstersMove(speelVeld);
+            MonstersSchoot(speelVeld);
         }
-        public void MonstersSchoot(GameManager gameManager, SpeelVeld speelVeld)
+        public void MonstersSchoot(SpeelVeld speelVeld)
         {
             //makes the rockdetroyer shoot
             for (int i = 0; i < speelVeld.AllMonsters.Count; i++)
@@ -106,22 +111,22 @@ namespace Game
                 RockDestroyer RD = speelVeld.AllMonsters[i] as RockDestroyer;
                 if (RD != null)
                 {
-                    RD.ShootLeft(gameManager);
-                    RD.ShootRight(gameManager);
+                    RD.ShootLeft();
+                    RD.ShootRight();
                 }
             }
         }
-        public void MonstersMove(GameManager gameManager, SpeelVeld speelVeld)
+        public void MonstersMove(SpeelVeld speelVeld)
         {
             //all monsters in the playfield move in a random direction
             Random rand = new Random();
             foreach (var monster in speelVeld.AllMonsters)
             {
                 int roll = rand.Next(0, 4); //4 directions
-                monster.Move(roll, gameManager);
+                monster.Move(roll);
             }
         }
-        public void ResultScreen(GameManager gameManager)
+        public void ResultScreen()
         {
             switch (gameManager.CurrentGameState)
             {

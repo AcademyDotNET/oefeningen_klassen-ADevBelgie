@@ -66,12 +66,12 @@ namespace Game
             }
             //generate Rockdestroyer
             Remove(10, 10); //remove potential monster from the list
-            Array[10, 10] = new RockDestroyer(10, 10, this);
+            Array[10, 10] = new RockDestroyer(10, 10, this, gameManager);
             AllMonsters.Add((Monster)Array[10, 10]);
 
             //generate player(should be last)
             Remove(0, 10); //remove potential monster from the list
-            Array[0, 10] = new Player(this) { Location = PlayerLocation};
+            Array[0, 10] = new Player(this, gameManager) { Location = PlayerLocation};
         }
         private void Remove(int row, int col)
         {

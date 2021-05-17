@@ -9,22 +9,24 @@ namespace Game
     class Player:MapElement, IMovable, IDestroyer
     {
         SpeelVeld speelveld;
-        public Player(SpeelVeld speelveld)
+        GameManager gameManager;
+        public Player(SpeelVeld speelveld, GameManager gameManager)
         {
             this.speelveld = speelveld;
+            this.gameManager = gameManager;
             DitElementChar = SoortElementChar.P;
         }
-        public void ShootRight(GameManager gameManager)
+        public void ShootRight()
         {
             //naar rechts schieten 
-            Destroy(Location.X, Location.Y + 1, gameManager); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y + 1); //X is rows, Y is Cols
         }
-        public void ShootLeft(GameManager gameManager)
+        public void ShootLeft()
         {
             //naar links schieten 
-            Destroy(Location.X, Location.Y - 1, gameManager); //X is rows, Y is Cols
+            Destroy(Location.X, Location.Y - 1); //X is rows, Y is Cols
         }
-        public void Destroy(int row, int col, GameManager gameManager)
+        public void Destroy(int row, int col)
         {
             if (col >= 0 && col < speelveld.Array.GetLength(1))
             {
@@ -40,7 +42,7 @@ namespace Game
                 speelveld.Array[row, col] = new Leeg(row, col);
             }
         }
-        public void Move(int direction, GameManager gameManager)
+        public void Move(int direction)
         {
             switch (direction)
             {
