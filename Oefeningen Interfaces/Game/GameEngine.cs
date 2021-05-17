@@ -13,7 +13,7 @@ namespace Game
             // Init game
             InitGameScreen(gameManager);
             gameManager.GameScore = new Score();
-            SpeelVeld speelVeld = new SpeelVeld(gameManager.Settings.Difficulty);
+            SpeelVeld speelVeld = new SpeelVeld(gameManager);
             Player player = (Player)speelVeld.Array[speelVeld.PlayerLocation.X, speelVeld.PlayerLocation.Y];
             gameManager.CurrentGameState = GameState.GameInProgress;
 

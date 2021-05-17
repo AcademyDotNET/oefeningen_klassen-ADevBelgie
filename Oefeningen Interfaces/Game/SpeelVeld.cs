@@ -8,15 +8,12 @@ namespace Game
 {
     class SpeelVeld
     {
-        public SpeelVeld()
+        GameManager gameManager;
+        public SpeelVeld(GameManager gameManager)
         {
+            this.gameManager = gameManager;
             InitGame();
             InitSpeelVeld();
-        }
-        public SpeelVeld(int chanceOfMonsters)
-        {
-            InitGame();
-            InitSpeelVeld(chanceOfMonsters);
         }
 
         //speelveld array van [20, 20]
@@ -35,7 +32,7 @@ namespace Game
             Array = new MapElement[arrayRows, arrayColumns];
             AllMonsters = new List<Monster>();
         }
-        private void InitSpeelVeld(int chanceOfMonsters = 5)
+        private void InitSpeelVeld()
         {
             //generate monsters, rocks & empty spaces
             Random rand = new Random();
@@ -47,7 +44,7 @@ namespace Game
                     switch (genElement)
                     {
                         case 1:
-                            genElement = rand.Next(0, chanceOfMonsters);
+                            genElement = rand.Next(0, gameManager.Settings.Difficulty);
                             if (genElement == 0)
                                 {
                                     Array[row, col] = new Monster(row, col, this);
@@ -88,7 +85,7 @@ namespace Game
                 Array[row, col] = new Leeg(row, col);
             }
         }
-        public void MoveElement(MapElement movingElement, int x, int y, GameManager gameManager)
+        public void MoveElement(MapElement movingElement, int x, int y)
         {
             if (x >= 0 && x < Array.GetLength(0) && y >= 0 && y < Array.GetLength(1)) //check if in boundaries
             {
