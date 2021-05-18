@@ -43,7 +43,7 @@ namespace oef_1
         List<Shape> lijst;
         public OppBerekenaar()
         {
-            lijst = new List<Shape>();
+            lijst = new List<Shape>();//injection
         }
         public void VoegToe(Shape s)
         {
@@ -58,7 +58,7 @@ namespace oef_1
             }
             return total;
         }
-        public string Output()
+        public string Output()//srp
         {
             return "<h1> Totale som = " + Sum() + " </h1> ";
         }
