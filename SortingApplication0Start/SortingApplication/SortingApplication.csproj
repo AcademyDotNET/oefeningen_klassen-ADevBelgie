@@ -46,7 +46,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortingAlgorithmNull.cs" />
+    <Compile Include="SortingAlgoritms\SortingAlgorithmNull.cs" />
     <Compile Include="SortingAlgoritms\SortingAlgorithm.cs" />
     <Compile Include="SortingAlgoritms\SortingAlgorithmBubble.cs" />
     <Compile Include="SortingAlgoritms\SortingAlgorithmQuick.cs" />
