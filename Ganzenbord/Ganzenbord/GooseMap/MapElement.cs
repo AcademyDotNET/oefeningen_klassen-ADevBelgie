@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ganzenbord
 {
-    public enum Spaces { Static, Goose, Bridge, Inn, Well, Maze, Prison, Death, End};
-    class MapElement
+    public enum Spaces { Static, Goose, Bridge, Inn, Well, Maze, Prison, Death, End, Unknown};
+    abstract class MapElement
     {
         public MapElement(Spaces currentSpace)
         {

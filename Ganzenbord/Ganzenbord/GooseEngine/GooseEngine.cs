@@ -23,13 +23,13 @@ namespace Ganzenbord
         {
             IOutput output = new Output();
             IInput input = new Input();
-            GooseMap gooseMap = new GooseMap();
+            GooseBoard gooseMap = new GooseBoard();
 
             output.Clear();
             GameLoop(gooseMap);
             input.ReadLine();
         }
-        private void GameLoop(GooseMap gooseMap)
+        private void GameLoop(GooseBoard gooseMap)
         {
             IOutput output = new Output();
             IInput input = new Input();
@@ -59,7 +59,7 @@ namespace Ganzenbord
                 input.ReadLine();
             }
         }
-        private void RollDice(GooseMap gooseMap)
+        private void RollDice(GooseBoard gooseMap)
         {
             Random rand = new Random();
             foreach (var item in goosePieces)
@@ -69,7 +69,7 @@ namespace Ganzenbord
                 DetermineNewLocation(item, item.DiceRoll1 + item.DiceRoll2, Direction.forward, gooseMap);
             }
         }
-        private int DetermineNewLocation(GoosePiece GP, int roll, Direction direction, GooseMap gooseMap, int totalRoll = -1)
+        private int DetermineNewLocation(GoosePiece GP, int roll, Direction direction, GooseBoard gooseMap, int totalRoll = -1)
         {
             int attemptedLocation;
             if (direction == Direction.forward)
@@ -108,16 +108,16 @@ namespace Ganzenbord
                 DetermineNewLocation(GP, attemptedLocation-63, Direction.backwards, gooseMap, roll);
                 resultedLocation = GP.Location;
             }
-            else if (gooseMap.GooseBoard[attemptedLocation].CurrentSpace == Spaces.End)
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.End)
             {
                 resultedLocation = 63;
                 WinningPiece = GP.PieceID;
             }
-            else if (gooseMap.GooseBoard[attemptedLocation].CurrentSpace == Spaces.Static)
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Static)
             {
                 resultedLocation = attemptedLocation;
             }
-            else if (gooseMap.GooseBoard[attemptedLocation].CurrentSpace == Spaces.Goose)
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Goose)
             {
                 GP.Location = attemptedLocation;
                 resultedLocation = DetermineNewLocation(GP, totalRoll, direction, gooseMap, totalRoll);
