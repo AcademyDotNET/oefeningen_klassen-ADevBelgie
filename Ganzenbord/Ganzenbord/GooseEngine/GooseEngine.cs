@@ -42,7 +42,7 @@ namespace Ganzenbord
                 }
                 output.WriteLine($"\nTurn {Turn}");
                 Turn++;
-                RollDice(gooseMap);
+                PlayersTurn(gooseMap);
                 foreach (var item in goosePieces)
                 {
                     output.Write($"\t{item.DiceRoll1}+{item.DiceRoll2}: {item.Location}\t");
@@ -59,7 +59,7 @@ namespace Ganzenbord
                 input.ReadLine();
             }
         }
-        private void RollDice(GooseBoard gooseMap)
+        private void PlayersTurn(GooseBoard gooseMap)
         {
             Random rand = new Random();
             foreach (var item in goosePieces)
@@ -151,6 +151,18 @@ namespace Ganzenbord
             else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Prison)
             {
                 GP.CurrentGoosePieceState = GoosePieceState.Prison;
+                resultedLocation = attemptedLocation;
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Well)
+            {
+                foreach (var piece in goosePieces)
+                {
+                    if (piece.CurrentGoosePieceState == GoosePieceState.Well)
+                    {
+                        piece.CurrentGoosePieceState = GoosePieceState.Normal;
+                    }
+                }
+                GP.CurrentGoosePieceState = GoosePieceState.Well;
                 resultedLocation = attemptedLocation;
             }
             else
