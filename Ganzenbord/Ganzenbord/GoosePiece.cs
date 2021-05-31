@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ganzenbord
 {
+    public enum GoosePieceState { Inn, Well, Prison, Normal }
     class GoosePiece
     {
         public GoosePiece(int pieceID)
@@ -16,5 +17,37 @@ namespace Ganzenbord
         public int Location { get; set; } = 0;
         public int DiceRoll1 { get; set; }
         public int DiceRoll2 { get; set; }
+        public int TurnsInAbnormalState { get; set; } = 0;
+        public GoosePieceState CurrentGoosePieceState { get; set; } = GoosePieceState.Normal;
+        public void UpdateState()
+        {
+            switch (CurrentGoosePieceState)
+            {
+                case GoosePieceState.Inn:
+                    if (TurnsInAbnormalState >= 1)
+                    {
+                        CurrentGoosePieceState = GoosePieceState.Normal;
+                        TurnsInAbnormalState = 0;
+                    }
+                    else
+                    {
+                        TurnsInAbnormalState++;
+                    }
+                    break;
+                case GoosePieceState.Prison:
+                    if (TurnsInAbnormalState >= 3)
+                    {
+                        CurrentGoosePieceState = GoosePieceState.Normal;
+                        TurnsInAbnormalState = 0;
+                    }
+                    else
+                    {
+                        TurnsInAbnormalState++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

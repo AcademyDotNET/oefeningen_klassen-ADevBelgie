@@ -64,9 +64,18 @@ namespace Ganzenbord
             Random rand = new Random();
             foreach (var item in goosePieces)
             {
-                item.DiceRoll1 = rand.Next(1, 7);
-                item.DiceRoll2 = rand.Next(1, 7);
-                DetermineNewLocation(item, item.DiceRoll1 + item.DiceRoll2, Direction.forward, gooseMap);
+                item.UpdateState();
+                if (item.CurrentGoosePieceState == GoosePieceState.Normal)
+                {
+                    item.DiceRoll1 = rand.Next(1, 7);
+                    item.DiceRoll2 = rand.Next(1, 7);
+                    DetermineNewLocation(item, item.DiceRoll1 + item.DiceRoll2, Direction.forward, gooseMap);
+                }
+                else
+                {
+                    item.DiceRoll1 = 0;
+                    item.DiceRoll2 = 0;
+                }
             }
         }
         private int DetermineNewLocation(GoosePiece GP, int roll, Direction direction, GooseBoard gooseMap, int totalRoll = -1)
@@ -91,6 +100,12 @@ namespace Ganzenbord
             {
                 resultedLocation = 1;
             }
+            else if (attemptedLocation > 63)
+            {
+                GP.Location = 63;
+                DetermineNewLocation(GP, attemptedLocation - 63, Direction.backwards, gooseMap, roll);
+                resultedLocation = GP.Location;
+            }
             else if (GP.Location == 00 && roll == 9)
             {
                 if (GP.DiceRoll1 == 5 || GP.DiceRoll1 == 5)
@@ -101,12 +116,6 @@ namespace Ganzenbord
                 {
                     resultedLocation = 53;
                 }
-            }
-            else if (attemptedLocation > 63)
-            {
-                GP.Location = 63;
-                DetermineNewLocation(GP, attemptedLocation-63, Direction.backwards, gooseMap, roll);
-                resultedLocation = GP.Location;
             }
             else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.End)
             {
@@ -121,6 +130,28 @@ namespace Ganzenbord
             {
                 GP.Location = attemptedLocation;
                 resultedLocation = DetermineNewLocation(GP, totalRoll, direction, gooseMap, totalRoll);
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Bridge)
+            {
+                resultedLocation = 12;
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Maze)
+            {
+                resultedLocation = 39;
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Death)
+            {
+                resultedLocation = 0;
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Inn)
+            {
+                GP.CurrentGoosePieceState = GoosePieceState.Inn;
+                resultedLocation = attemptedLocation;
+            }
+            else if (gooseMap.GooseBoardArray[attemptedLocation].CurrentSpace == Spaces.Prison)
+            {
+                GP.CurrentGoosePieceState = GoosePieceState.Prison;
+                resultedLocation = attemptedLocation;
             }
             else
             {
