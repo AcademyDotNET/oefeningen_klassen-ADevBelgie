@@ -12,7 +12,7 @@ namespace Ganzenbord
         {
             Init();
         }
-        public MapElement[] GooseBoard { get; set; } = new MapElement[63];
+        public MapElement[] GooseBoard { get; set; } = new MapElement[64];
         private void Init()
         {
             for (int i = 0; i < GooseBoard.Length; i++)
@@ -32,7 +32,7 @@ namespace Ganzenbord
             GooseBoard[50] = new MapElement(Spaces.Goose);
             GooseBoard[54] = new MapElement(Spaces.Goose);
             GooseBoard[59] = new MapElement(Spaces.Goose);
-            GooseBoard[62] = new MapElement(Spaces.End);
+            GooseBoard[63] = new MapElement(Spaces.End);
         }
     }
 }
