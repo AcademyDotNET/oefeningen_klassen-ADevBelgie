@@ -72,7 +72,14 @@ namespace Ganzenbord
             }
             else
             {
-                DisplayOutput.WriteLine($"\n\n[PRESS ENTER TO FINISH GAME]");
+                DisplayOutput.WriteLine($"\n\n");
+                DisplayOutput.Write("\t");
+                for (int i = 1; i < winningPiece; i++)
+                {
+                    DisplayOutput.Write("\t\t\t");
+                }
+                DisplayOutput.WriteLine("Winner!!!");
+                DisplayOutput.WriteLine($"[PRESS ENTER TO FINISH GAME]");
             }
         }
     }
