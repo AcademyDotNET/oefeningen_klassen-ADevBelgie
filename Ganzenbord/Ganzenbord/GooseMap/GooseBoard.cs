@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ganzenbord
 {
-    class GooseBoard
+    class GooseBoard: IGooseBoard
     {
         public GooseBoard()
         {
-            Init();
+            InitGooseBoardArray();
         }
         public MapElement[] GooseBoardArray { get; set; } = new MapElement[64];
-        private void Init()
+        private void InitGooseBoardArray()
         {
             IMapElementFactory MEFactory = new MapElementFactory();
             for (int i = 0; i < GooseBoardArray.Length; i++)

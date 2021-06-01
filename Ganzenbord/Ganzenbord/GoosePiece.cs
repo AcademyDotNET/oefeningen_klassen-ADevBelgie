@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ganzenbord
 {
-    public enum GoosePieceState { Inn, Well, Prison, Normal }
+    public enum GoosePieceState { Inn, Well, Prison, Static, Death, Bridge, Maze, Goose }
     class GoosePiece
     {
         public GoosePiece(int pieceID)
@@ -15,18 +15,20 @@ namespace Ganzenbord
         }
         public int PieceID { get; set; }
         public int Location { get; set; } = 0;
+        public int JumpLocation { get; set; } = -1;
         public int DiceRoll1 { get; set; }
         public int DiceRoll2 { get; set; }
         public int TurnsInAbnormalState { get; set; } = 0;
-        public GoosePieceState CurrentGoosePieceState { get; set; } = GoosePieceState.Normal;
+        public GoosePieceState CurrentGoosePieceState { get; set; } = GoosePieceState.Static;
         public void UpdateState()
         {
+            JumpLocation = -1;
             switch (CurrentGoosePieceState)
             {
                 case GoosePieceState.Inn:
                     if (TurnsInAbnormalState >= 1)
                     {
-                        CurrentGoosePieceState = GoosePieceState.Normal;
+                        CurrentGoosePieceState = GoosePieceState.Static;
                         TurnsInAbnormalState = 0;
                     }
                     else
@@ -37,7 +39,7 @@ namespace Ganzenbord
                 case GoosePieceState.Prison:
                     if (TurnsInAbnormalState >= 3)
                     {
-                        CurrentGoosePieceState = GoosePieceState.Normal;
+                        CurrentGoosePieceState = GoosePieceState.Static;
                         TurnsInAbnormalState = 0;
                     }
                     else
@@ -45,7 +47,10 @@ namespace Ganzenbord
                         TurnsInAbnormalState++;
                     }
                     break;
+                case GoosePieceState.Well:
+                    break;
                 default:
+                    CurrentGoosePieceState = GoosePieceState.Static;
                     break;
             }
         }

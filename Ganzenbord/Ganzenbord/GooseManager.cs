@@ -10,45 +10,41 @@ namespace Ganzenbord
     {
         public void Start()
         {
-            Welcome();
-            GooseEngine GE = new GooseEngine(GetAmountOfPieces());
-            GE.Start();
-            End();
-        }
-
-        private int GetAmountOfPieces()
-        {
-            IOutput output = new Output();
             IInput input = new Input();
+            IOutput output = new Output();//how to output something
+            IDisplay display = new Display(output);//what to output
+            IGooseBoard gooseBoard = new GooseBoard();
+            List<GoosePiece> goosePieces = new List<GoosePiece>();
 
-            output.WriteLine("How many pieces will participate?(1-4)");
+            display.Welcome();
+
+            MakeListPieces(goosePieces, GetAmountOfPieces(input, output));
+            GooseEngine GE = new GooseEngine(goosePieces);
+            GE.Start(display, input, gooseBoard);
+
+            display.End();
+            input.ReadLine();
+        }
+        public void MakeListPieces(List<GoosePiece> goosePieces, int amountOfPieces)
+        {
+            for (int i = 0; i < amountOfPieces; i++)
+            {
+                goosePieces.Add(new GoosePiece(i + 1));
+            }
+        }
+        private int GetAmountOfPieces(IInput input, IOutput output)
+        {
+            output.WriteLine("How many pieces will participate?(2-4)");
 
             int amountOfPieces;
             amountOfPieces = input.ReadLineNumber();
-            while (amountOfPieces>4 || amountOfPieces<1)
+            while (amountOfPieces>4 || amountOfPieces<2)
             {
-                output.WriteLine("Please give a number between 1-4");
+                output.WriteLine("Please give a number between 2-4");
                 amountOfPieces = input.ReadLineNumber();
             }
             
             return amountOfPieces;
-        }
-
-        private void End()
-        {
-            IOutput output = new Output();
-            IInput input = new Input();
-
-            output.Clear();
-            output.WriteLine("Congratgulations on winning");
-            input.ReadLine();
-        }
-
-        private void Welcome()
-        {
-            IOutput output = new Output();
-            output.Clear();
-            output.WriteLine("Welcome To a Game of Goose");
         }
     }
 }
