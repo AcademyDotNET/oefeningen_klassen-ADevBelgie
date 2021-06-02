@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ganzenbord
+namespace Ganzenbord_ascii_art_2
 {
     public enum Direction { forward, backwards};
     class GooseEngine
