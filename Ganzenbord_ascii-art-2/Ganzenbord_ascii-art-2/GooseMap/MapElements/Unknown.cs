@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Unknown : MapElement
     {
-        public Unknown(Spaces currentSpace) : base(currentSpace)
+        public Unknown(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

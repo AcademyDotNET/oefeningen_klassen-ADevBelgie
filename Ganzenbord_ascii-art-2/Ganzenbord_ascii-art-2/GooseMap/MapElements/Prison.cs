@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Prison : MapElement
     {
-        public Prison(Spaces currentSpace) : base(currentSpace)
+        public Prison(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

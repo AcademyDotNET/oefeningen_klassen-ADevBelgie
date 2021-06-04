@@ -20,5 +20,21 @@ namespace Ganzenbord_ascii_art_2
         {
             Console.Clear();
         }
+        public void SetCursorPosition(int x, int y)
+        {
+            Console.SetCursorPosition(x, y);
+        }
+        public (int, int) GetCursorPosition()
+        {
+            return Console.GetCursorPosition();
+        }
+        public void ForegroundColor(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+        }
+        public void BackgroundColor(ConsoleColor color)
+        {
+            Console.BackgroundColor = color;
+        }
     }
 }

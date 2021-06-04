@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Static : MapElement
     {
-        public Static(Spaces currentSpace) : base(currentSpace)
+        public Static(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

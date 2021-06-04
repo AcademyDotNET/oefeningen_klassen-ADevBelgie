@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ganzenbord
+namespace Ganzenbord_ascii_art_2
 {
-    class Static : MapElement
+    class LocationConsole
     {
-        public Static(Spaces currentSpace) : base(currentSpace)
-        {
-        }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

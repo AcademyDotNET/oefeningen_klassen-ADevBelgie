@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Inn : MapElement
     {
-        public Inn(Spaces currentSpace) : base(currentSpace)
+        public Inn(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

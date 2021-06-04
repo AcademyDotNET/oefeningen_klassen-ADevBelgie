@@ -14,7 +14,9 @@ namespace Ganzenbord_ascii_art_2
             PieceID = pieceID;
         }
         public int PieceID { get; set; }
+        public ConsoleColor PieceColor { get; set; }
         public int Location { get; set; } = 0;
+        public int LastLocation { get; set; }
         public int JumpLocation { get; set; } = -1;
         public int DiceRoll1 { get; set; }
         public int DiceRoll2 { get; set; }

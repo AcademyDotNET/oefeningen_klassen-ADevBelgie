@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Goose : MapElement
     {
-        public Goose(Spaces currentSpace) : base(currentSpace)
+        public Goose(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

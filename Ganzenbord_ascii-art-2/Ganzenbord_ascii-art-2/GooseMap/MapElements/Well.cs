@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Well : MapElement
     {
-        public Well(Spaces currentSpace) : base(currentSpace)
+        public Well(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

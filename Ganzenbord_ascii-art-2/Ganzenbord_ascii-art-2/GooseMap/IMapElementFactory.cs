@@ -8,6 +8,6 @@ namespace Ganzenbord_ascii_art_2
 {
     interface IMapElementFactory
     {
-        public MapElement Build(Spaces toBuild);
+        public MapElement Build(Spaces toBuild, int x, int y);
     }
 }

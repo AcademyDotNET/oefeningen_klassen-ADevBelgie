@@ -129,7 +129,10 @@ namespace Ganzenbord
                         break;
                     case Spaces.End:
                         resultedLocation = 63;
-                        WinningPiece = GP.PieceID;
+                        if (WinningPiece == -1)//the first one to reach the end wins
+                        {
+                            WinningPiece = GP.PieceID;
+                        }
                         break;
                     default:
                         resultedLocation = attemptedLocation;

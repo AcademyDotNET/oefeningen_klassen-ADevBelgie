@@ -30,6 +30,7 @@ namespace Ganzenbord_ascii_art_2
             for (int i = 0; i < amountOfPieces; i++)
             {
                 goosePieces.Add(new GoosePiece(i + 1));
+                goosePieces[i].PieceColor = (ConsoleColor)i+1;
             }
         }
         private int GetAmountOfPieces(IInput input, IOutput output)

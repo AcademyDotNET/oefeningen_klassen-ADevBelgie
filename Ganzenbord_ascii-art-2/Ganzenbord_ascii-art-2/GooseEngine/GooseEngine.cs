@@ -25,18 +25,22 @@ namespace Ganzenbord_ascii_art_2
         private void GameLoop(IDisplay display, IInput input, IGooseBoard gooseBoard)
         {
             display.gameboard();
+            display.PiecesGameboard(goosePieces, gooseBoard);
+
+            display.Pieces(goosePieces);
+            display.Turn(Turn);
+            display.EndOfTurn(WinningPiece, Turn);
+            input.ReadLine();
+
             while (WinningPiece == -1)
             {
-                display.Pieces(goosePieces);
+                display.RemovePiecesGameboard(goosePieces, gooseBoard);
                 display.Turn(Turn);
                 
                 PlayersTurn(gooseBoard);
-                foreach (var piece in goosePieces)
-                {
-                    display.RolledDice(piece.DiceRoll1, piece.DiceRoll2);
-                    display.CurrentGoosePieceState(piece.CurrentGoosePieceState);
-                    display.Location(piece.JumpLocation, piece.Location);
-                }
+
+                display.PiecesGameboard(goosePieces, gooseBoard);
+                display.TurnResult(goosePieces);
 
                 Turn++;
                 display.EndOfTurn(WinningPiece, Turn);
@@ -55,6 +59,7 @@ namespace Ganzenbord_ascii_art_2
                 {
                     piece.DiceRoll1 = rand.Next(1, 7);
                     piece.DiceRoll2 = rand.Next(1, 7);
+                    piece.LastLocation = piece.Location;
                     DetermineNewLocation(piece, piece.DiceRoll1 + piece.DiceRoll2, Direction.forward, gooseBoard);
                 }
                 else

@@ -12,12 +12,12 @@ namespace Ganzenbord_ascii_art_2
         public void Clear();
         public void Welcome();
         public void End();
-        public void Location(int jumpLocation, int location);
-        public void CurrentGoosePieceState(GoosePieceState currentGoosePieceState);
-        public void RolledDice(int diceRoll1, int diceRoll2);
         public void Turn(int turn);
         public void Pieces(List<GoosePiece> goosePieces);
         public void EndOfTurn(int winningPiece, int turn);
-        void gameboard();
+        public void gameboard();
+        public void PiecesGameboard(List<GoosePiece> goosePieces, IGooseBoard gooseBoard);
+        public void RemovePiecesGameboard(List<GoosePiece> goosePieces, IGooseBoard gooseBoard);
+        public void TurnResult(List<GoosePiece> goosePieces);
     }
 }

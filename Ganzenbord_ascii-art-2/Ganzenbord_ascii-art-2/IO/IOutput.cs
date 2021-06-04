@@ -11,5 +11,9 @@ namespace Ganzenbord_ascii_art_2
         public void Write(string toOut);
         public void WriteLine(string toOut);
         public void Clear();
+        public void SetCursorPosition(int x, int y);
+        public (int, int) GetCursorPosition();
+        public void ForegroundColor(ConsoleColor color);
+        public void BackgroundColor(ConsoleColor color);
     }
 }

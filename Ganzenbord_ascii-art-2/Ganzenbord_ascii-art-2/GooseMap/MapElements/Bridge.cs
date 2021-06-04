@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Bridge : MapElement
     {
-        public Bridge(Spaces currentSpace) : base(currentSpace)
+        public Bridge(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

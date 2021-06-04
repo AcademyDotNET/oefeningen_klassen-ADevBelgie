@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Maze : MapElement
     {
-        public Maze(Spaces currentSpace) : base(currentSpace)
+        public Maze(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }

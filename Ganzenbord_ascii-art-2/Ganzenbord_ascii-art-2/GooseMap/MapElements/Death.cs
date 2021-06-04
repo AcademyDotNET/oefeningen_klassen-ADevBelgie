@@ -8,7 +8,7 @@ namespace Ganzenbord_ascii_art_2
 {
     class Death : MapElement
     {
-        public Death(Spaces currentSpace) : base(currentSpace)
+        public Death(Spaces currentSpace, int x, int y) : base(currentSpace, x, y)
         {
         }
     }
